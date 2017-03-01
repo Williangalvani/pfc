@@ -99,6 +99,12 @@
 
 \usepackage{cite}
 \usepackage{algorithm}
+\usepackage{algorithmicx}
+
+
+\newcommand{\INDSTATE}[1][1]{\STATE\hspace{#1\algorithmicindent}}
+
+
 \usepackage{algpseudocode}
 \renewcommand\citeleft{[}
 \renewcommand\citeright{]}
@@ -151,6 +157,8 @@
 }
 
 
+
+\def\BState{\State\hskip-\ALG@thistlm}
 
 \makeatother
 % --- 

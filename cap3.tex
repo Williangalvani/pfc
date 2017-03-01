@@ -46,13 +46,13 @@ Um exemplo de algoritmo Downhill Simplex é o seguinte:
                 \State Calcular o centroide $x_0$ de $(x_{1}, ... , x_{n+1})$
                 \State Calcular $x_r$ refletido: $x_r = x_0 + \alpha(x_0 - x_{n+1})$ 
                 
-(Reflecção)                
+\BState \emph{(Reflecção)}                
                 \If{  $f(f(x_1) < f(x_r) < f(x_n) $ }
                     \State $x_{n+1} \gets x_r$
                     \State Continue
                 \EndIf
 
-(Expansão)
+\BState \emph{(Expansão)}
                 \If{  $f(f(x_r) < f(x_1)$ }
                     \State Calcular ponto expandido $x_e = x_0 + \gamma(x_r - x_0) $
                     \If{$f(x_e) < f(x_r)$}
@@ -62,13 +62,13 @@ Um exemplo de algoritmo Downhill Simplex é o seguinte:
                     \EndIf
                     \State Continue
                 \EndIf
-(Contração)
+\BState \emph{(Contração)}
                 \State Computar o ponto contraído $x_c = x_0 + \rho(x_{n+1} - x_0)$
                 \If{$f(x_c) < f(x_{n+1})$}
                     \State $x_{n+1} \gets x_c$
                     \State Continue             
                 \EndIf
-(Contração)
+\BState \emph{(Encolhimento)}
                 \State $x_i \gets x_1 + \sigma(x_i - x_1), i=2 \dots n+1$
             \EndWhile
     \end{algorithmic}
@@ -153,21 +153,36 @@ H = ||q^2||(I_n - 2vv^T),\textit{ onde }v = \cfrac{q}{||q||}
 ALGO MAIS DEVE SER ESCRITO AQUI, MAS OQ?
 
 
-%\begin{algorithm}[H]
-%\SetAlgoLined
-%\KwData{this text}
-%\KwResult{how to write algorithm with \LaTeX2e }
-%initialization\;
-%\While{not at end of this document}{
-%read current\;
-%\eIf{understand}{
-%go to next section\;
-%current section becomes this one\;
-%}{
-%go back to the beginning of current section\;
-%}
-%}
-%\caption{How to write algorithms}
-%\end{algorithm}
+\begin{algorithm}
+    \caption{OrthoMads}
+    \label{alg:orthomads}
+    \begin{algorithmic}[1] % The number tells where the line numbering should start
+\BState \emph{[0] Inicialização}   
+                \State $x_0 \in \Omega , \ell_0 \gets 0, k \gets 0, t_0 \gets p_n$ 
+            \While{Não Convergiu}
+\BState \emph{(ITERAÇÃO $k$)}                
+            \State Search (opcional)
+			\State Avalia $ f $ em um conjunto finito $S_k \subset M_k $
+\State \emph{POLL}
+    \If{o tamanho do parametro POLL é o menor até então ($ \Delta^p_k = \text{min} \{ \Delta^p_j : j=  0,1,\dots,k \}$)} 
+    \State $t_k \gets \ell_k + t_0$
+    \Else{ (Já foram considerados tamanhos menores)}
+    \State $t_k \gets 1 + \text{max} \{t_j:j=0,1,\dots,k-1\}$
+    \EndIf
+    \State Computa $ u_{tk} , q_{tk}   \ell_k $ and $ D_k = \big[ H_{tk} \text{    } -H_{tk} \big] $
+\BState \emph{UPDATES}                
+	\If{ A iteração foi bem sucedida ( se existe um $x_s \in S_k \text{ ou } x_p \in P_k$ tal que $f(x_s) < f(x_k)$ ou $ f(x_p) < f(x_k)$ }
+		\State $x_{k+1} \gets x_s $ or $x_p$
+		\State $\ell_{k+1} \gets \ell_k - 1$
+	\Else {(iteração falhou)}
+		\State $x_{k+1} \gets x_k$
+		\State $\ell_{k+1} \gets \ell_k + 1$
+    \EndIf
+    \State $k \gets k + 1$
+    \EndWhile
+    \end{algorithmic}
+\end{algorithm}
+
+
 
 %%%%%%%%%%%%%%%%%
