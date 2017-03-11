@@ -26,8 +26,9 @@ How long it takes to tune the simulator reflects on how long the production can 
 
 \section{Goals}
 
-The ultimate goal is to optimize the production and profit. We aim to identify, implement, and test suitable derivative-free optimization methods to tune the Marlim simulator. The methods being studied are the Simplex, Baricenter, and OrthoMADS aswell as NOMAD's implementation.
-We hope the system helps relieving the engineer's burden of tuning the simulator, moving him to a overseeing task. 
+O objetivo final deste trabalho é o desenvolvimento de uma ferramenta capaz de auxiliar a otimização da produção em plataformas offshore. Nós pretendemos identificar, implementar, e testar métodos de otimização sem derivadas compatíveis para sintonizar um simulador.
+Inicialmente os métodos a ser estudados são O Simplex de Nelder-Mead, Baricentro, e OrthoMADs (implementação NOMAD).
+É esperado que o método desenvolvido ajude a aliviar a carga sobre o engenheiro, mudando sua função para monitoração do sistema.
 
 \begin{itemize}
  \item \textcolor{blue}{Study and identify suitable derivative-free optimization methods for an oil well simulator}.
@@ -39,16 +40,15 @@ We hope the system helps relieving the engineer's burden of tuning the simulator
 
 \section{Report Structure}
 
-This report is organized in four main sections. On section 2, an overview of the oilfield systems and how they work is given, explaining the structure of an Floating Production, Storage and Offloading (FPSO) unit, as well as each of their main components. As the systems are presented, the variables used for control or feedback on next sections will be highlighted.
+Este relatório está dividido em quatro seções principais.
+Na seção 2, é dada uma visão geral dos campos de petróleo e como eles funcionam, explicando a estrutura de uma FPSO, assim como cada um de seus componentes. A medida que os sistema são descritos, as variáveis usadas para BATATA e DOCE DE LEITE serão destacadas.
 
-On section 3, we give a general presentation of the Derivative-Free optimization concept, showcasing the utilized methods. 
+Na seção 3, damos uma apresentação geral dos conceitos de otimização sem derivada, demonstrando cada um dos métodos utilizados.
 
-On section 4, we present the application structure, how everything connects, the experiments setup and conditions, input and output data, and discuss the results.
+Na seção 4, nós apresentamos a estrutura da aplicação, como os componentes se conectam, as configuração e condições dos testes, entradas e saídas, e discussão dos resultados.
 
-Section 5 contains the experiments conclusions.
+A seção 5 contém as conclusões dos experimentos.
 
  
-
-
 
 %%%%%%%%%%%%%%%%%%%%%%%

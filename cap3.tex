@@ -26,12 +26,13 @@ Os métodos de otimização sem derivadas procuram encontrar minimos computando 
 
 Também conhecido como Downhill Simplex Method, ou Amoeba Method, consiste em utilizar um poligono com n+1 vértices em n dimensões que se expande, contraí, ou reflete de modo a se mover em direção ao gradiente da função objetivo.
 
-Um exemplo de algoritmo Downhill Simplex é o seguinte:
+Um exemplo da execução do algoritmo de Nelder-Mead pode ser visto na figura~\ref{fig:neldermead}. A partir de um ponto inicial, o simplex se locomove como uma ameba até encontrar um ponto de mínimo.
 
 \begin{figure}
 \subfloat[Passos do Nelder-Mead]{\includegraphics[width=8cm]{figs/neldermeadsimplex.pdf}}
 \subfloat[Convergência do Nelder-Mead]{\includegraphics[width=8cm]{figs/neldermeadconvergence.pdf}}
 \caption{Nelder-Mead aplicado em um parabolóide.}
+\label{fig:neldermead}
 \end{figure}
 
 
@@ -149,6 +150,10 @@ Com um vetor normalizado e na malha, $q \in \mathbb{Z}^n$, é necessário transf
 \begin{equation}
 H = ||q^2||(I_n - 2vv^T),\textit{ onde }v = \cfrac{q}{||q||}
 \end{equation}
+
+Aonde $H$ é uma base ortonormal gerada a partir de $q$.
+
+Com a base ortonormal criada, podemos utilizar o algoritmo~\ref{alg:orthomads}, comum ao LtMads e OrthoMads.
 
 ALGO MAIS DEVE SER ESCRITO AQUI, MAS OQ?
 
