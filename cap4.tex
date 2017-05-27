@@ -3,15 +3,37 @@
 
 
 \section{Marlim (or Pipesim) Simulator}
+Sistemas de produção de petróleo são sistemas nos quais se deseja sempre produzir o máximo possível e de forma segura.
+O PIPESIM, da Schlumberger, é um simulador de fluxo multifásico em regime permanente que pode ser utilizado tanto para o projeto como para planejamento de operações em campos de petróleo. Ele permite que sejam simuladas situações alternativas de forma mais rápida e segura que testes reais.
 
 
 
+\section{Experimentos}
+Foram realizados XX experimentos, em crescente ordem de complexidade
 
-\section{Experiments}
+\subsection{Sintonia de curva }
+Primeiramente foi configurado um unico poço de petróleo, que pode ser visto na figura \ref{fig:setup1_dia}. A seguir foram escolhidos dados arbitrariamente para compor a curva "real" de produção.
+Neste Experimento a curva sintonizada foi a de fluxo de líquido (Barris padrões por dia) por gás injetado (milhões de pés cúbicos padrões por dia). Arbitrariamente escolheu-se a pressão estática do reservatório como sendo 4000 psi absoluto, e um indice de produtividade liquido de 25 STDB/d/psi( Barris padrões por dia por pressão estática). Desta forma a figura \ref{fig:truth1} demonstra a curva "real" a ser sintonizada.
 
+\begin{figure}
+\centering
+\begin{subfigure}{.4\textwidth}
+  \centering
+  \includegraphics[height=1\linewidth]{figs/setup1.png}
+  \caption{Setup do poço de petróleo.}
+  \label{fig:setup1_dia}
+\end{subfigure}%
+\begin{subfigure}{.6\textwidth}
+  \centering
+  \includegraphics[height=0.7\linewidth]{figs/truth1.png}
+  \caption{Curva "real" do poço de petróleo.}
+  \label{fig:truth1}
+\end{subfigure}
+\caption{Experimento 1.}
+\label{fig:setup1}
+\end{figure}
 
-
-
+aaa
 \section{Discussion}
 
 
