@@ -1,49 +1,32 @@
 
 
-\chapter{Introduction} \label{chap:1}
+\chapter{Introdução} \label{chap:1}
 
 
 
-\section{Motivation}
+\section{Motivação}
 
-Uma das dificuldades da produção de petróleo é controlar o processo de modo a produzir exatamente o necessário em cada estação. A produção em falta ou excesso pode afetar as interfaces com linhas de transporte, assim como extressar os sistemas da plataforma.
+Uma das dificuldades da produção de petróleo é controlar os processos de modo a produzir exatamente o necessário em cada estação. A produção em falta ou excesso de determinados componentes pode afetar os compoenentes do sistema, como bombas e separadores, as interfaces com sistemas auxiliares, como linhas de transporte, além de extressar os sistemas da plataforma.
 
- In order to get the maximum financial returns from an oilfield, the processes must be always at a point of maximum performance. Since the oilfield systems are complex and change with time, simulators are used to approximate the real world system. In order to reproduce the observed measurements properly, 
-these simulators are tuned routinely by the process engineer. This tuning is often a cumbersome and time-consuming task.
+  Para que campos de petróleo gerem o maior retorno financeiro possível, os processos devem idealmente estar sempre em um ponto ótimo de performance. Como estes são sistemas complexos e que variam com o tempo, simuladores são utilizados para estimar as respostas do sistema real. Para reproduzir as medidas observadas apropriadamente, estes simuladores devem ser rotineiramente re-sintonizados pelo engenheiro de processos. Esta sintonia pode ser uma tarefa cansativa e duradoura.
+  
+Um simulador bem sintonizado pode ser utilizado para modelagem matematica e desenvolvimento de  algoritmos de controle, assim como planejamento de operações.
 
-A well tuned simulator can be user for process modeling and prediction by control and optimization algorithms.
-
-How long it takes to tune the simulator reflects on how long the production can be optimized, thus potentially affecting the oilfields revenue.
+Como a escala de produção destes sistemas costuma ser grande, até pequenas variações dos modelos reais podem causar um impacto financeiro considerável.
 
 
-\begin{itemize}
+\section{Objetivos}
 
- \item \textcolor{blue}{Oil well simulators are tuned routinely in order to reproduce observed measurements, a process that can be cumbersome and time-consuming}.
+O objetivo final deste trabalho é o desenvolvimento de uma ferramenta capaz de auxiliar a otimização da produção em plataformas offshore. Nós pretendemos identificar, implementar, e testar métodos de otimização sem derivadas compatíveis para sintonizar um simulador de poços de petróleo.
+Inicialmente os métodos a ser estudados são o Simplex de Nelder-Mead, e OrthoMADs (implementação NOMAD).
+É esperado que o método desenvolvido ajude a aliviar a carga sobre o engenheiro do processo e melhorar a produção, de modo a aliviar uma de suas tarefas.
+
  
- \item \textcolor{blue}{The simulator of oil wells should be adequately tuned before it can be used for process modeling and prediction by control and optimization algorithms.}
- 
- \item \textcolor{blue}{The degree of accuracy can have major production and economic impact.}
-\end{itemize}
 
-
-\section{Goals}
-
-O objetivo final deste trabalho é o desenvolvimento de uma ferramenta capaz de auxiliar a otimização da produção em plataformas offshore. Nós pretendemos identificar, implementar, e testar métodos de otimização sem derivadas compatíveis para sintonizar um simulador.
-Inicialmente os métodos a ser estudados são O Simplex de Nelder-Mead, Baricentro, e OrthoMADs (implementação NOMAD).
-É esperado que o método desenvolvido ajude a aliviar a carga sobre o engenheiro, mudando sua função para monitoração do sistema.
-
-\begin{itemize}
- \item \textcolor{blue}{Study and identify suitable derivative-free optimization methods for an oil well simulator}.
- 
- \item \textcolor{blue}{Implement and test derivative-free optimization algorithms for an oilfield simulator.}
- 
-\end{itemize}
-
-
-\section{Report Structure}
+\section{Estrutura}
 
 Este relatório está dividido em quatro seções principais.
-Na seção 2, é dada uma visão geral dos campos de petróleo e como eles funcionam, explicando a estrutura de uma FPSO, assim como cada um de seus componentes. A medida que os sistema são descritos, as variáveis usadas para BATATA e DOCE DE LEITE serão destacadas.
+Na seção 2, é dada uma visão geral dos campos de petróleo e como eles funcionam, explicando a estrutura de uma FPSO, assim como cada um de seus componentes. A medida que os sistema são descritos, as variáveis usadas para os testes serão destacadas.
 
 Na seção 3, damos uma apresentação geral dos conceitos de otimização sem derivada, demonstrando cada um dos métodos utilizados.
 

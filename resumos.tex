@@ -6,13 +6,11 @@
 \setlength{\absparsep}{18pt} % ajusta o espaçamento dos parágrafos do resumo
 \begin{resumo}
 
-Para maximar a produção, e assim os lucros, um campo de petróleo precisa operar em um ponto ótimo.
+Este trabalho propõe o uso de métodos de otimização sem derivadas na industria de petróelo e gás, para sintonia de simuladores de poçõs de petróleo a partir de dados de poços reais. São analizados dois algoritmos, Nelder-Mead (Simplex) e OrthoMADS.
+O simulador Utilizado é o Pipesim, e para interface com ele são utilizados Python, Opal e pyWin32.
+Os métodos são testados de forma a minizar a distancia quadrática entre a curva de um poço real e a do poço simulado. São testadas também variações dos algoritmos.
+O sistema proposto foi capaz de sintonizar os modelos desejados em tempo aceitável e com boa precisão.
 
-Encontrar esse ponto ótimo não é uma tarefa fácil. Para testar novos modelos, sistemas de controle e de predição, são utilizados simuladores.
-
-Mas tais simuladores são complexos por si só, e precisam ser sintonizados regularmente para refletir as mudanças nas reservas de petróleo com o tempo. Esta sintonia pode tomar tempo e ser trabalhosa para o engenheiro responsável, além de não ser ótima.
-
-A solução proposta é utilizar um método de Otimização Sem-Derivadas para sintonizar o um simulador de poços de petróleo, minimizando as distancias entre as variaveis reais medidas e os resultados simulados.
 
  \textbf{Palavras-chave}: otimização sem derivada, poços de petróleo, simulação, sintonia automática 
 \end{resumo}
@@ -20,25 +18,13 @@ A solução proposta é utilizar um método de Otimização Sem-Derivadas para s
 % resumo em inglês
 \begin{resumo}[Abstract]
  \begin{otherlanguage*}{english}
-
-Para obter o maior retorno financeiro possível, uma planta para extração de petróleo deve funcionar em um ponto de perfomance ideal. Como campos de petróleo são sistemas complexos e variam com o tempo, simuladores são utilizados para aproximar o sistema o real. Para reproduzir as medições observadas apropriadamente, os simuladores são sintonizados periodicamente pelo engenheiro de processo. Esta sintonia frequentemente é cansativa demorada, e pode ser não-ótima.
-
-A abordagem aqui proposta é utilizar um método de otimização sem derivada para sintonizar um simulador miniimizando a discrepancia entre os dados colhidos no mundo real e os simulados.
-
-
-(RESULTS HERE)
-
-(CONCLUSION HERE)
-
-\textcolor{gray}{
-Results:
-What's the answer? Specifically, most good computer architecture papers conclude that something is so many percent faster, cheaper, smaller, or otherwise better than something else. Put the result there, in numbers. Avoid vague, hand-waving results such as "very", "small", or "significant." If you must be vague, you are only given license to do so when you can talk about orders-of-magnitude improvement. There is a tension here in that you should not provide numbers that can be easily misinterpreted, but on the other hand you don't have room for all the caveats.}
+This work proposes the use of derivative-free optimization methods in the oil and gas industry, in tuning the oil well simulators to match real oil wells. two algorithms are analized, Nelder-Mead (simplex) and OrthoMADS.
+The simulator used is Pipesim. Python, pyWin32 and Opal were used to interface with it.
+The methods are tested by attempting to reduce the quadratic distance between the real well's curve and the simulator's.
+Some variations of the algorithms are also tested.
+The proposed system was able to tune the desired in an accutare manner and acceptable time.
 
 
-\textcolor{gray}{
-Conclusions:
-What are the implications of your answer? Is it going to change the world (unlikely), be a significant "win", be a nice hack, or simply serve as a road sign indicating that this path is a waste of time (all of the previous results are useful). Are your results general, potentially generalizable, or specific to a particular case?
- }
    \vspace{\onelineskip}
  
    \noindent 
