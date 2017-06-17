@@ -6,13 +6,34 @@
 Sistemas de produção de petróleo são sistemas nos quais se deseja sempre produzir o máximo possível e de forma segura.
 O PIPESIM, da Schlumberger, é um simulador de fluxo multifásico em regime permanente que pode ser utilizado tanto para o projeto como para planejamento de operações em campos de petróleo. Ele permite que sejam simuladas situações alternativas de forma mais rápida e segura que testes reais.
 
-\section{Interface}
-Para interfaceamento do Pipesim com outros softwares, a Schlumberger disponibiliza uma API chamada OpenLink. Esta pode ser utilizada para interação programática com o Pipesim, habilitando a configuração de novos poços, análise, simulações, e automação da simulação. Utilizando-se a biblioteca pyWin32, é possível comunicar-se com a API, mas apenas no windows de 32 bits.
+\section{Python}
+
+O Python é uma linguagem de alto nível, interpretada, de desenvolvimento rápido muito utilizada para prototipação e na academia. Suas faciliades, como Jupyter Notebook, um ambiente que facilita a criação de documentos com códigos e análise de dados, e o Matplotlib, uma biblioteca que a torna quase tão poderosa quando o MatLab para visualização de dados, a tornaram muito utilizada também na academia.
+
+A Linguagem surgiu em 1991, e segundo o toba [https://www.tiobe.com/tiobe-index/] é a quarta linguagem de programação mais popular atualmente.
+
+Sua facilidade de uso, expêriencia prévia, e facilidades de visualização de dados foram decisivos para a sua escolha para este trabalho. 
+
+\section{Interface Python e OpenLink}
+Para interfaceamento do Pipesim com outros softwares, a Schlumberger disponibiliza uma API (Application Programming Interface) chamada OpenLink, idealizada para programação em C++, VBA, ou Visual Basic. Esta pode ser utilizada para interação programática com o Pipesim, habilitando a configuração de novos poços, alteração de poços existentes, análises, simulações, e automação de simulações. Com essa API, é possível variar os parametros do poço e avaliar as curvas características.
+
+ Utilizando-se a biblioteca de Python pyWin32, é possível comunicar-se com a API, mas apenas em versões do Windows de 32 bits. Apesar de algumas peculiaridades no tratamento de arrays e outros tipos de dados, esta biblioteca permite o uso da API em uma linguagem de desenvolvimento mais rápido[citation needed] e com grandes facilidades de análise de dados [citation needed].
+
+\section{NOMAD}
+Para utilização do orthoMADS, foi escolhida a ferramenta NOMAD, uma implementação em C++ para a solução de problemas de otimização sem-derivadas com problemas caixa-preta, aonde não se conhece o modelo explícito do problema. Bastando fornecer uma função objetivo e restrições, a ferramenta é capaz de encontrar um ponto ótimo para o problema. Ela também  disponibiliza variações do algorítmo (como 2n ou n+1 bases) e a possibilidade de paralelismo (consultar mais que um ponto de forma concorrente.  
+
+
+\section{Opal}
+Para o uso do NOMAD com o Python, era sugerido, até o começo destes trabalhos, o uso da ferramenta Opal (A Framework for Optimization of Algorithms). Uma interface open-source de alto nível para a interface de Python com o NOMAD. Este framework dá a liberdade para configurar todos os parametros de otimização do NOMAD e também é capaz de paralelismo.
+
+No entanto ele suporta apenas Python2.7 que está em desuso há mais de 10 anos [citation needed], de modo que foi necessário portá-lo para python3 [github], contribuição que foi enviada aos criadores originais [action needed].
+
+
 
 \section{Experimentos}
-Foi realizado um experimento de sintonia de curva, e utilizados três abordagens diferentes para a sintonia. Primeiramente foi utilizado o orthoMADS, com a implementação NOMAD, em seguida, foi utilizado novamente o NOMAD, mas com surrogate model calculado pela SGTELIB, e finalmente, uma implementação do Nelder-Mead Simplex. Os resultados então são comparados quanto a numero de avaliações e acuracia do resultado.
+Foi realizado um experimento de sintonia de curva, e utilizadas três abordagens diferentes para a sintonia. Primeiramente foi utilizado o orthoMADS, com a implementação NOMAD, em seguida, foi utilizado novamente o NOMAD, mas com surrogate model calculado pela SGTELIB, e finalmente, uma implementação do Nelder-Mead Simplex. Os resultados então são comparados quanto a número de avaliações e acuracia do resultado.
 
-\subsection{O Problema de sintonia}
+\section{O Problema de sintonia}
 Primeiramente foi configurado um unico poço de petróleo, que pode ser visto na figura \ref{fig:setup1_dia}. A seguir foram escolhidos dados arbitrariamente para compor a curva "real" de produção (figura \ref{fig:truth1}).
 Neste Experimento a curva sintonizada foi a de fluxo de líquido (Barris padrões por dia) por gás injetado (milhões de pés cúbicos padrões por dia). Escolheu-se a pressão estática do reservatório como sendo 4000 psi absoluto, e um indice de produtividade liquido de 25 STDB/d/psi( Barris padrões por dia por pressão estática). Desta forma a figura \ref{fig:truth1} demonstra a curva "real" a ser sintonizada.
 
@@ -36,10 +57,9 @@ Neste Experimento a curva sintonizada foi a de fluxo de líquido (Barris padrõe
 \label{fig:setup1}
 \end{figure}
 
-Para os testes, os parametros SP (pressão estática) e Liq PI (Índice de produção de líquido) foram iniciados respecticamente em 3000 e 15.
+Para os testes, os parametros SP (pressão estática) e Liq PI (Índice de produção de líquido) foram iniciados respecticamente em 3000 e 15. A interface OpenLink foi utilizada para modificar os parâmetros e ler uma nova curva, a distância quadrática entre as duas curvas foi utilizada como o erro na otimização.
 
-
-\subsection{Sintonia de curva com o orthoMADS}
+\section{Setup para sintonia de curva com o orthoMADS}
 Para a sintonia com o orthoMADS, foi utilizada o framework OPAL (A Framework for Optimization of Algorithms), interface python para o solver NOMAD.
 A implementação com o OPAL utiliza dois arquivos, "well\_declaration.py" e "well\_optimize.py".
 
@@ -88,15 +108,39 @@ FD.add_measure(error)
 \end{verbatim}
 \end{itemize}
 
-Já no arquivo "well\_optimize", são declarados
+Já no arquivo "well\_optimize", são declaradas estruturas auxiliares, e instanciado o solver
 
-Adicionalmente, foi importo o seguinte solver do NOMAD:
-\begin{align}
-F\_TARGET = 0.1
-\end{align}
-De modo a limitar o tamanho mínimo da malha, e terminar a simulação quando o erro ficar menor que $10^{-5}$
+\begin{verbatim}
 
-em 467 segundos (7:47 minutos) o noMADS convergiu para SP=4004.15, PI = 24.72, com a função custo em 0.896. A parada se deu pelo MIN\_MESH\_SIZE. A performance do algoritmo pode ser vista na figura \ref{fig:setup1_points}
+def get_error(parameters, measures):
+    return sum(measures["ERROR"])
+
+data = ModelData(FD)
+struct = ModelStructure(objective=get_error)  # Unconstrained
+model = Model(modelData=data, modelStructure=struct)
+
+NOMAD = NOMADSolver()
+
+\end{verbatim}
+
+
+
+Adicionalmente, são impostas as seguintes restrições ao solver do NOMAD:
+\begin{verbatim}
+F_TARGET = 0.1
+\end{verbatim}
+
+De modo a limitar o tamanho mínimo da malha, e terminar a simulação quando a função custo chegar a um valor abaixo de 0.1
+
+E a seguir, é inicilizada a otimização:
+\begin{verbatim}
+NOMAD.solve(blackbox=model)
+\end{verbatim}
+
+
+\section{Resultados da Sintonia de Curva com o orthoMADS}
+
+Em 525 segundos (8:45 minutos) o NOMAD convergiu para SP=4000.691, PI = 24.9544, com a função custo em 0.0757. A parada se deu pelo F\_TARGET. A performance do algoritmo pode ser vista na figura \ref{fig:setup1_2}
 
 
 \begin{figure}
@@ -119,7 +163,12 @@ em 467 segundos (7:47 minutos) o noMADS convergiu para SP=4004.15, PI = 24.72, c
 
 \subsection{Surrogate Lib}
 
-Durante a realização desses experimentos, o noMAD foi atualizado e recebeu uma ferramenta auxiliar, uma biblioteca que tenta aproximar a função a partir dos pontos já utilizados, para utilização no passo "search" do algoritmo. Esta biblioteca faz com que o algoritmo, a cada iteração, tente adivinhar a melhor direção para avançar, ao invés de progredir aleatoriamente.
+Durante a realização desses experimentos, o NOMAD foi atualizado e recebeu uma ferramenta auxiliar, uma biblioteca que tenta aproximar a função a partir dos pontos já utilizados, para utilização no passo "search" do algoritmo. Esta biblioteca faz com que o algoritmo, a cada iteração, tente adivinhar a melhor direção para avançar, ao invés de progredir aleatoriamente.
+
+Para o cálculo do modelo substituto, são possíveis nove tipos de modelos, que podem ser vistos na documentação, além de onze tipos possíveis de núcleos. Neste trabalho foram utilizadas as opções padrão do NOMAD, um modeo PRS (Polynomial Response Surface) de ordem 2.
+
+Um contra-tempo quanto a SGTELIB, como é chamada a biblioteca, é que ela está embutida nos binários do NOMAD, e, por algum erro, os binários para windows foram compilados com uma versão antiga do Microsoft Visual Studio, de forma que é necessário recompilar não apenas o sgtelib (o que pode ser feito com o mingW sem grandes mudanças), mas todo o NOMAD, necessitando a instalação de aproximadamente 4Gb do Visual Studio.
+
 
 
 
