@@ -140,7 +140,7 @@ NOMAD.solve(blackbox=model)
 
 \section{Resultados da Sintonia de Curva com o orthoMADS}
 
-Em 525 segundos (8:45 minutos) o NOMAD convergiu para SP=4000.691, PI = 24.9544, com a função custo em 0.0757. A parada se deu pelo F\_TARGET. A performance do algoritmo pode ser vista na figura \ref{fig:setup1_2}
+Em 525 segundos (8:45 minutos) e necessitou de 206 avaliações de caixa preta. O NOMAD convergiu para SP=4000.691, PI = 24.9544, com a função custo em 0.0757. A parada se deu pelo F\_TARGET. A performance do algoritmo pode ser vista na figura \ref{fig:setup1_2}.
 
 
 \begin{figure}
@@ -148,7 +148,7 @@ Em 525 segundos (8:45 minutos) o NOMAD convergiu para SP=4000.691, PI = 24.9544,
 \begin{subfigure}{0.5\textwidth}
   \centering
   \includegraphics[width=1\linewidth]{figs/setup1_eval_points.pdf}
-  \caption{Pontos escolhidos pelo noMADS.}
+  \caption{Pontos escolhidos pelo NOMAD.}
   \label{fig:setup1_points}
 \end{subfigure}%
 \begin{subfigure}{0.5\textwidth}
@@ -161,18 +161,95 @@ Em 525 segundos (8:45 minutos) o NOMAD convergiu para SP=4000.691, PI = 24.9544,
 \label{fig:setup1_2}
 \end{figure}
 
-\subsection{Surrogate Lib}
+\section{Surrogate Lib}
 
 Durante a realização desses experimentos, o NOMAD foi atualizado e recebeu uma ferramenta auxiliar, uma biblioteca que tenta aproximar a função a partir dos pontos já utilizados, para utilização no passo "search" do algoritmo. Esta biblioteca faz com que o algoritmo, a cada iteração, tente adivinhar a melhor direção para avançar, ao invés de progredir aleatoriamente.
 
 Para o cálculo do modelo substituto, são possíveis nove tipos de modelos, que podem ser vistos na documentação, além de onze tipos possíveis de núcleos. Neste trabalho foram utilizadas as opções padrão do NOMAD, um modeo PRS (Polynomial Response Surface) de ordem 2.
 
+
+\section{Setup Para Sintonia de Curva Com a Surrogate Lib}
+
 Um contra-tempo quanto a SGTELIB, como é chamada a biblioteca, é que ela está embutida nos binários do NOMAD, e, por algum erro, os binários para windows foram compilados com uma versão antiga do Microsoft Visual Studio, de forma que é necessário recompilar não apenas o sgtelib (o que pode ser feito com o mingW sem grandes mudanças), mas todo o NOMAD, necessitando a instalação de aproximadamente 4Gb do Visual Studio.
 
+Após sua recompilação, bastou substituir o binário antigo pelo novo, é inserir nos parâmetros do NOMAD para o uso da SGTELIB, com seus valores padrõess:
+\begin{verbatim}
+NOMAD.set_parameter(name="MODEL_SEARCH", value="SGTELIB")
+\end{verbatim}
+Para que ele passasse a utilizar o SGTELIB no local do seu SEARCH baseado em modelo quadrático.
+
+
+\section{Resultados da Otimização Com a Surrogate Lib}
+
+A execução demorou 1374 segundos (22:27 minutos) e necessitou de 417 avaliações de função de caixa preta. O Nomad novamente convergiu, para $SP=4001.389, Liq PI =24.905$, com uma função custo de 0.09986.
+
+é possível notar, no entanto, que com o SGTELIB, em muitos pontos o erro quadrático saturou em $10^{64}$. Nota-se também que pontos longe do ótimo foram avaliados perto da convergência (pontos claros no canto inferior esquerdo), o que pode significar que existe um problema com a SGTELIB, ou que o modelo utilizado não é o ideal.
+
+\begin{figure}
+\centering
+\begin{subfigure}{0.5\textwidth}
+  \centering
+  \includegraphics[width=1\linewidth]{figs/setup1sgtelib_eval_points.pdf}
+  \caption{Pontos escolhidos pelo NOMAD.}
+  \label{fig:setup2_points}
+\end{subfigure}%
+\begin{subfigure}{0.5\textwidth}
+  \centering
+  \includegraphics[width=1\linewidth]{figs/setup1sgtelib_errors.pdf}
+  \caption{Erro nos pontos avaliados.}
+  \label{fig:setup2_error}
+\end{subfigure}
+\caption{Experimento 1 com SGTELIB.}
+\label{fig:setup2_2}
+\end{figure}
+
+
+\section{Setup da Otimização com Nelder-Mead Simplex}
+
+Para o teste com o Simplex de Nelder-Mead, foi utilizada uma implementação pŕopria, baseada no \ref{alg:nm}, e como o algoritmo não é facilmente paralelizável, não houveram preocupações com paralelismo.
+os limites utilizados foram os mesmos dos casos anteriores:
+\begin{align}
+15 < &pi < 35 \\
+2000 < &sp < 7000
+\end{align}
+
+Como o simplex utiliza uma estrutura n-dimensional para a busca, são necessários n+1 pontos iniciais, por este motivo um triângulo foi expandido arbitrariamente a partir do ponto inicial, de modo que no começo do algoritmo, o simplex inicial seja grande. 
+
+as restrições foram aplicadas somando-se um peso adicional a função custo.
+
+Os resultados podem ser vistos nas figuras \ref{fig:setup3_2} e \ref{fig:setup3_triang}. Nota-se que a solução foi mais rápida, com 212 iterações em 133 segundos (2:13 minutos). No entanto, o método de Nelder e Mead não tem a mesma garantia de convergência que os os métodos MADS. É interessante comentar a o caso da figura 5, aonde é possivel notar que o simplex primeiramente contraiu-se por um lado, gerando a parte roxa, depois contraiu-se do outro, até chegar ao ponto ótimo.
 
 
 
-\section{Discussion}
+\begin{figure}
+\centering
+\begin{subfigure}{0.5\textwidth}
+  \centering
+  \includegraphics[width=1\linewidth]{figs/setup1nm_eval_points.pdf}
+  \caption{Pontos escolhidos pelo Nelder-Mead.}
+  \label{fig:setup3_points}
+\end{subfigure}%
+\begin{subfigure}{0.5\textwidth}
+  \centering
+  \includegraphics[width=1\linewidth]{figs/setup1nm_errors.pdf}
+  \caption{Erro nos pontos avaliados.}
+  \label{fig:setup3_error}
+\end{subfigure}
+\caption{Experimento 1 com Nelder-Mead.}
+\label{fig:setup3_2}
+\end{figure}
+
+\begin{figure}
+\centering
+  \includegraphics[width=0.7\linewidth]{figs/triangles_neldermead.pdf}
+  \caption{Simplexes utilizados pelo Nelder-Mead.}
+  \label{fig:setup3_triang}
+\end{figure}
+
+
+
+
+\section{Discução}
 
 
 
