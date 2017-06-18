@@ -5,30 +5,29 @@
 
 
 \section{Motivação}
+Na industria de petróleo e gás, frequentemente muitas estruturas de produção conectam-se a redes comuns para o escoamento da produção. Este escoamento precisa ser planejado para que as restrições físicas de fluxo e pressão nos nós seja respeitado.
 
-Uma das dificuldades da produção de petróleo é controlar os processos de modo a produzir exatamente o necessário em cada estação. A produção em falta ou excesso de determinados componentes pode afetar os compoenentes do sistema, como bombas e separadores, as interfaces com sistemas auxiliares, como linhas de transporte, além de extressar os sistemas da plataforma.
+Para que estes valores estejam corretos, é necessário controlar os processos de modo a produzir exatamente o necessário em cada estação. A produção em falta ou excesso de determinados componentes pode afetar os compoenentes do sistema, como bombas e separadores, as interfaces com sistemas auxiliares, como linhas de transporte, além de extressar os sistemas da plataforma.
 
   Para que campos de petróleo gerem o maior retorno financeiro possível, os processos devem idealmente estar sempre em um ponto ótimo de performance. Como estes são sistemas complexos e que variam com o tempo, simuladores são utilizados para estimar as respostas do sistema real. Para reproduzir as medidas observadas apropriadamente, estes simuladores devem ser rotineiramente re-sintonizados pelo engenheiro de processos. Esta sintonia pode ser uma tarefa cansativa e duradoura.
   
-Um simulador bem sintonizado pode ser utilizado para modelagem matematica e desenvolvimento de  algoritmos de controle, assim como planejamento de operações.
+Um simulador bem sintonizado pode ser utilizado para modelagem matemática de novos modelos, desenvolvimento e testes de algoritmos de controle, planejamento de operações, análise de riscos, entre outros.	
 
-Como a escala de produção destes sistemas costuma ser grande, até pequenas variações dos modelos reais podem causar um impacto financeiro considerável.
+Como a escala de produção destes sistemas costuma ser grande, até pequenas variações dos modelos reais podem causar impactos consideráveis na produção.
 
 
 \section{Objetivos}
 
-O objetivo final deste trabalho é o desenvolvimento de uma ferramenta capaz de auxiliar a otimização da produção em plataformas offshore. Nós pretendemos identificar, implementar, e testar métodos de otimização sem derivadas compatíveis para sintonizar um simulador de poços de petróleo.
-Inicialmente os métodos a ser estudados são o Simplex de Nelder-Mead, e OrthoMADs (implementação NOMAD).
-É esperado que o método desenvolvido ajude a aliviar a carga sobre o engenheiro do processo e melhorar a produção, de modo a aliviar uma de suas tarefas.
-
- 
+O objetivo final deste trabalho é o desenvolvimento de uma ferramenta capaz de auxiliar a sintonia simuladores de fluxo multifásico de petróleo e gás utilizando dados de plantas reais em plataformas offshore. Pretende-se identificar, implementar, e testar métodos de otimização sem derivadas compatíveis para sintonizar tais simuladores.
+Inicialmente os métodos a ser estudados são o Simplex de Nelder-Mead \cite{Singer:2009}, OrthoMADs \cite{DBLP:journals/siamjo/AbramsonADD09}, e OrthoMADS com SGTELIB (ultimos dois com a implementação NOMAD \cite{Nomad}).
+É esperado que o método desenvolvido ajude a aliviar a carga sobre o engenheiro do processo, aliviando uma de suas tarefas, e melhorar a produção.
 
 \section{Estrutura}
 
 Este relatório está dividido em quatro seções principais.
 Na seção 2, é dada uma visão geral dos campos de petróleo e como eles funcionam, explicando a estrutura de uma FPSO, assim como cada um de seus componentes. A medida que os sistema são descritos, as variáveis usadas para os testes serão destacadas.
 
-Na seção 3, damos uma apresentação geral dos conceitos de otimização sem derivada, demonstrando cada um dos métodos utilizados.
+Na seção 3, é dada uma apresentação geral dos conceitos de otimização sem derivada, e são mostrados cada um dos métodos utilizados.
 
 Na seção 4, nós apresentamos a estrutura da aplicação, como os componentes se conectam, as configuração e condições dos testes, entradas e saídas, e discussão dos resultados.
 

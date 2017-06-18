@@ -1,5 +1,5 @@
 
-\chapter{Aplicação} \label{chap:4}
+\chapter{Ferramentas} \label{chap:4}
 
 
 \section{O Simulador Pipesim}
@@ -20,14 +20,16 @@ Para interfaceamento do Pipesim com outros softwares, a Schlumberger disponibili
  Utilizando-se a biblioteca de Python pyWin32, é possível comunicar-se com a API, mas apenas em versões do Windows de 32 bits. Apesar de algumas peculiaridades no tratamento de arrays e outros tipos de dados, esta biblioteca permite o uso da API em uma linguagem de desenvolvimento mais rápido[citation needed] e com grandes facilidades de análise de dados [citation needed].
 
 \section{NOMAD}
-Para utilização do orthoMADS, foi escolhida a ferramenta NOMAD, uma implementação em C++ para a solução de problemas de otimização sem-derivadas com problemas caixa-preta, aonde não se conhece o modelo explícito do problema. Bastando fornecer uma função objetivo e restrições, a ferramenta é capaz de encontrar um ponto ótimo para o problema. Ela também  disponibiliza variações do algorítmo (como 2n ou n+1 bases) e a possibilidade de paralelismo (consultar mais que um ponto de forma concorrente.  
+Para utilização do orthoMADS, foi escolhida a ferramenta NOMAD, uma implementação em C++ do orthoMADS desenvolvida pelo GERAD, um centro de pesquisa multi-universidades canadense [https://www.gerad.ca/en/about] para a solução de problemas de otimização sem-derivadas com problemas caixa-preta, aonde não se conhece o modelo explícito do problema. Bastando fornecer uma função objetivo e restrições, a ferramenta é capaz de encontrar um ponto ótimo para o problema. Ela também disponibiliza variações do algorítmo (como 2n ou n+1 bases) e a possibilidade de paralelismo (consultar mais que um ponto de forma concorrente).  
 
+	
 
 \section{Opal}
 Para o uso do NOMAD com o Python, era sugerido, até o começo destes trabalhos, o uso da ferramenta Opal (A Framework for Optimization of Algorithms). Uma interface open-source de alto nível para a interface de Python com o NOMAD. Este framework dá a liberdade para configurar todos os parametros de otimização do NOMAD e também é capaz de paralelismo.
 
 No entanto ele suporta apenas Python2.7 que está em desuso há mais de 10 anos [citation needed], de modo que foi necessário portá-lo para python3 [github], contribuição que foi enviada aos criadores originais [action needed].
 
+É interessante ressaltar também que a partir da versão 3.8.0 do NOMAD, foi implementada um interface própria em Python (novamente Python2.7) que deve ser analisada em trabalhos futuros.
 
 
 

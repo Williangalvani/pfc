@@ -138,7 +138,7 @@ Em 525 segundos (8:45 minutos) e com de 206 avaliações de caixa preta. O NOMAD
 \label{fig:setup1_2}
 \end{figure}
 
-\section{Surrogate Lib}
+\section{A Surrogate Lib}
 
 Durante a realização desses experimentos, o NOMAD foi atualizado e recebeu uma ferramenta auxiliar, uma biblioteca que tenta aproximar a função a partir dos pontos já utilizados, para utilização no passo "search" do algoritmo. Esta biblioteca faz com que o algoritmo, a cada iteração, tente adivinhar a melhor direção para avançar, ao invés de progredir aleatoriamente.
 
@@ -150,15 +150,21 @@ Para o cálculo do modelo substituto, são possíveis nove tipos de modelos, que
 Um contra-tempo quanto a SGTELIB, como é chamada a biblioteca, é que ela está embutida nos binários do NOMAD, e, por algum erro, os binários para windows foram compilados com uma versão antiga do Microsoft Visual Studio, de forma que é necessário recompilar não apenas o sgtelib (o que pode ser feito com o mingW sem grandes mudanças), mas todo o NOMAD, necessitando a instalação de aproximadamente 4Gb do Visual Studio.
 
 Após sua recompilação, bastou substituir o binário antigo pelo novo, é inserir nos parâmetros do NOMAD para o uso da SGTELIB, com seus valores padrõess:
-\begin{verbatim}
+\begin{lstlisting}[language=Python]
 NOMAD.set_parameter(name="MODEL_SEARCH", value="SGTELIB")
-\end{verbatim}
+\end{lstlisting}
 Para que ele passasse a utilizar o SGTELIB no local do seu SEARCH baseado em modelo quadrático.
 
 
 \section{Resultados da Otimização Com a Surrogate Lib}
 
-A execução demorou 1374 segundos (22:27 minutos) e necessitou de 417 avaliações de função de caixa preta. O Nomad novamente convergiu, para $SP=4001.389, Liq PI =24.905$, com uma função custo de 0.09986.
+A execução demorou 1374 segundos (22:27 minutos) e necessitou de 417 avaliações de função de caixa preta. O Nomad novamente convergiu, desta vez para os 	valores:
+
+\begin{align*}
+SP&= 4001.389 \\
+Liq PI &= 24.905 \\
+Custo &= 0.09986.
+\end{align*}
 
 é possível notar, no entanto, que com o SGTELIB, em muitos pontos o erro quadrático saturou em $10^{64}$. Nota-se também que pontos longe do ótimo foram avaliados perto da convergência (pontos claros no canto inferior esquerdo), o que pode significar que existe um problema com a SGTELIB, ou que o modelo utilizado não é o ideal.
 
@@ -183,7 +189,7 @@ A execução demorou 1374 segundos (22:27 minutos) e necessitou de 417 avaliaç�
 
 \section{Setup da Otimização com Nelder-Mead Simplex}
 
-Para o teste com o Simplex de Nelder-Mead, foi utilizada uma implementação pŕopria, baseada no \ref{alg:nm}, e como o algoritmo não é facilmente paralelizável, não houveram preocupações com paralelismo.
+Para o teste com o Simplex de Nelder-Mead, foi utilizada uma implementação pŕopria, baseada no algoritmo \ref{alg:nm}, e como ele não é facilmente paralelizável, não houveram preocupações com paralelismo.
 os limites utilizados foram os mesmos dos casos anteriores:
 \begin{align}
 15 < &pi < 35 \\
@@ -227,6 +233,22 @@ Os resultados podem ser vistos nas figuras \ref{fig:setup3_2} e \ref{fig:setup3_
 \section{Discussão}
 
 É possível notar, pela figura \ref{fig:comp1} que o Nelder-Mead, embora tenha utilizado um numero semelhante de iterações que o orthoMADS, foi aproximadamente quatro vezes mais rápido. É possível que isso se dê pelo fato de que o OPAL, embora utilize varias threads, talvez não faça um gerenciamento ideal do processador, e sim faça um "busy wait", que é quando um processo espera um sinal (no caso o fim de uma thread) sem liberar o processador para outras threads. Embora exista a suspeita do problema, não foi possível localizá-lo no código fonte.
+
+Outra possível interpretação é que a diferença seja devido ao overhead no NOMAD. Todas suas iterações envolvem o disparo de novos processos python, além da escrita e leitura de diferentes arquivos para a comunicação entre os processos.
+
+
+\begin{table}[]
+\centering
+\caption{Tempo de execução e numero de iterações por algorítmo}
+\label{my-label}
+\begin{tabular}{lllll}
+                    & Tempo & Iterações &  &  \\
+OrthoMADS           & 525   & 206       &  &  \\
+OrthoMADS + SGTELIB & 1374  & 417       &  &  \\
+Nelder-Mead         & 133   & 212       &  & 
+\end{tabular}
+\end{table}
+
 
 \begin{figure}
 \centering
