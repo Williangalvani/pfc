@@ -2,8 +2,22 @@
 \chapter{O Problema de Sintonia} \label{chap:conc}
 
 
-Primeiramente foi configurado um unico poço de petróleo, que pode ser visto na figura \ref{fig:setup1_dia}. A seguir foram escolhidos dados arbitrariamente para compor a curva "real" de produção (figura \ref{fig:truth1}).
-Neste Experimento a curva sintonizada foi a de fluxo de líquido (Barris padrões por dia) por gás injetado (milhões de pés cúbicos padrões por dia). Escolheu-se a pressão estática do reservatório como sendo 4000 psi absoluto, e um indice de produtividade liquido de 25 STDB/d/psi( Barris padrões por dia por pressão estática). Desta forma a figura \ref{fig:truth1} demonstra a curva "real" a ser sintonizada.
+A sintonia de simuladores de poços de petróleo costuma ser feita a partir de dados experimentais. 
+%
+A partir de testes de campo, adquirem-se pontos de testes do sistema real.
+%
+Os pontos reais são utilizados como referência para que o operador varie o parâmetros de forma a encontrar o modelo que melhor represente os dados coletados.
+%
+%
+Para os testes neste trabalho, primeiramente foi configurado um único poço de petróleo, com uma estrutura simples e que pode ser visto na figura \ref{fig:setup1_dia}.
+% 
+A seguir foram escolhidos dados arbitrariamente para compor a curva "real" de produção (figura \ref{fig:truth1}).
+%
+Neste Experimento a curva sintonizada foi a de fluxo de líquido (Barris padrões por dia) por gás injetado (milhões de pés cúbicos padrões por dia), no entanto é possível utilizar outras curvas, ou ainda mais que uma, para a sintonia.
+%
+Escolheu-se a pressão estática do reservatório como sendo 4000 psi absoluto, e um índice de produtividade liquido de 25 STDB/d/psi( Barris padrões por dia por pressão estática). 
+%
+Desta forma a figura \ref{fig:truth1} demonstra o poço "real" a ser sintonizado.
 
 
 
@@ -25,7 +39,7 @@ Neste Experimento a curva sintonizada foi a de fluxo de líquido (Barris padrõe
 \label{fig:setup1}
 \end{figure}
 
-Em todos os testes, os parametros SP (pressão estática) e Liq PI (Índice de produção de líquido) foram iniciados respecticamente em 3000 (psi) e 15 (STDB/d). A interface OpenLink foi utilizada para modificar os parâmetros e ler uma nova curva de fluxo de liquido por injeção de gás, a distância quadrática entre as duas curvas foi utilizada como o erro na otimização.
+Em todos os testes, os parâmetros SP (pressão estática) e Liq PI (Índice de produção de líquido) foram iniciados respecticamente em 3000 (psi) e 15 (STDB/d). A interface OpenLink foi utilizada para modificar os parâmetros e ler uma nova curva de fluxo de liquido por injeção de gás, a distância quadrática entre as duas curvas foi utilizada como o erro na otimização.
 
 \chapter{O Experimento de Sintonia Sem Ruído}
 
@@ -198,7 +212,7 @@ os limites utilizados foram os mesmos dos casos anteriores:
 
 Como o simplex utiliza uma estrutura n-dimensional para a busca, são necessários n+1 pontos iniciais, por este motivo um triângulo foi expandido arbitrariamente a partir do ponto inicial, de modo que no começo do algoritmo, o simplex inicial seja grande. As restrições foram aplicadas somando-se um peso adicional a função custo.
 
-Os resultados podem ser vistos nas figuras \ref{fig:setup3_2} e \ref{fig:setup3_triang}. Nota-se que a solução foi mais rápida, com 212 iterações em 133 segundos (2:13 minutos). No entanto, o método de Nelder e Mead não tem as mesmas características de convergência que os os métodos MADS. É interessante comentar a o caso da figura 5, aonde é possivel notar que o simplex primeiramente contraiu-se por um lado, gerando a parte roxa, depois contraiu-se do outro, até chegar ao ponto ótimo.
+Os resultados podem ser vistos nas figuras \ref{fig:setup3_2} e \ref{fig:setup3_triang}. Nota-se que a solução foi mais rápida, com 212 iterações em 133 segundos (2:13 minutos). No entanto, o método de Nelder e Mead não tem as mesmas características de convergência que os os métodos MADS. É interessante comentar a o caso da figura 5, aonde é possível notar que o simplex primeiramente contraiu-se por um lado, gerando a parte roxa, depois contraiu-se do outro, até chegar ao ponto ótimo.
 
 
 
@@ -222,7 +236,7 @@ Os resultados podem ser vistos nas figuras \ref{fig:setup3_2} e \ref{fig:setup3_
 
 \begin{figure}
 \centering
-  \includegraphics[width=0.7\linewidth]{figs/triangles_neldermead.pdf}
+	  \includegraphics[width=0.7\linewidth]{figs/triangles_neldermead.pdf}
   \caption{Simplexes utilizados pelo Nelder-Mead.}
   \label{fig:setup3_triang}
 \end{figure}
@@ -234,12 +248,12 @@ Os resultados podem ser vistos nas figuras \ref{fig:setup3_2} e \ref{fig:setup3_
 
 É possível notar, pela figura \ref{fig:comp1} que o Nelder-Mead, embora tenha utilizado um numero semelhante de iterações que o orthoMADS, foi aproximadamente quatro vezes mais rápido. É possível que isso se dê pelo fato de que o OPAL, embora utilize varias threads, talvez não faça um gerenciamento ideal do processador, e sim faça um "busy wait", que é quando um processo espera um sinal (no caso o fim de uma thread) sem liberar o processador para outras threads. Embora exista a suspeita do problema, não foi possível localizá-lo no código fonte.
 
-Outra possível interpretação é que a diferença seja devido ao overhead no NOMAD. Todas suas iterações envolvem o disparo de novos processos python, além da escrita e leitura de diferentes arquivos para a comunicação entre os processos.
+Outra possível interpretação é que a diferença seja devido ao overhead no NOMAD. Todas suas iterações envolvem o disparo de novos processos do Python, que por sua vez disparam o processo do Pipesim, além da escrita e leitura de diferentes arquivos para a comunicação entre os processos.
 
 
 \begin{table}[]
 \centering
-\caption{Tempo de execução e numero de iterações por algorítmo}
+\caption{Tempo de execução e numero de iterações por algoritmo}
 \label{my-label}
 \begin{tabular}{lllll}
                     & Tempo & Iterações &  &  \\
@@ -258,9 +272,17 @@ Nelder-Mead         & 133   & 212       &  &
 \end{figure}
 
 
+\chapter{O Experimento de Sintonia Com Ruído}
 
+Para testar a robustez dos métodos, foi introduzido um ruído de medição nas variáveis. 
+O valor escolhido foi uma distribuição normal de 5\% da variável medida e média nula.
+Para o novo sistema de medição, foram repetidos os experimentos.
 
-
+foram feitas 3 execuções de cada algoritmo:
+			tempo iteracoes	custo   tempo iteracoes custo 	tempo iteracoes custo
+orthomads:  503      196     200    594     230       2700
+sgtelib:    657      220     685   656      233       347
+nelder-mead:
 
 
 
