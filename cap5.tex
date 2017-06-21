@@ -1,6 +1,6 @@
 
 \chapter{O Problema de Sintonia} \label{chap:conc}
-
+	
 
 A sintonia de simuladores de poços de petróleo costuma ser feita a partir de dados experimentais. 
 %
@@ -8,13 +8,14 @@ A partir de testes de campo, adquirem-se pontos de testes do sistema real.
 %
 Os pontos reais são utilizados como referência para que o operador varie o parâmetros de forma a encontrar o modelo que melhor represente os dados coletados.
 %
-%
+
 Para os testes neste trabalho, primeiramente foi configurado um único poço de petróleo, com uma estrutura simples e que pode ser visto na figura \ref{fig:setup1_dia}.
 % 
 A seguir foram escolhidos dados arbitrariamente para compor a curva "real" de produção (figura \ref{fig:truth1}).
 %
 Neste Experimento a curva sintonizada foi a de fluxo de líquido (Barris padrões por dia) por gás injetado (milhões de pés cúbicos padrões por dia), no entanto é possível utilizar outras curvas, ou ainda mais que uma, para a sintonia.
 %
+
 Escolheu-se a pressão estática do reservatório como sendo 4000 psi absoluto, e um índice de produtividade liquido de 25 STDB/d/psi( Barris padrões por dia por pressão estática). 
 %
 Desta forma a figura \ref{fig:truth1} demonstra o poço "real" a ser sintonizado.
@@ -23,15 +24,15 @@ Desta forma a figura \ref{fig:truth1} demonstra o poço "real" a ser sintonizado
 
 \begin{figure}[H]
 \centering
-\begin{subfigure}{.4\textwidth}
+\begin{subfigure}{.25\textwidth}
   \centering
-  \includegraphics[height=1\linewidth]{figs/setup1.png}
+  \includegraphics[width=1\linewidth]{figs/setup1.png}
   \caption{Setup do poço de petróleo.}
   \label{fig:setup1_dia}
 \end{subfigure}%
-\begin{subfigure}{.6\textwidth}
+\begin{subfigure}{.75\textwidth}
   \centering
-  \includegraphics[height=0.7\linewidth]{figs/truth1.png}
+  \includegraphics[width=1\linewidth]{figs/truth1.png}
   \caption{Curva "real" do poço de petróleo.}
   \label{fig:truth1}
 \end{subfigure}
@@ -134,7 +135,7 @@ NOMAD.solve(blackbox=model)
 Em 525 segundos (8:45 minutos) e com de 206 avaliações de caixa preta. O NOMAD convergiu para SP=4000.691, PI = 24.9544, com a função custo em 0.0757. A parada se deu pelo F\_TARGET. A performance do algoritmo pode ser vista na figura \ref{fig:setup1_2}.
 
 
-\begin{figure}
+\begin{figure}[H]
 \centering
 \begin{subfigure}{0.5\textwidth}
   \centering
@@ -156,7 +157,7 @@ Em 525 segundos (8:45 minutos) e com de 206 avaliações de caixa preta. O NOMAD
 
 Durante a realização desses experimentos, o NOMAD foi atualizado e recebeu uma ferramenta auxiliar, uma biblioteca que tenta aproximar a função a partir dos pontos já utilizados, para utilização no passo "search" do algoritmo. Esta biblioteca faz com que o algoritmo, a cada iteração, tente adivinhar a melhor direção para avançar, ao invés de progredir aleatoriamente.
 
-Para o cálculo do modelo substituto, são possíveis nove tipos de modelos, que podem ser vistos na documentação, além de onze tipos possíveis de núcleos. Neste trabalho foram utilizadas as opções padrão do NOMAD, um modeo PRS (Polynomial Response Surface) de ordem 2.
+Para o cálculo do modelo substituto, são possíveis nove tipos de modelos, que podem ser vistos na documentação, além de onze tipos possíveis de núcleos. Neste trabalho foram utilizadas as opções padrão do NOMAD, um modelo PRS (Polynomial Response Surface) de ordem 2.
 
 
 \section{Setup Para Sintonia de Curva Com a Surrogate Lib}
@@ -255,11 +256,11 @@ Outra possível interpretação é que a diferença seja devido ao overhead no N
 \centering
 \caption{Tempo de execução e numero de iterações por algoritmo}
 \label{my-label}
-\begin{tabular}{lllll}
-                    & Tempo & Iterações &  &  \\
-OrthoMADS           & 525   & 206       &  &  \\
-OrthoMADS + SGTELIB & 1374  & 417       &  &  \\
-Nelder-Mead         & 133   & 212       &  & 
+\begin{tabular}{|l|l|l|}
+                    & Tempo & Iterações & \\
+OrthoMADS           & 525   & 206       &  \\
+OrthoMADS + SGTELIB & 1374  & 417       &   \\
+Nelder-Mead         & 133   & 110       &
 \end{tabular}
 \end{table}
 
@@ -274,15 +275,171 @@ Nelder-Mead         & 133   & 212       &  &
 
 \chapter{O Experimento de Sintonia Com Ruído}
 
-Para testar a robustez dos métodos, foi introduzido um ruído de medição nas variáveis. 
-O valor escolhido foi uma distribuição normal de 5\% da variável medida e média nula.
-Para o novo sistema de medição, foram repetidos os experimentos.
+Para testar um caso um pouco mais realista, foram introduzidos ruídos ao sistema.
+%
+Primeiramente foi introduzido um ruído de medição nos pontos "reais" com $\sigma = 10$ (STDB/d) e média nula.
+%
+Este ruído simula as condições adversas da medição em campo, perdas em sensores, sinais elétricos, imprecisões de montagem, e etc...
+%
+%
 
-foram feitas 3 execuções de cada algoritmo:
-			tempo iteracoes	custo   tempo iteracoes custo 	tempo iteracoes custo
-orthomads:  503      196     200    594     230       2700
-sgtelib:    657      220     685   656      233       347
-nelder-mead:
+Adicionalmente, foi adicionado um pequeno ruído na simulação, para emular erros de precisão no caso de simuladores com soluções iterativas, que podem parar a simulação antes da precisão completa. 
+%
+A este ruído foi atribuído também uma distribuição normal com média zero, mas $\sigma = 10^{-5}$ para cada variável.
+%
+Como não existe mais a possibilidade um match perfeito (zerar a função custo), é bom pensar no critério de parada. 
+%
+Como um balanço de precisão e execução, é escolhido o critério de que os pontos explorados estão a menos de de $10^{-3}$ unidades de distancia em cada variável.
+%
+Para as novas configurações, foram repetidos os experimentos.
+
+
+
+\section{Sintonia de Curva com Ruído Com OrthoMADS}
+
+Com o OrthoMADS, a otimização levou 334 segundos (5:34 minutos) e precisou de 130 avaliações. OS resultados podem ser analisados na figura \ref{fig:exp2_om}, que mostra os pontos avaliados e progressão do erro com as avaliações, e na figura \ref{fig:exp2_om_curve}, aonde é possível notar que a curva identificada está muito próxima a real, apesar do ruído na curva medida. 
+
+
+
+
+\begin{figure}
+\centering
+\begin{subfigure}{0.5\textwidth}
+  \centering
+  \includegraphics[width=1\linewidth]{figs/setup2_om_points.pdf}
+  \caption{Pontos escolhidos pelo NOMAD.}
+  \label{fig:exp2_om_points}
+\end{subfigure}%
+\begin{subfigure}{0.5\textwidth}
+  \centering
+  \includegraphics[width=1\linewidth]{figs/setup2_om_errors.pdf}
+  \caption{Erro nos pontos avaliados.}
+  \label{fig:exp2_om_error}
+\end{subfigure}
+\caption{NOMAD aplicado ao experimento 2.}
+\label{fig:exp2_om}
+\end{figure}
+
+
+
+
+
+\begin{figure}
+\centering
+  \includegraphics[width=1\linewidth]{figs/curva_om.pdf}
+  \caption{Resultado da sintonia utilizando-se o OrthoMADS.}
+  \label{fig:exp2_om_curve}
+\end{figure}
+
+
+
+
+\section{Sintonia de Curva com Ruído Com OrthoMADS + SGTELIB}
+
+Com o OrthoMADS e a SGTELIB, a otimização levou 187 segundos (3:07 minutos) e precisou de 68 avaliações de caixa preta. Os resultados podem ser avaliados na figura \ref{fig:exp2_sg}, que mostra os pontos avaliados e progressão do erro com as avaliações, e na figura \ref{fig:exp2_sg_curve}, aonde é possível notar que a curva identificada também está muito próxima a real, apesar do ruído na curva medida. 
+%
+
+Também é notável que o novo método de SEARCH foi capaz de diminuir o número de avaliações (52\%).
+%
+Ele converge para um ponto próximo ao do método anterior(respectivamente 982,524 e 956,827), custando menos tempo e avaliações.
+
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}{0.5\textwidth}
+  \centering
+  \includegraphics[width=1\linewidth]{figs/setup2_sg_points.pdf}
+  \caption{Pontos escolhidos pelo NOMAD.}
+  \label{fig:exp2_sg_points}
+\end{subfigure}%
+\begin{subfigure}{0.5\textwidth}
+  \centering
+  \includegraphics[width=1\linewidth]{figs/setup2noisy_sg_errors.pdf}
+  \caption{Erro nos pontos avaliados.}
+  \label{fig:exp2_sg_error}
+\end{subfigure}
+\caption{NOMAD com SGTELIB aplicado ao experimento 2.}
+\label{fig:exp2_sg}
+\end{figure}
+
+
+
+
+
+\begin{figure}[H]
+\centering
+  \includegraphics[width=1\linewidth]{figs/curva_sg.pdf}
+  \caption{Resultado da sintonia utilizando-se o OrthoMADS com a SGTELIB.}
+  \label{fig:exp2_sg_curve}
+\end{figure}
+
+
+\section{Sintonia de Curva com Ruído Com Nelder-Mead}
+
+Com a utilização do algoritmo de Nelder-Mead, em 217 segundos (3:27 minutos) e 92 avaliações, o algoritmo convergiu com uma uma função custo em 953.623. Como pode ser ver na figura \ref{fig:exp2_nm_error}, o algoritmo converge rapidamente no inicial, mas demora a adquirir a precisão requerida para a parada. Novamente a curva identificada está muito próxima da original sem ruídos.
+
+
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}{0.5\textwidth}
+  \centering
+  \includegraphics[width=1\linewidth]{figs/setup2_nm_points.pdf}
+  \caption{Pontos testados pelo Nelder-Mead.}
+  \label{fig:exp2_nm_points}
+\end{subfigure}%
+\begin{subfigure}{0.5\textwidth}
+  \centering
+  \includegraphics[width=1\linewidth]{figs/setup2_nm_errors.pdf}
+  \caption{Erro nos pontos avaliados.}
+  \label{fig:exp2_nm_error}
+\end{subfigure}
+\caption{Nelder-Mead aplicado ao experimento 2.}
+\label{fig:exp2_nm}
+\end{figure}
+
+
+
+
+
+\begin{figure}[H]
+\centering
+  \includegraphics[width=1\linewidth]{figs/curva_nm.pdf}
+  \caption{Resultado da sintonia utilizando-se o Nelder-Mead.}
+  \label{fig:exp2_nm_curve}
+\end{figure}
+
+\section{Discussão}
+Nestes experimentos com ruído, não se repete o comportamento anômalo aonde o Nomad com SGTELIB avalia pontos em que aparentemente não há informações relevantes, aumentando sem necessidade o numero de iterações e tempo tomado.
+%
+Pelo contrário, ele acaba sendo o mais eficiente dos três métodos.
+%
+
+\begin{table}[H]
+\centering
+\caption{Comparação dos métodos para sintonia de uma curva com ruído de medição}
+\label{my-label2}
+\begin{tabular}{|l|l|l|l|}
+\hline
+                    & Tempo & Iterações & Custo   \\ \hline
+OrthoMADS           & 334   & 130       & 956,827 \\ \hline
+OrthoMADS + SGTELIB & 187   & 68        & 982,524 \\ \hline
+Nelder-Mead         & 217   & 92        & 953,522 \\ \hline
+\end{tabular}
+\end{table}
+
+
+
+
+\begin{figure}[H]
+\centering
+  \includegraphics[width=0.7\linewidth]{figs/comp_time_iter_2.pdf}
+  \caption{Comparação entre tempos de execução e número de iterações entre os três experimentos com ruído.}
+  \label{fig:comp1}
+\end{figure}
+
+
+
 
 
 

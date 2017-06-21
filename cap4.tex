@@ -1,5 +1,5 @@
 
-\chapter{Ferramentas} \label{chap:4}
+\chapter{Ferramentas Computacionais} \label{chap:4}
 
 
 \section{O Simulador Pipesim}
@@ -16,8 +16,8 @@ A Linguagem surgiu em 1991 \cite{pythonHistory}, e segundo o Tiobe \cite{tiobe} 
 
 Sua facilidade de uso, expêriencia prévia, disponibilidade de ferramentas, e facilidades de visualização de dados foram decisivos para a sua escolha para este trabalho. 
 
-\section{Interface Python e OpenLink}
-Para interfaceamento do Pipesim com outros softwares, a Schlumberger disponibiliza uma API (Application Programming Interface) chamada OpenLink, idealizada para programação em C++, VBA, ou Visual Basic. Esta pode ser utilizada para interação programática com o Pipesim, habilitando a configuração de novos poços, alteração de poços existentes, análises, simulações, e automação de simulações. Com essa API, é possível variar os parametros do poço e avaliar as curvas características.
+\section{Interface Python e Open Link}
+Para interfaceamento do Pipesim com outros softwares, a Schlumberger disponibiliza uma API (Application Programming Interface) chamada Open Link, idealizada para programação em C++, VBA, ou Visual Basic. Esta pode ser utilizada para interação programática com o Pipesim, habilitando a configuração de novos poços, alteração de poços existentes, análises, simulações, e automação de simulações. Com essa API, é possível variar os parâmetros do poço e avaliar as curvas características.
 
 
 
@@ -25,12 +25,18 @@ Para interfaceamento do Pipesim com outros softwares, a Schlumberger disponibili
  Utilizando-se a biblioteca de Python pyWin32, é possível comunicar-se com a API, mas apenas em versões do Windows de 32 bits. Apesar de algumas peculiaridades no tratamento de arrays e outros tipos de dados, esta biblioteca permite o uso da API em uma linguagem de desenvolvimento mais rápido[citation needed] e com grandes facilidades de análise de dados [citation needed].
 
 \section{NOMAD}
-Para utilização do orthoMADS, foi escolhida a ferramenta NOMAD \cite{Nomad}, uma implementação em C++ do orthoMADS desenvolvida pelo GERAD \cite{gerad}, um centro de pesquisa multi-universidades canadenses  para a solução de problemas de otimização sem-derivadas com problemas caixa-preta, aonde não se conhece o modelo explícito do problema. Bastando fornecer uma função objetivo e restrições, a ferramenta é capaz de encontrar um ponto ótimo para o problema. Ela também disponibiliza variações do algorítmo (como 2n ou n+1 bases) e a possibilidade de paralelismo (consultar mais que um ponto de forma concorrente).  
+Para utilização do orthoMADS, foi escolhida a ferramenta NOMAD \cite{Nomad}, uma implementação em C++ do orthoMADS desenvolvida pelo GERAD \cite{gerad}, um centro de pesquisa multi-universidades canadenses.
+%
+Seu objetivo é a solução de problemas de otimização sem-derivadas com problemas caixa-preta, aonde não se conhece o modelo explícito do problema.
+%
+Bastando fornecer uma função objetivo e restrições, a ferramenta é capaz de encontrar um ponto ótimo para o problema.
+ %
+Ela também disponibiliza variações do algoritmo (como 2n ou n+1 bases) e a possibilidade de paralelismo (consultar mais que um ponto de forma concorrente).  
 
 	
 
 \section{Opal}
-Para o uso do NOMAD com o Python, era sugerido, até o começo destes trabalhos, o uso da ferramenta Opal \cite{opal} (A Framework for Optimization of Algorithms). Uma interface open-source de alto nível para a interface de Python com o NOMAD. Este framework dá a liberdade para configurar todos os parametros de otimização do NOMAD e também é capaz de paralelismo.
+Para o uso do NOMAD com o Python, era sugerido, até o começo destes trabalhos, o uso da ferramenta Opal \cite{opal} (A Framework for Optimization of Algorithms). Uma interface open-source de alto nível para a interface de Python com o NOMAD. Este framework dá a liberdade para configurar todos os parâmetros de otimização do NOMAD e também é capaz de paralelismo.
 
 No entanto ele suporta apenas Python 2.7 que está para ser aposentado em 2020 \cite{python27sched}, de modo que foi necessário portá-lo para Python 3 \cite{opalPython3}, contribuição que deve ser enviada para os repositórios originais assim que finalizada.
 

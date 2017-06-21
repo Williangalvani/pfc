@@ -26,7 +26,11 @@ Os métodos de otimização sem derivadas procuram encontrar mínimos computando
 
 Também conhecido como Downhill Simplex Method, ou Amoeba Method, consiste em utilizar um poligono com n+1 vértices em n dimensões que se expande, contraí, ou reflete de modo a se mover em direção ao gradiente da função objetivo.
 
-Um exemplo da execução do algoritmo de Nelder-Mead pode ser visto na figura~\ref{fig:neldermead}. A partir de um ponto inicial, o simplex se locomove como uma ameba até encontrar um ponto de mínimo.
+Um exemplo passo-a-passo da execução do algoritmo de Nelder-Mead pode ser visto na figura~\ref{fig:neldermeadsteps}. A partir de um ponto inicial, o simplex se locomove como uma ameba até encontrar um ponto de mínimo.
+%
+A figura \ref{fig:neldermead} ilustra os passos totais e o valor de da função objetivo com as iterações.
+%
+A execução também é ilustrada pelo algoritmo \ref{alg:nm}.
 
 \begin{figure}
 \centering
@@ -44,6 +48,37 @@ Um exemplo da execução do algoritmo de Nelder-Mead pode ser visto na figura~\r
 \end{subfigure}
 \caption{Demonstração do Nelder-Mead}
 \label{fig:neldermead}
+\end{figure}
+
+
+\begin{figure}
+\centering
+\begin{subfigure}{.3\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{figs/neldermeadexample/target-0.png}
+\end{subfigure}%
+\begin{subfigure}{.3\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{figs/neldermeadexample/target-1.png}
+\end{subfigure}
+\begin{subfigure}{.3\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{figs/neldermeadexample/target-2.png}
+\end{subfigure}
+\begin{subfigure}{.3\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{figs/neldermeadexample/target-3.png}
+\end{subfigure}%
+\begin{subfigure}{.3\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{figs/neldermeadexample/target-4.png}
+\end{subfigure}
+\begin{subfigure}{.3\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{figs/neldermeadexample/target-5.png}
+\end{subfigure}
+\caption{Ilustração do Nelder-Mead passo-a-passo}
+\label{fig:neldermeadsteps}
 \end{figure}
 
 
@@ -93,52 +128,52 @@ Um exemplo da execução do algoritmo de Nelder-Mead pode ser visto na figura~\r
 %%
 \section{OrthoMADS}
 
-Os métodos MADS (Mesh Adaptative Direct Search) são uma classe de métodos baseados ...
-
-
-A cada iteração $ k $ são executados dois passos de busca, Search e Poll, analisando a feasibility e valor da função. O objetivo de cada nova iteração é encontrar um ponto $f(x) < f(x_k)$, aonde $x_k$ é o melhor ponto encontrado até a iteração atual. 
-
+Os métodos MADS (Mesh Adaptative Direct Search) são uma classe de métodos de otimização Direct Search, cuja estratégia é tentar encontrar um ponto ótimo de uma função ao avaliar e comparar apenas o valor da função em diversos pontos. 
+%
+Os métodos Mesh Adaptative se destacam pelo fato de que todos os pontos estão encima de uma malha, que pode ser refinada.
+%
+A cada iteração $ k $ são executados dois passos de busca, Search e Poll, analisando a viabilidade e valor da função. O objetivo de cada nova iteração é encontrar um ponto $f(x) < f(x_k)$, aonde $x_k$ é o melhor ponto encontrado até a iteração atual. 
+%
 As buscas são feitas sempre em uma grade, definida por:
-
+%
 $M_k = \{x + \Delta^m_kDz : x \in V_k, z \in \mathbb{N}^{nD} \} \subset \mathbb{R}^n$
-Aonde $M_k$ é o conjunto de pontos da grade, $x$ é o ponto mínimo atual, $\Delta^m_k$ é o parametro de tamanho da malha, $D$ é uma matrix $\mathbb{R}^{n \times n_D}$ composta por $n_D$ direções que definem um conjunto gerador position no $\mathbb{R}^n$. Para o OrthoMads e LtMads, D é simplesmente definida como $[I_n -I_n]$ aonde $I_n$ é a matriz identidade de dimensões $n$.
-
-O passo search pode ser qualquer tipo de heurística que escolha um ponto mais adequado da malha para tentar acelerar a convergência.
-
+Aonde $M_k$ é o conjunto de pontos da grade, $x$ é o ponto mínimo atual, $\Delta^m_k$ é o parâmetro de tamanho da malha, $D$ é uma matrix $\mathbb{R}^{n \times n_D}$ composta por $n_D$ direções que definem um conjunto gerador no $\mathbb{R}^n$. Para o OrthoMads e LtMads, D é simplesmente definida como $[I_n -I_n]$ aonde $I_n$ é a matriz identidade de dimensões $n$.
+%
+O passo Search pode ser qualquer tipo de heurística que escolha um ponto mais adequado da malha para tentar acelerar a convergência, neste trabalho é utilizado um sgtelib.
+%
 O passo poll é a parte mais importante do método, que garante sua convergência. A cada iteração $k$ os pontos a serem utilizados são definidos por:
-
+%
 \begin{center}
 $P_k = \{ x_k + \Delta^p_kd : d \in D_k\} \subset M_k$
 \end{center}
-
-Aonde  $x_k$ é o ponto atual e cada coluna de $D_k$ é formada por combinações inteiras das colunas de $D$ de forma a criar um conjunto gerador positivo. $\Delta^p_k$ é o \textit{parametro de tamanho de poll}.
-
-Ambos LtMads e OrthoMads utilizam um parametro $\ell_k$ chamado de \textit{indíce de malha} para atualizar os parametros de tamanho de poll e search de acordo com esta lógica:
+%
+Aonde  $x_k$ é o ponto atual e cada coluna de $D_k$ é formada por combinações inteiras das colunas de $D$ de forma a criar um conjunto gerador positivo. $\Delta^p_k$ é o \textit{parâmetro de tamanho de poll}.
+%
+Ambos LtMads e OrthoMads utilizam um parâmetro $\ell_k$ chamado de \textit{índice de malha} para atualizar os parâmetros de tamanho de poll e search de acordo com esta lógica:
 
 
 \begin{equation} \label{eq:meshsizeupdate}
 \Delta^p_k = 2^{-\ell k} \text{ e }  \Delta^m_k = min\{1, 4^{-\ell_k}\}
 \end{equation}
 
-A cada nova iteração, se em uma iteração um novo \textit{incumbente} não é encontrado, ela é dita mal sucedida, e $\ell_{k+1} \gets \ell_k +1$ (reduzindo $\Delta^m_k$ e $\Delta^p_k$), por outro lado, se for encontrado um novo \textit{incumbente}, a iteração é dita bem sucedidade, e $\ell_{k+1} \gets \ell_k -1$ (aumentando $\Delta^m_k$ e $\Delta^p_k$). Devido a \ref{eq:meshsizeupdate}, no caso de uma iteração mal-sucedida o parametro de poll diminui mais rápido que o de malha, de modo a permitir o uso de muitos mais pontos, refinando a malha.
+A cada nova iteração, se em uma iteração um novo \textit{incumbente} não é encontrado, ela é dita mal sucedida, e $\ell_{k+1} \gets \ell_k +1$ (reduzindo $\Delta^m_k$ e $\Delta^p_k$), por outro lado, se for encontrado um novo \textit{incumbente}, a iteração é dita bem sucedida, e $\ell_{k+1} \gets \ell_k -1$ (aumentando $\Delta^m_k$ e $\Delta^p_k$). Devido a \ref{eq:meshsizeupdate}, no caso de uma iteração mal-sucedida o parâmetro de Poll diminui mais rápido que o de malha, de modo a permitir o uso de muitos mais pontos, refinando a malha.
 
 
 A diferença entre o OrthoMads e LtMads se dá na geração da base $D_k$. O LtMads utiliza uma matriz triangular inferior para a geração da base, fazendo permutações entre os elementos e completando ela em uma base maximal ou minimal, sem garantir ortogonalidade entre as direções, de modo que os ângulos entre as direções podem ser grandes, causando grandes cones de espaço não explorado.
 Já o OrthoMads utiliza uma base maximal definida por $[H_k -H_k]$, aonde as colunas de $H_k$ formam um base ortogonal de $\mathbb{R}^n$. Além disso, os as direções de $D_k$ são inteiras, de modo que os pontos gerados estão automaticamente contidos na malha definida por $D=[I_n -I_n]$.
 
-Para a geração de $D_k$, o OrthoMads utiliza a sequencia pseudo-aleatoria de Halton, que cobre mais uniformemente o espaço que uma sequência aleatória real, para  gerar vetores $u_t$.
+Para a geração de $D_k$, o OrthoMads utiliza a sequencia pseudo-aleatória de Halton, que cobre mais uniformemente o espaço que uma sequência aleatória real, para  gerar vetores $u_t$.
 
-A saída da sequência de Halton, no entanto, não respeita as restrições impostas pela malha. É necessário arrondar, escalar, e rotacionar o vetor $u_t$. O indíce $\ell$ é utilizado para transformar a direção $u_t$ na \textit{direção ajustada de Halton} $q_{t,\ell} \in \mathbb{Z}^n$, uma direção cuja norma é próxima a a $2^{\frac{|\ell|}{2}}$
+A saída da sequência de Halton, no entanto, não respeita as restrições impostas pela malha. É necessário arredondar, escalar, e rotacionar o vetor $u_t$. O índice $\ell$ é utilizado para transformar a direção $u_t$ na \textit{direção ajustada de Halton} $q_{t,\ell} \in \mathbb{Z}^n$, uma direção cuja norma é próxima a a $2^{\frac{|\ell|}{2}}$
 
-HERE, BLACK MAGIC IS USED TO MAKE THE VECTOR ALIGN TO THE MESH.
 
 Para definir $q_{t,\ell}$, primeiramente são definidas duas funções baseadas na t-ésima direção de Halton $u_t$:
 
 $q_t(\alpha) = \text{round} \left ( \alpha \cfrac{2u_t - e}{||2u_t - e||} \right ) \in \mathbb{Z}^n \cap \left [ -\alpha - \cfrac{1}{2}, \alpha + \cfrac{1}{2}  \right ]^n$
+	
+Aonde \textit{round} é a operação arredondar para cima ($round(0,5)=1$, $round(-0,5) = -1$) e $\alpha \in \mathbb{R}_+$ é um fator de escala. 
 
-Aonde \textit{round} é a operação arrendodar para cima ($round(0,5)=1$, $round(-0,5) = -1$) e $\alpha \in \mathbb{R}_+$ é um fator de escala. 
-
-Desta forma, temos um problema de otimização, precisamos encontrar um $\alpha_{t,\ell}$ tal que $||q_t(\alpha_{t,\ell})$ seja o mais próximo possível de $2^{\frac{|\ell|}{2}}$ sem ultrapassá-lo.
+Desta forma, tem-se um problema de otimização, e é encontrar um $\alpha_{t,\ell}$ tal que $||q_t(\alpha_{t,\ell})$ seja o mais próximo possível de $2^{\frac{|\ell|}{2}}$ sem ultrapassá-lo.
 
 \begin{align*}
 \alpha_{t,\ell} \in \underset{\alpha in \mathbb{R}_+}{\textit{argmax}} & ||q_t(\alpha)|| \\
@@ -160,9 +195,7 @@ H = ||q^2||(I_n - 2vv^T),\textit{ onde }v = \cfrac{q}{||q||}
 
 Aonde $H$ é uma base ortonormal gerada a partir de $q$.
 
-Com a base ortonormal criada, podemos utilizar o algoritmo~\ref{alg:orthomads}, comum ao LtMads e OrthoMads.
-
-ALGO MAIS DEVE SER ESCRITO AQUI, MAS OQ?
+Com a base ortonormal criada, é possível utilizar o algoritmo~\ref{alg:orthomads}, comum ao LtMads e OrthoMads.
 
 
 \begin{algorithm}
