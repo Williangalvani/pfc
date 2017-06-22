@@ -40,8 +40,24 @@ Desta forma a figura \ref{fig:truth1} demonstra o poço "real" a ser sintonizado
 \label{fig:setup1}
 \end{figure}
 
-Em todos os testes, os parâmetros SP (pressão estática) e Liq PI (Índice de produção de líquido) foram iniciados respecticamente em 3000 (psi) e 15 (STDB/d). A interface OpenLink foi utilizada para modificar os parâmetros e ler uma nova curva de fluxo de liquido por injeção de gás, a distância quadrática entre as duas curvas foi utilizada como o erro na otimização.
+Em todos os testes, os parâmetros SP (pressão estática) e Liq PI (Índice de produção de líquido) foram iniciados respectivamente em 3000 (psi) e 15 (STDB/d). A interface OpenLink foi utilizada para modificar os parâmetros e ler uma nova curva de fluxo de liquido por injeção de gás, a distância quadrática entre as duas curvas foi utilizada como o erro na otimização.
 
+O problema de otimização, então, é dado por 
+\begin{align}
+\min\limits_{x \in \Omega} f(x)
+\end{align}
+Aonde
+\begin{align}
+x = {s_p, l_{pi}}\\
+\Omega = \{s_p \in \mathbb{R} \mid 2000 < &s_p < 7000\}\\
+          \{l_pi \in \mathbb{R} \mid  15 < &l_{pi} < 35\}
+\end{align}
+Aonde $p_s$ é a pressão estática do reservatório e $p$ é o índice de produtividade de líquidos.
+\begin{align}
+f(x) &= f(p_s, l_{pi}) \\
+     &= \sum_{i=0,n}^n (\theta(p_s,l_{pi}) - f(p_s,l_{pi}))^2
+\end{align}
+Aonde $n$ é o número de pontos experimentais, e $\theta$ representa a curva real do sistema.
 \chapter{O Experimento de Sintonia Sem Ruído}
 
 Foram realizados três experimentos de sintonia de curva, e utilizadas três abordagens diferentes para a sintonia. Primeiramente foi utilizado o orthoMADS, com a implementação NOMAD, em seguida, foi utilizado novamente o NOMAD, mas com surrogate model calculado pela SGTELIB, e finalmente, uma implementação do Nelder-Mead Simplex. Os resultados então são comparados quanto a número de avaliações e acurácia do resultado.
@@ -257,10 +273,11 @@ Outra possível interpretação é que a diferença seja devido ao overhead no N
 \caption{Tempo de execução e numero de iterações por algoritmo}
 \label{my-label}
 \begin{tabular}{|l|l|l|}
-                    & Tempo & Iterações & \\
-OrthoMADS           & 525   & 206       &  \\
-OrthoMADS + SGTELIB & 1374  & 417       &   \\
-Nelder-Mead         & 133   & 110       &
+\hline
+                    & Tempo & Iterações \\ \hline
+OrthoMADS           & 525   & 206       \\ \hline
+OrthoMADS + SGTELIB & 1374  & 417       \\ \hline
+Nelder-Mead         & 133   & 110        \\ \hline
 \end{tabular}
 \end{table}
 

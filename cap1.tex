@@ -5,15 +5,17 @@
 
 
 \section{Motivação}
-Na indústria de petróleo e gás, frequentemente duas ou mais plataformas de produção conectam-se a redes comuns para o escoamento da produção. 
+Na indústria de petróleo e gás, frequentemente duas ou mais plataformas de produção conectam-se à redes comuns para o escoamento da produção. 
 %
-Este escoamento precisa ser planejado para que as restrições físicas de fluxo e pressão nos nós seja respeitado.
+Este escoamento precisa ser planejado para que as restrições físicas de fluxo e pressão nos nós sejam respeitadas.
 %
 Para que estes valores estejam corretos, é necessário controlar os processos de modo a produzir exatamente o necessário em cada estação.
 %
 Além disso, para que campos de petróleo gerem o maior retorno financeiro possível, os processos devem idealmente estar sempre em um ponto ótimo de performance.
 %
-A produção em falta ou excesso de determinados componentes pode afetar os componentes do sistema, como bombas e separadores, ou as interfaces com sistemas auxiliares, como linhas de transporte, além de estressar os sistemas da plataforma ou causar perdas desnecessárias com desgaste ou subprodução.
+A produção em falta ou excesso de determinados componentes pode afetar os elementos do sistema, como bombas e separadores, ou as interfaces com sistemas auxiliares, como linhas de transporte.
+% 
+Outros problemas ocasionados pelo excesso de produção são o estresse dos sistemas da plataforma e perdas desnecessárias com desgaste ou subprodução.
 
 Como estes são sistemas complexos e que variam com o tempo, simuladores são utilizados para estimar as respostas do sistema real à condições variadas. 
 %
@@ -28,15 +30,15 @@ Como a escala de produção destes sistemas costuma ser grande, até pequenas va
 
 \section{Objetivos}
 
-O objetivo final deste trabalho é o desenvolvimento de uma ferramenta capaz de auxiliar a sintonia de simuladores de fluxo multifásico de petróleo e gás utilizando dados de plantas reais em plataformas offshore. 
+O objetivo final deste trabalho é o desenvolvimento de uma ferramenta capaz de auxiliar a sintonia de simuladores de fluxo multifásico de petróleo e gás utilizando dados de plantas reais em plataformas em alto mar. 
 %
-Pretende-se identificar, implementar, e testar métodos de otimização sem derivadas compatíveis para sintonizar tais simuladores.
+Pretende-se identificar, implementar, e testar métodos de otimização sem derivadas, os quais sejam compatíveis para sintonizar tais simuladores.
 %
 É esperado que a ferramenta seja capaz de aproximar em pouco tempo as curvas de produção de um simulador aos dados coletados em campo.
 %
-Inicialmente os métodos a serem estudados são o Simplex de Nelder-Mead \cite{Singer:2009}, com uma implementação pŕopria, o OrthoMADs \cite{DBLP:journals/siamjo/AbramsonADD09}, e OrthoMADS com SGTELIB (ultimos dois com a implementação NOMAD \cite{Nomad}).
+Inicialmente os métodos a serem estudados são o Simplex de Nelder-Mead \cite{Singer:2009}, com uma implementação própria, o OrthoMADs \cite{DBLP:journals/siamjo/AbramsonADD09}, e OrthoMADS com SGTELIB (estes dois últimos com a implementação NOMAD \cite{Nomad}).
 %
-É esperado que o método desenvolvido ajude desenvolver ferramentas de automação para aliviar a carga sobre o engenheiro do processo, aliviando uma de suas tarefas, e melhorar a produção.
+É esperado que o método desenvolvido ajude desenvolver ferramentas de automação para aliviar a carga sobre o engenheiro de processos, e melhorar a produção.
 %
 
 %
@@ -46,17 +48,17 @@ Este relatório está dividido em cinco seções principais.
 %
 Na seção 1, é dada uma introdução geral ao relatório.
 %
-Na seção 2, é dada uma visão geral dos campos de petróleo e como eles funcionam, explicando a estrutura de uma FPSO, e seus componentes principais. 
+A seção 2 traz uma visão geral dos campos de petróleo e como eles funcionam, explicando a estrutura de uma FPSO\footnote{Floating Production, Offloading and Storage, um tipo de estrutura utilizada para extração de petróleo e gás.}, e seus componentes principais. 
 %
 A medida que os sistema são descritos, as variáveis usadas para os testes serão destacadas.
 %
-Na seção 3, é dada uma apresentação geral dos conceitos de otimização sem derivada, e são mostrados cada um dos métodos utilizados.
+A seção 3 oferece uma apresentação geral dos conceitos de otimização sem derivada, e são mostrados cada um dos métodos utilizados.
 %
 Na seção 4, são apresentadas as ferramentas envolvidas no trabalho.
 %
 Na seção 5, é apresentado o problema, a estrutura da solução proposta, como os componentes se conectam, as configuração e condições dos testes, entradas e saídas, e discussão dos resultados.
 %
-A seção 6 contém as conclusões dos experimentos.
+A seção 6 contém as considerações finais e perspectivas para trabalhos futuros..
 
  
 
