@@ -26,7 +26,7 @@ Os métodos de otimização sem derivadas procuram encontrar mínimos computando
 
 Também conhecido como Downhill Simplex Method, ou Amoeba Method, consiste em utilizar um poligono com n+1 vértices em n dimensões que se expande, contraí, ou reflete de modo a se mover em direção ao gradiente da função objetivo.
 
-Um exemplo passo-a-passo da execução do algoritmo de Nelder-Mead pode ser visto na figura~\ref{fig:neldermeadsteps}. A partir de um ponto inicial, o simplex se locomove como uma ameba até encontrar um ponto de mínimo.
+Um exemplo passo-a-passo da execução do algoritmo de Nelder-Mead pode ser visto na figura~\ref{fig:neldermeadsteps}, aonde se vê, nesta ordem: uma reflexão, reflexão com expansão, outra reflexão, e dois encolhimentos.. A partir de um ponto inicial, o simplex se locomove como uma ameba até encontrar um ponto de mínimo.
 %
 A figura \ref{fig:neldermead} ilustra os passos totais e o valor de da função objetivo com as iterações.
 %
@@ -77,7 +77,7 @@ A execução também é ilustrada pelo algoritmo \ref{alg:nm}.
   \centering
   \includegraphics[width=\linewidth]{figs/neldermeadexample/target-5.png}
 \end{subfigure}
-\caption{Ilustração do Nelder-Mead passo-a-passo}
+\caption{Ilustração do Nelder-Mead passo-a-passo.}
 \label{fig:neldermeadsteps}
 \end{figure}
 
