@@ -16,7 +16,7 @@ A seguir foram escolhidos dados arbitrariamente para compor a curva ``real'' de 
 Neste Experimento a curva sintonizada foi a de fluxo de líquido (Barris padrões por dia) por gás injetado (milhões de pés cúbicos padrões por dia), no entanto é possível utilizar outras curvas, ou ainda mais que uma, para a sintonia.
 %
 
-Escolheu-se a pressão estática do reservatório como sendo 4000 psi absoluto, e um índice de produtividade de líquido de 25 STDB/d/psi(barris padrões por dia por pressão estática). 
+Escolheu-se a pressão estática do reservatório como sendo 4000 psi absoluto, e um índice de produtividade de líquido de 25 STDB/d/psi (barris padrões por dia por pressão estática). 
 %
 Desta forma a figura \ref{fig:truth1} demonstra o poço ``real'' a ser sintonizado.
 
@@ -52,9 +52,7 @@ x = &(s_p, l_{pi})\\
 \Omega = &\{s_p \in \mathbb{R} \mid s_{p,min} < s_p < s_{p,max}\}\\
           &\{l_{pi} \in \mathbb{R} \mid  l_{pi,min} < l_{pi} < l_{pi,max}\}
 \end{align}
-Aonde $s_p$ é a pressão estática do reservatório e $l_{pi}$ é o índice de produtividade de líquidos.
-
-Seja $f(q_{inj};x)$ a produção de líquido estimada pelo simulador quando sintonizado com parâmetros $x$. 
+Aonde $s_p$ é a pressão estática do reservatório e $l_{pi}$ é o índice de produtividade de líquidos, e seja $f(q_{inj};x)$ a produção de líquido estimada pelo simulador quando sintonizado com parâmetros $x$. 
 
 Seja $\theta(q_{inj};x)$ a produção ``real'' de líquido com parâmetros $x$.
 \begin{align}
@@ -77,7 +75,7 @@ Foram realizados três experimentos de sintonia de curva, e utilizadas três abo
 Os experimentos foram realizados em uma máquina virtual VirtualBox, rodando em um Xeon 2665, e utilizando dois núcleos.
 
 \section{Setup para sintonia de curva com o orthoMADS}
-Para a sintonia com o orthoMADS, foi utilizada o framework OPAL (A Framework for Optimization of Algorithms), interface python para o solver NOMAD.
+Para a sintonia com o orthoMADS, foi utilizado o framework OPAL (A Framework for Optimization of Algorithms), interface Python para o solver NOMAD.
 A implementação com o OPAL utiliza dois arquivos, "well\_declaration.py" e "well\_optimize.py".
 
 O arquivo "well\_declaration.py" expõe os componentes do problema:
@@ -163,11 +161,12 @@ NOMAD.solve(blackbox=model)
 Em 525 segundos (8:45 minutos) e com de 206 avaliações de caixa preta. A performance do algoritmo pode ser vista na figura \ref{fig:setup1_2}. A parada se deu pelo valor da função custo estar abaixo de 0,1. A convergência se deu para os seguintes valores:
 
 \begin{align*}
-SP&= 4000,691 \\
-Liq PI &= 24,954 \\
+s_p&= 4000,691 \\
+l_{pi} &= 24,954 \\
 Custo &= 0,0757.
 \end{align*}
 
+Que são muito próximos aos valores reais $s_p=4000$ e $l_{pi}=25$.
 
 
 \begin{figure}[H]
@@ -197,7 +196,7 @@ Para o cálculo do modelo substituto, são possíveis nove tipos de modelos, que
 
 \section{Setup Para Sintonia de Curva Com a Surrogate Lib}
 
-Um contra-tempo quanto a SGTELIB, como é chamada a biblioteca, é que ela está embutida nos binários do NOMAD, e, por algum erro, os binários para windows foram compilados com uma versão antiga do Microsoft Visual Studio, de forma que é necessário recompilar não apenas o sgtelib (o que pode ser feito com o mingW sem grandes mudanças), mas todo o NOMAD, necessitando a instalação de aproximadamente 4Gb do Visual Studio.
+Um contra-tempo quanto a SGTELIB, como é chamada a biblioteca, é que ela está embutida nos binários do NOMAD, e, por algum erro, os binários para windows foram compilados com uma versão antiga do Microsoft Visual Studio, de forma que é necessário recompilar não apenas o SGTELIB (o que pode ser feito com o mingW sem grandes mudanças), mas todo o NOMAD, necessitando a instalação de aproximadamente 4Gb do Visual Studio.
 
 Após sua recompilação, bastou substituir o binário antigo pelo novo, é inserir nos parâmetros do NOMAD para o uso da SGTELIB, com seus valores padrõess:
 \begin{lstlisting}[language=Python]
@@ -211,12 +210,11 @@ Para que ele passasse a utilizar o SGTELIB no local do seu SEARCH baseado em mod
 A execução demorou 1374 segundos (22:27 minutos) e necessitou de 417 avaliações de função de caixa preta. O Nomad novamente convergiu, desta vez para os 	valores:
 
 \begin{align*}
-SP&= 4001,389 \\
-Liq PI &= 24,905 \\
+s_p&= 4001,389 \\
+L_{pi} &= 24,905 \\
 Custo &= 0,09986.
 \end{align*}
-
-é possível notar, no entanto, que com o SGTELIB, em muitos pontos o erro quadrático saturou em $10^{64}$. Nota-se também que pontos longe do ótimo foram avaliados perto da convergência (pontos claros no canto inferior esquerdo), o que pode significar que existe um problema com a SGTELIB, ou que o modelo utilizado não é o ideal, talez pelo fato de que as superfícies polinomiais tendam a crescer muito para longe na origem, levando o algoritmo a testar pontos distantes.
+É possível notar, no entanto, que com o SGTELIB, em muitos pontos o erro quadrático saturou em $10^{64}$. Nota-se também que pontos longe do ótimo foram avaliados perto da convergência (pontos claros no canto inferior esquerdo), o que pode significar que existe um problema com a SGTELIB, ou que o modelo utilizado não é o ideal, talvez pelo fato de que as superfícies polinomiais tendam a crescer muito para longe na origem, levando o algoritmo a testar pontos distantes.
 
 \begin{figure}
 \centering
@@ -239,20 +237,20 @@ Custo &= 0,09986.
 
 \section{Setup da Otimização com Nelder-Mead Simplex}
 
-Para o teste com o Simplex de Nelder-Mead, foi utilizada uma implementação pŕopria, baseada no algoritmo \ref{alg:nm}, e como ele não é facilmente paralelizável, não houveram preocupações com paralelismo.
-os limites utilizados foram os mesmos dos casos anteriores:
+Para o teste com o Simplex de Nelder-Mead, foi utilizada uma implementação própria, baseada no algoritmo \ref{alg:nm}, e como ele não é facilmente paralelizável, não houveram preocupações com paralelismo.
+Os limites utilizados foram os mesmos dos casos anteriores:
 \begin{align}
-15 < &pi < 35 \\
-2000 < &sp < 7000
+15 < &l_{pi} < 35 \\
+2000 < &s_p < 7000
 \end{align}
 
-Como o simplex utiliza uma estrutura n-dimensional para a busca, são necessários n+1 pontos iniciais, por este motivo um triângulo foi expandido arbitrariamente a partir do ponto inicial, de modo que no começo do algoritmo, o simplex inicial seja grande. As restrições foram aplicadas somando-se um peso adicional a função custo.
+Como o simplex utiliza uma estrutura $n$-dimensional para a busca, são necessários $n+1$ pontos iniciais, por este motivo um triângulo foi expandido arbitrariamente a partir do ponto inicial, de modo que no começo do algoritmo, o simplex inicial seja grande. As restrições foram aplicadas somando-se um peso adicional a função custo.
 
-Os resultados podem ser vistos nas figuras \ref{fig:setup3_2} e \ref{fig:setup3_triang}. Nota-se que a solução foi mais rápida, com 212 iterações em 133 segundos (2:13 minutos). No entanto, o método de Nelder e Mead não tem as mesmas características de convergência que os os métodos MADS. É interessante comentar a o caso da figura 5, aonde é possível notar que o simplex primeiramente moveu-se para um ponto em torno de $L_{pi}=18$, depois moveu-se lentamente para o ponto final:
+Os resultados podem ser vistos nas figuras \ref{fig:setup3_2} e \ref{fig:setup3_triang}. Nota-se que a solução foi mais rápida, com 212 iterações em 133 segundos (2:13 minutos). No entanto, o método de Nelder e Mead não tem as mesmas características de convergência que os os métodos MADS. É interessante comentar o caso da figura 5, aonde é possível notar que o simplex primeiramente moveu-se para um ponto em torno de $l_{pi}=18$, depois moveu-se lentamente para o ponto final:
 
 \begin{align*}
-SP&= 4001,389 \\
-Liq PI &= 24,905 \\
+s_p&= 4001,389 \\
+l_{pi} &= 24,905 \\
 Custo &= 0,09986.
 \end{align*}
 
@@ -287,15 +285,15 @@ Custo &= 0,09986.
 
 \section{Discussão}
 
-É possível notar, pela figura \ref{fig:comp1} que o Nelder-Mead, embora tenha utilizado um numero semelhante de iterações que o orthoMADS, foi aproximadamente quatro vezes mais rápido. É possível que isso se dê pelo fato de que o OPAL, embora utilize varias threads, talvez não faça um gerenciamento ideal do processador, e sim faça um "busy wait", que é quando um processo espera um sinal (no caso o fim de uma thread) sem liberar o processador para outras threads. Embora exista a suspeita do problema, não foi possível localizá-lo no código fonte.
+É possível notar, pela figura \ref{fig:comp1} e pela \ref{tab:res1} que o Nelder-Mead, embora tenha utilizado um número semelhante de iterações que o orthoMADS, foi aproximadamente quatro vezes mais rápido. É possível que isso se dê pelo fato de que o OPAL, embora utilize várias \textit{threads}, talvez não faça um gerenciamento ideal do processador, e sim faça um \textit{busy wait}, que é quando um processo espera um sinal (no caso o fim de uma \textit{thread}) sem liberar o processador para outras \textit{threads}. Embora exista a suspeita do problema, não foi possível localizá-lo no código fonte.
 
-Outra possível interpretação é que a diferença seja devido ao overhead no NOMAD. Todas suas iterações envolvem o disparo de novos processos do Python, que por sua vez disparam o processo do Pipesim, além da escrita e leitura de diferentes arquivos para a comunicação entre os processos.
+Outra possível interpretação é que a diferença seja devido ao \textit{overhead} no NOMAD. Todas suas iterações envolvem o disparo de novos processos do Python, que por sua vez disparam o processo do Pipesim, além da escrita e leitura de diferentes arquivos para a comunicação entre os processos. Como a implementação utilizada do Nelder-Mead foi feita diretamente em Python, o \textit{overhead} existente é apenas a interface com Open Link.
 
 
-\begin{table}[]
+\begin{table}[		]
 \centering
 \caption{Tempo de execução e numero de iterações por algoritmo}
-\label{my-label}
+\label{tab:res1}
 \begin{tabular}{|l|l|l|}
 \hline
                     & Tempo & Iterações \\ \hline
@@ -318,7 +316,7 @@ Nelder-Mead         & 133   & 110        \\ \hline
 
 Para testar um caso um pouco mais realista, foram introduzidos ruídos ao sistema.
 %
-Primeiramente foi introduzido um ruído de medição nos pontos "reais" com $\sigma = 10$ (STDB/d) e média nula.
+Primeiramente foi introduzido um ruído de medição nos pontos ``reais'' com desvio padrão $\sigma = 10$ (STDB/d) e média nula, para uma distribuição gaussiana.
 %
 Este ruído simula as condições adversas da medição em campo, perdas em sensores, sinais elétricos, imprecisões de montagem, e etc...
 %
@@ -328,9 +326,9 @@ Adicionalmente, foi adicionado um pequeno ruído na simulação, para emular err
 %
 A este ruído foi atribuído também uma distribuição normal com média zero, mas $\sigma = 10^{-5}$ para cada variável.
 %
-Como não existe mais a possibilidade um match perfeito (zerar a função custo), é bom pensar no critério de parada. 
+Como não existe mais a possibilidade um \textit{match} perfeito (zerar a função custo), é bom pensar no critério de parada. 
 %
-Como um balanço de precisão e execução, é escolhido o critério de que os pontos explorados estão a menos de de $10^{-3}$ unidades de distancia em cada variável.
+Como um balanço de precisão e execução, é escolhido o critério de que os pontos explorados estão a menos de $10^{-3}$ unidades de distância em cada variável.
 %
 Para as novas configurações, foram repetidos os experimentos.
 
@@ -382,7 +380,7 @@ Com o OrthoMADS e a SGTELIB, a otimização levou 187 segundos (3:07 minutos) e 
 
 Também é notável que o novo método de SEARCH foi capaz de diminuir o número de avaliações (52\%).
 %
-Ele converge para um ponto próximo ao do método anterior(respectivamente 982,524 e 956,827), custando menos tempo e avaliações.
+Ele converge para um ponto próximo ao do método anterior (respectivamente 982,524 e 956,827), consumindo menos tempo e avaliações.
 
 
 \begin{figure}[H]
@@ -417,7 +415,7 @@ Ele converge para um ponto próximo ao do método anterior(respectivamente 982,5
 
 \section{Sintonia de Curva com Ruído Com Nelder-Mead}
 
-Com a utilização do algoritmo de Nelder-Mead, em 217 segundos (3:27 minutos) e 92 avaliações, o algoritmo convergiu com uma uma função custo em 953.623. Como pode ser ver na figura \ref{fig:exp2_nm_error}, o algoritmo converge rapidamente no inicial, mas demora a adquirir a precisão requerida para a parada. Novamente a curva identificada está muito próxima da original sem ruídos.
+Com a utilização do algoritmo de Nelder-Mead, em 217 segundos (3:27 minutos) e 92 avaliações, o algoritmo convergiu com uma uma função custo em 953.623. Como pode se ver na figura \ref{fig:exp2_nm_error}, o algoritmo converge rapidamente no inicial, mas demora a adquirir a precisão requerida para a parada. Novamente a curva identificada está muito próxima da original sem ruídos.
 
 
 
@@ -451,9 +449,9 @@ Com a utilização do algoritmo de Nelder-Mead, em 217 segundos (3:27 minutos) e
 \end{figure}
 
 \section{Discussão}
-Nestes experimentos com ruído, não se repete o comportamento anômalo aonde o Nomad com SGTELIB avalia pontos em que aparentemente não há informações relevantes, aumentando sem necessidade o numero de iterações e tempo tomado.
+Nestes experimentos com ruído, não se repete o comportamento anômalo aonde o Nomad com SGTELIB avalia pontos em que aparentemente não há informações relevantes, aumentando sem necessidade o número de iterações e tempo computacional, como pode ser visto na Figura \ref{fig:comp2} e na Tabela \ref{tab:res2}.
 %
-Pelo contrário, ele acaba sendo o mais eficiente dos três métodos.O Nelder-Mead, por sua vez, tornou-se relativamente mais lento.
+Pelo contrário, ele acaba sendo o mais eficiente dos três métodos. O Nelder-Mead, por sua vez, tornou-se relativamente mais lento.
 
 %
 
@@ -462,7 +460,7 @@ Pelo contrário, ele acaba sendo o mais eficiente dos três métodos.O Nelder-Me
 \begin{table}[H]
 \centering
 \caption{Comparação dos métodos para sintonia de uma curva com ruído de medição}
-\label{my-label2}
+\label{tab:res2}
 \begin{tabular}{|l|l|l|l|}
 \hline
                     & Tempo & Iterações & Custo   \\ \hline
@@ -479,7 +477,7 @@ Nelder-Mead         & 217   & 92        & 953,522 \\ \hline
 \centering
   \includegraphics[width=0.7\linewidth]{figs/comp_time_iter_2.pdf}
   \caption{Comparação entre tempos de execução e número de iterações entre os três experimentos com ruído.}
-  \label{fig:comp1}
+  \label{fig:comp2}
 \end{figure}
 
 
