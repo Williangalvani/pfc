@@ -6,19 +6,19 @@ A sintonia de simuladores de poços de petróleo costuma ser feita a partir de d
 %
 A partir de testes de campo, adquirem-se pontos de testes do sistema real.
 %
-Os pontos reais são utilizados como referência para que o operador varie o parâmetros de forma a encontrar o modelo que melhor represente os dados coletados.
+Os pontos reais são utilizados como referência para que o operador varie os parâmetros de forma a encontrar o modelo que melhor represente os dados coletados.
 %
 
 Para os testes neste trabalho, primeiramente foi configurado um único poço de petróleo, com uma estrutura simples e que pode ser visto na figura \ref{fig:setup1_dia}.
 % 
-A seguir foram escolhidos dados arbitrariamente para compor a curva "real" de produção (figura \ref{fig:truth1}).
+A seguir foram escolhidos dados arbitrariamente para compor a curva ``real'' de produção (figura \ref{fig:truth1}).
 %
 Neste Experimento a curva sintonizada foi a de fluxo de líquido (Barris padrões por dia) por gás injetado (milhões de pés cúbicos padrões por dia), no entanto é possível utilizar outras curvas, ou ainda mais que uma, para a sintonia.
 %
 
-Escolheu-se a pressão estática do reservatório como sendo 4000 psi absoluto, e um índice de produtividade liquido de 25 STDB/d/psi(barris padrões por dia por pressão estática). 
+Escolheu-se a pressão estática do reservatório como sendo 4000 psi absoluto, e um índice de produtividade de líquido de 25 STDB/d/psi(barris padrões por dia por pressão estática). 
 %
-Desta forma a figura \ref{fig:truth1} demonstra o poço "real" a ser sintonizado.
+Desta forma a figura \ref{fig:truth1} demonstra o poço ``real'' a ser sintonizado.
 
 
 
@@ -33,7 +33,7 @@ Desta forma a figura \ref{fig:truth1} demonstra o poço "real" a ser sintonizado
 \begin{subfigure}{.75\textwidth}
   \centering
   \includegraphics[width=1\linewidth]{figs/truth1.png}
-  \caption{Curva "real" do poço de petróleo.}
+  \caption{Curva ``real'' do poço de petróleo.}
   \label{fig:truth1}
 \end{subfigure}
 \caption{Configuração e curva do poço do experimento 1.}
@@ -48,16 +48,22 @@ O problema de otimização, então, é dado por
 \end{align}
 Aonde
 \begin{align}
-x = &s_p, l_{pi}\\
+x = &(s_p, l_{pi})\\
 \Omega = &\{s_p \in \mathbb{R} \mid s_{p,min} < s_p < s_{p,max}\}\\
           &\{l_{pi} \in \mathbb{R} \mid  l_{pi,min} < l_{pi} < l_{pi,max}\}
 \end{align}
 Aonde $s_p$ é a pressão estática do reservatório e $l_{pi}$ é o índice de produtividade de líquidos.
+
+Seja $f(q_{inj};x)$ a produção de líquido estimada pelo simulador quando sintonizado com parâmetros $x$. 
+
+Seja $\theta(q_{inj};x)$ a produção ``real'' de líquido com parâmetros $x$.
 \begin{align}
 f(x) &= f(s_p, l_{pi}) \\
-     &= \sum_{i=0,n}^n (\theta(s_p,l_{pi}) - f(s_p,l_{pi}))^2
+     &= \sum_{i=1}^n \Big[ \theta(q_{inj}^n;x) - f(q_{inj}^n;x))\Big]^2
 \end{align}
-Aonde $n$ é o número de pontos experimentais, e $\theta$ representa a curva real do sistema. Neste problemas foram impostos: 
+Onde $q_{inj}^1, q_{inj}^2, \dots, q_{inj}^n$ são os pontos amostrados da curva de produção. 
+
+Neste problemas foram impostos: 
 \begin{align*}
 l_{pi,min}&= 15\\
 l_{pi,max}&= 35\\
