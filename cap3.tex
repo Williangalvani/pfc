@@ -3,82 +3,81 @@
 
 \section{Visão Geral}
 
-\begin{itemize}
+Frequentemente em problemas de engenharia os modelos utilizados são aproximações simplificadas da realidade, ou mesmo completamente desconhecidos.
 
-
-\item \textcolor{blue}{Motivate the use of derivative-free optimization.}
-Frequentemente em problemas de engenharia os modelos utilizados são aproximações simplificadas da realidade, e em outros casos completamente desconhecidos.
-
-Métodos de otimização sem derivadas são adequados em casos aonde o modelo matemático é não-explicito, custoso ou as derivadas não estão disponíveis, devido a inexistência do modelo explícito ou presença de ruídos impossibilitando a estimação das derivadas.
+Métodos de otimização sem derivadas são adequados em casos aonde o modelo matemático é não-explicito, sua avaliação é custosa, ou as derivadas não estão disponíveis devido a inexistência do modelo explícito ou presença de ruídos, impossibilitando a estimação das derivadas.
 
 Os métodos de otimização sem derivadas procuram encontrar mínimos computando o menor número possível de pontos do problema, de modo a tentar minimizar também o tempo de execução da otimização.
 
-
-
-\item \textcolor{blue}{Give a general presentation/introduction to derivative-free optimization}
-
-\end{itemize}
 
 
 %%%%
 %%
 \section{Método do Simplex de Nelder-Mead}
 
-Também conhecido como Downhill Simplex Method, ou Amoeba Method, consiste em utilizar um poligono com n+1 vértices em n dimensões que se expande, contraí, ou reflete de modo a se mover em direção ao gradiente da função objetivo.
+Também conhecido como Downhill Simplex Method, ou Amoeba Method, consiste em utilizar um polígono com n+1 vértices em n dimensões que se expande, contraí, ou reflete de modo a se mover em direção ao gradiente da função objetivo.
 
-Um exemplo passo-a-passo da execução do algoritmo de Nelder-Mead pode ser visto na figura~\ref{fig:neldermeadsteps}, aonde se vê, nesta ordem: uma reflexão, reflexão com expansão, outra reflexão, e dois encolhimentos.. A partir de um ponto inicial, o simplex se locomove como uma ameba até encontrar um ponto de mínimo.
+A partir de um ponto inicial, o simplex se locomove como uma ameba até encontrar um ponto de mínimo.
+
+
+Um exemplo passo-a-passo da execução do algoritmo de Nelder-Mead pode ser visto na figura~\ref{fig:neldermeadsteps}, aonde se vê, nesta ordem: uma reflexão, reflexão com expansão, outra reflexão, e dois encolhimentos. 
 %
 A figura \ref{fig:neldermead} ilustra os passos totais e o valor de da função objetivo com as iterações.
 %
-A execução também é ilustrada pelo algoritmo \ref{alg:nm}.
-
-\begin{figure}
-\centering
-\begin{subfigure}{.5\textwidth}
-  \centering
-  \includegraphics[width=\linewidth]{figs/neldermeadsimplex.pdf}
-  \caption{Passos do Nelder-Mead}
-  \label{fig:sub1}
-\end{subfigure}%
-\begin{subfigure}{.5\textwidth}
-  \centering
-  \includegraphics[width=\linewidth]{figs/neldermeadconvergence.pdf}
-  \caption{Nelder-Mead aplicado em um parabolóide.}
-  \label{fig:sub2}
-\end{subfigure}
-\caption{Demonstração do Nelder-Mead}
-\label{fig:neldermead}
-\end{figure}
-
+A execução detalhada pode ser analisada pelo algoritmo \ref{alg:nm}.
 
 \begin{figure}
 \centering
 \begin{subfigure}{.3\textwidth}
   \centering
   \includegraphics[width=\linewidth]{figs/neldermeadexample/target-0.png}
+\caption{Início.}
 \end{subfigure}%
 \begin{subfigure}{.3\textwidth}
   \centering
   \includegraphics[width=\linewidth]{figs/neldermeadexample/target-1.png}
+   \caption{Reflexão.}
 \end{subfigure}
 \begin{subfigure}{.3\textwidth}
   \centering
   \includegraphics[width=\linewidth]{figs/neldermeadexample/target-2.png}
+  \caption{Reflexão e expansão.}
 \end{subfigure}
 \begin{subfigure}{.3\textwidth}
   \centering
   \includegraphics[width=\linewidth]{figs/neldermeadexample/target-3.png}
+  \caption{Reflexão.}
 \end{subfigure}%
 \begin{subfigure}{.3\textwidth}
   \centering
   \includegraphics[width=\linewidth]{figs/neldermeadexample/target-4.png}
+  \caption{Contração.}
 \end{subfigure}
 \begin{subfigure}{.3\textwidth}
   \centering
   \includegraphics[width=\linewidth]{figs/neldermeadexample/target-5.png}
+  \caption{Contração.}
 \end{subfigure}
 \caption{Ilustração do Nelder-Mead passo-a-passo.}
 \label{fig:neldermeadsteps}
+\end{figure}
+
+\begin{figure}
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{figs/neldermeadsimplex.pdf}
+  \caption{Todos os passos do Nelder-Mead}
+  \label{fig:sub1}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{figs/neldermeadconvergence.pdf}
+  \caption{Pontos avaliados pelo Nelder-Mead aplicado em um parabolóide.}
+  \label{fig:sub2}
+\end{subfigure}
+\caption{Demonstração gráfica do Nelder-Mead}
+\label{fig:neldermead}
 \end{figure}
 
 
@@ -128,41 +127,41 @@ A execução também é ilustrada pelo algoritmo \ref{alg:nm}.
 %%
 \section{OrthoMADS}
 
-Os métodos MADS (Mesh Adaptative Direct Search) são uma classe de métodos de otimização Direct Search, cuja estratégia é tentar encontrar um ponto ótimo de uma função ao avaliar e comparar apenas o valor da função em diversos pontos. 
+Os métodos MADS (Mesh Adaptative Direct Search) são uma classe de métodos de otimização Direct Search, cuja estratégia é tentar encontrar um ponto ótimo de uma função ao avaliar e comparar apenas o valor da função em diversos pontos.\cite{AuDe2006}
 %
-Os métodos Mesh Adaptative se destacam pelo fato de que todos os pontos estão encima de uma malha, que pode ser refinada.
+Os métodos \textit{Mesh Adaptative} se destacam pelo fato de que todos os pontos estão encima de uma malha, que pode ser refinada.
 %
-A cada iteração $ k $ são executados dois passos de busca, Search e Poll, analisando a viabilidade e valor da função. O objetivo de cada nova iteração é encontrar um ponto $f(x) < f(x_k)$, aonde $x_k$ é o melhor ponto encontrado até a iteração atual. 
+A cada iteração $ k $ são executados dois passos de busca, \textit{Search} e \textit{Poll}, analisando a viabilidade e valor da função. O objetivo de cada nova iteração é encontrar um pontoem que $f(x) < f(x_k)$, aonde $x_k$ é o melhor ponto encontrado até a iteração atual. 
 %
 As buscas são feitas sempre em uma grade, definida por:
 %
 $M_k = \{x + \Delta^m_kDz : x \in V_k, z \in \mathbb{N}^{nD} \} \subset \mathbb{R}^n$
-Aonde $M_k$ é o conjunto de pontos da grade, $x$ é o ponto mínimo atual, $\Delta^m_k$ é o parâmetro de tamanho da malha, $D$ é uma matrix $\mathbb{R}^{n \times n_D}$ composta por $n_D$ direções que definem um conjunto gerador no $\mathbb{R}^n$. Para o OrthoMads e LtMads, D é simplesmente definida como $[I_n -I_n]$ aonde $I_n$ é a matriz identidade de dimensões $n$.
+Aonde $M_k$ é o conjunto de pontos da grade, $x$ é o ponto mínimo atual, $\Delta^m_k$ é o parâmetro de tamanho da malha, $D$ é uma matriz $\mathbb{R}^{n \times n_D}$ composta por $n_D$ direções que definem um conjunto gerador no $\mathbb{R}^n$. Para o OrthoMads e LtMads, D é simplesmente definida como $[I_n\text{ } -I_n]$ aonde $I_n$ é a matriz identidade de dimensões $n$.
 %
-O passo Search pode ser qualquer tipo de heurística que escolha um ponto mais adequado da malha para tentar acelerar a convergência, neste trabalho é utilizado um sgtelib.
+O passo \textit{Search} pode ser qualquer tipo de heurística que escolha um ponto mais adequado da malha para tentar acelerar a convergência, neste trabalho são utilizado um polinômio quadrático e a SGTELIB(\textit{Surrogate lib}).
 %
-O passo poll é a parte mais importante do método, que garante sua convergência. A cada iteração $k$ os pontos a serem utilizados são definidos por:
+O passo \textit{Poll} é a parte mais importante do método, que garante sua convergência. A cada i	teração $k$ os pontos a serem utilizados são definidos por:
 %
 \begin{center}
 $P_k = \{ x_k + \Delta^p_kd : d \in D_k\} \subset M_k$
 \end{center}
 %
-Aonde  $x_k$ é o ponto atual e cada coluna de $D_k$ é formada por combinações inteiras das colunas de $D$ de forma a criar um conjunto gerador positivo. $\Delta^p_k$ é o \textit{parâmetro de tamanho de poll}.
+Aonde  $x_k$ é o ponto atual e cada coluna de $D_k$ é formada por combinações inteiras das colunas de $D$ de forma a criar um conjunto gerador positivo. $\Delta^p_k$ é o \textit{parâmetro de tamanho de \textit{poll}}.
 %
-Ambos LtMads e OrthoMads utilizam um parâmetro $\ell_k$ chamado de \textit{índice de malha} para atualizar os parâmetros de tamanho de poll e search de acordo com esta lógica:
+Ambos LtMads e OrthoMads utilizam um parâmetro $\ell_k$ chamado de \textit{índice de malha} para atualizar os parâmetros de tamanho de \textit{poll} e \textit{search} de acordo com esta lógica:
 
 
 \begin{equation} \label{eq:meshsizeupdate}
 \Delta^p_k = 2^{-\ell k} \text{ e }  \Delta^m_k = min\{1, 4^{-\ell_k}\}
 \end{equation}
 
-A cada nova iteração, se em uma iteração um novo \textit{incumbente} não é encontrado, ela é dita mal sucedida, e $\ell_{k+1} \gets \ell_k +1$ (reduzindo $\Delta^m_k$ e $\Delta^p_k$), por outro lado, se for encontrado um novo \textit{incumbente}, a iteração é dita bem sucedida, e $\ell_{k+1} \gets \ell_k -1$ (aumentando $\Delta^m_k$ e $\Delta^p_k$). Devido a \ref{eq:meshsizeupdate}, no caso de uma iteração mal-sucedida o parâmetro de Poll diminui mais rápido que o de malha, de modo a permitir o uso de muitos mais pontos, refinando a malha.
+A cada nova iteração, se em uma iteração um novo \textit{incumbente}\footnote{Ponto com o melhor valor da função custo até então.} não é encontrado, ela é dita mal sucedida, e $\ell_{k+1} \gets \ell_k +1$ (reduzindo $\Delta^m_k$ e $\Delta^p_k$), por outro lado, se for encontrado um novo \textit{incumbente}, a iteração é dita bem sucedida, e $\ell_{k+1} \gets \ell_k -1$ (aumentando $\Delta^m_k$ e $\Delta^p_k$). Devido a \ref{eq:meshsizeupdate}, no caso de uma iteração mal-sucedida o parâmetro de \textit{Poll} diminui mais rápido que o de malha, de modo a permitir o uso de muitos mais pontos, refinando a malha.
 
 
 A diferença entre o OrthoMads e LtMads se dá na geração da base $D_k$. O LtMads utiliza uma matriz triangular inferior para a geração da base, fazendo permutações entre os elementos e completando ela em uma base maximal ou minimal, sem garantir ortogonalidade entre as direções, de modo que os ângulos entre as direções podem ser grandes, causando grandes cones de espaço não explorado.
 Já o OrthoMads utiliza uma base maximal definida por $[H_k -H_k]$, aonde as colunas de $H_k$ formam um base ortogonal de $\mathbb{R}^n$. Além disso, os as direções de $D_k$ são inteiras, de modo que os pontos gerados estão automaticamente contidos na malha definida por $D=[I_n -I_n]$.
 
-Para a geração de $D_k$, o OrthoMads utiliza a sequencia pseudo-aleatória de Halton, que cobre mais uniformemente o espaço que uma sequência aleatória real, para  gerar vetores $u_t$.
+Para a geração de $D_k$, o OrthoMads utiliza a sequência pseudo-aleatória de Halton, que cobre mais uniformemente o espaço que uma sequência aleatória real, para  gerar vetores $u_t$.
 
 A saída da sequência de Halton, no entanto, não respeita as restrições impostas pela malha. É necessário arredondar, escalar, e rotacionar o vetor $u_t$. O índice $\ell$ é utilizado para transformar a direção $u_t$ na \textit{direção ajustada de Halton} $q_{t,\ell} \in \mathbb{Z}^n$, uma direção cuja norma é próxima a a $2^{\frac{|\ell|}{2}}$
 
@@ -173,7 +172,7 @@ $q_t(\alpha) = \text{round} \left ( \alpha \cfrac{2u_t - e}{||2u_t - e||} \right
 	
 Aonde \textit{round} é a operação arredondar para cima ($round(0,5)=1$, $round(-0,5) = -1$) e $\alpha \in \mathbb{R}_+$ é um fator de escala. 
 
-Desta forma, tem-se um problema de otimização, e é encontrar um $\alpha_{t,\ell}$ tal que $||q_t(\alpha_{t,\ell})$ seja o mais próximo possível de $2^{\frac{|\ell|}{2}}$ sem ultrapassá-lo.
+Desta forma, tem-se um problema de otimização, e é encontrar um $\alpha_{t,\ell}$ tal que $|q_t(\alpha_{t,\ell})|$ seja o mais próximo possível de $2^{\frac{|\ell|}{2}}$ sem ultrapassá-lo.
 
 \begin{align*}
 \alpha_{t,\ell} \in \underset{\alpha in \mathbb{R}_+}{\textit{argmax}} & ||q_t(\alpha)|| \\
@@ -209,7 +208,7 @@ Com a base ortonormal criada, é possível utilizar o algoritmo~\ref{alg:orthoma
             \State Search (opcional)
 			\State Avalia $ f $ em um conjunto finito $S_k \subset M_k $
 \State \emph{POLL}
-    \If{o tamanho do parametro POLL é o menor até então ($ \Delta^p_k = \text{min} \{ \Delta^p_j : j=  0,1,\dots,k \}$)} 
+    \If{menor tamanho de POLL até então ($ \Delta^p_k = \text{min} \{ \Delta^p_j : j=  0,1,\dots,k \}$)} 
     \State $t_k \gets \ell_k + t_0$
     \Else{ (Já foram considerados tamanhos menores)}
     \State $t_k \gets 1 + \text{max} \{t_j:j=0,1,\dots,k-1\}$

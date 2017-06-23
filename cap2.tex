@@ -25,7 +25,9 @@ Após a conclusão dos orifícios, é bombeado líquido de fraturação para abr
 O poço então recebe a árvore de natal (uma composta por um \textit{choke}, indicador de pressão, e outras válvulas) e é conectado a um \textit{manifold}, que concentra a produção para envio para a plataforma.
 %
 
-Em plataformas submarinas, o poço principal conecta diretamente ao \textit{manifold}, enquanto poços satélites podem conectar por linhas de fluxo multifásico ao \textit{manifold} ou diretamente a plataforma de produção.
+Em plataformas submarinas, podem existir diferentes configurações. Um poço principal pode conectar-se diretamente a um \textit{manifold} submarinho, enquanto poços satélites podem conectar-se por linhas de fluxo multifásico ao \textit{manifold} ou diretamente a um \textit{manifold} na plataforma de produção.
+%
+A esta ultima configuração, se dá o nome de poços satélites. Todos os equipamentos e válvulas nestes casos são atuados remotamente, através do umbilical que conecta à plataforma. A injeção de gás lift também pode ser feita pelo mesmo umbilical.
 %
 O \textit{manifold} então conecta-se ao \textit{riser}, uma tubulação responsável por transportar os fluidos até a superfície.
 %
@@ -63,22 +65,35 @@ FPSOs (\textit{Floating, Production, Storage and Offloading}) são embarcações
 As FPSOs dominam os novos campos de petróleo, já que os novos campos de exploração estão predominantemente em áreas de maior profundidade, e são o foco nesse trabalho.
 
 \section{Floating Production, Offloading, Storage}
-Uma FPSO(Floating Production, Storage and Offloading) é uma estrutura utilizada para produção de óleo e gás em grandes profundidades. Trata-se geralmente de um navio-tanque modificado\footnote{as FPSOs também podem ser construídas do zero, sem um navio tanque como base.}, conectado a poços no fundo por \textit{risers} e umbilicais, e ancorado no fundo do mar.
+Uma FPSO(Floating Production, Storage and Offloading) é uma estrutura utilizada para produção de óleo e gás em grandes profundidades. Trata-se geralmente de um navio-tanque modificado\footnote{as FPSOs também podem ser construídas do zero, sem um navio tanque como base.}, conectado a poços no fundo por \textit{risers} e umbilicais, e ancorado no fundo do mar, como pode ser visto na figura \ref{fig:fpso1}.
+
+
+\begin{figure}
+\centering
+  \includegraphics[width=0.8\linewidth]{figs/prod2.pdf}
+  \caption{Esquema de FPSO com poços satélites.}
+  \label{fig:fpso1}
+\end{figure}
+
+
+
+
 
 Estas estruturas são capazes de produzir, estocar, e descarregar óleo de forma autônoma. O gás no entanto costuma ser re-utilizado para a injeção na forma de gas-lift, uma forma artificial de aumentar a produção de poços, transportado por tubulações, ou comprimido e liquefeito para o armazenamento e transporte.
 
-No fundo do oceano podem existir um ou mais poços conectados a um \textit{manifold}, centralizando a coleta, que por sua vez conecta-se à FPSO por meio de \textit{flowlines} e \textit{risers}.
+No fundo do oceano podem existir um ou mais poços conectados a um \textit{manifold}, centralizando a coleta, que por sua vez conecta-se à FPSO por meio de \textit{flowlines} e \textit{risers}. Outra configuração possível, chamada de poços satélites, é aquela em que todos os poços se ligam diretamente a um \textit{manifold} a bordo da plataforma. Esta última tem a vantagem de ter menos componentes submersos, facilitando a manutenção.
 
-O gás, por ter sua armazenagem e transporte mais complicados, frequentemente é utilizado para \textit{gas-lift}, ou escoado por tubulações submarinas, mas estas tubulações podem tem restrições de fluxo, requerendo certas especificações de composição e pressão, exigindo mais processamento é necessário.
 
-Pequenas quantidades de hidrocarbonetos, em situações especiais, como desestabilização temporária de algum sistema, ou queda de um compressor, podem ser queimadas no flare. Embora fosse tradicional o uso continuo do flare no passado, atualmente, por pressões ambientais, eles são utilizados apenas esporadicamente, quando necessário.
+O gás, por ter sua armazenagem e transporte mais complicados, frequentemente é utilizado para \textit{gas-lift}, ou escoado por tubulações submarinas, mas estas tubulações podem tem restrições de fluxo, requerendo certas especificações de composição e pressão, exigindo mais processamento.
+
+Pequenas quantidades de hidrocarbonetos, em situações especiais, como desestabilização temporária de algum sistema, ou queda de um compressor, podem ser queimadas no flare. Embora fosse tradicional o uso continuo do flare no passado, atualmente, por pressões ambientais, eles são utilizados apenas esporadicamente, quando necessário, e no Brasil é penalizada pela ANP\foot{Agência Nacional do Petróleo}.
 
 \begin{itemize}
 
 \item \textcolor{blue}{Discuss in the general terms the structure of an offshore oilfield, which consists of subsea oil wells with risers connecting to a production platform.}
 
 
-\item \textcolor{red}{Discuss in general terms the surface processing facilities, valves, separator, compressor, flare and exportation.}
+\item \textcolor{blue}{Discuss in general terms the surface processing facilities, valves, separator, compressor, flare and exportation.}
 
 \end{itemize}
 
@@ -86,20 +101,31 @@ Pequenas quantidades de hidrocarbonetos, em situações especiais, como desestab
 
 \section{Elevação Artificial por Gas Lift}
 
-A medida que um reservatório é esvaziado, a pressão interna dele abaixa, o que em alguns casos faz com que não haja pressão o suficiente para manter a vazão desejada.
+A medida que um reservatório é esvaziado, a sua pressão interna abaixa, o que em alguns casos faz com que não haja pressão o suficiente para vencer a pressão da coluna de produção e manter a vazão desejada  apenas com o controle da abertura do \textit{choke}.
 %
-Uma solução para este problema é o gas lift, um método para a elevação artificial de fluidos, largamente empregado na indústria do petróleo.
+Uma solução para este problema é o \textit{gas-lift}, um método para a elevação artificial de fluidos, largamente empregado na indústria do petróleo.
 %
 Este método consiste na injeção de gás pressurizado nos poços facilitando o deslocamento dos fluidos até a plataforma de produção. 
 %
-Ele funciona tanto pela efeito da energia da expansão do gás injetado, quanto pela diminuição da densidade média do fluido no riser, causada pela mistura de mais gás à mistura que é produzida.
+Ele funciona tanto pela efeito da energia da expansão do gás injetado, quanto pela diminuição da densidade média do fluido no \textit{riser}, causada pela mistura de mais gás à mistura que é produzida.
 %
 
 
-Uma característica do processo de gas lift visível neste trabalho é que existe um ponto ótimo de injeção, pois após um certo ponto, adicionar mais gás apenas aumenta a produção do próprio gás, ao invés de produzir mais líquidos.
-%
-Para a utilização do gas lift são necessários compressores para pressurizar o gás novamente e reinjetá-lo no poço.
 
+Uma característica do processo de \textit{gas-lift} visível neste trabalho é que existe um ponto ótimo de injeção, pois após um certo ponto, adicionar mais gás apenas aumenta a produção do próprio gás, ao invés de produzir mais líquidos.
+%
+Para a utilização do \textit{gas-lift} são necessários compressores para pressurizar o gás novamente e reinjetá-lo no poço.
+%
+Para decisão da quantidade de gás injetado, podem ser utilizados simuladores de fluxo multifásico, como o Pipesim, da Schumblerger, introduzido na seção 4. Estes softwares, se bem sintonizados, são capazes de fornecer curvas de produção por gás injetados, que auxiliam os engenheiros da operação.
+
+
+
+\begin{figure}
+\centering
+	  \includegraphics[width=0.7\linewidth]{figs/gas_lift.pdf}
+  \caption{Funcionamento do gas-lift.}
+  \label{fig:setup3_triang}
+\end{figure}
 
 
 

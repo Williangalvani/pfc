@@ -16,7 +16,7 @@ A seguir foram escolhidos dados arbitrariamente para compor a curva "real" de pr
 Neste Experimento a curva sintonizada foi a de fluxo de líquido (Barris padrões por dia) por gás injetado (milhões de pés cúbicos padrões por dia), no entanto é possível utilizar outras curvas, ou ainda mais que uma, para a sintonia.
 %
 
-Escolheu-se a pressão estática do reservatório como sendo 4000 psi absoluto, e um índice de produtividade liquido de 25 STDB/d/psi( Barris padrões por dia por pressão estática). 
+Escolheu-se a pressão estática do reservatório como sendo 4000 psi absoluto, e um índice de produtividade liquido de 25 STDB/d/psi(barris padrões por dia por pressão estática). 
 %
 Desta forma a figura \ref{fig:truth1} demonstra o poço "real" a ser sintonizado.
 
@@ -40,7 +40,7 @@ Desta forma a figura \ref{fig:truth1} demonstra o poço "real" a ser sintonizado
 \label{fig:setup1}
 \end{figure}
 
-Em todos os testes, os parâmetros SP (pressão estática) e Liq PI (Índice de produção de líquido) foram iniciados respectivamente em 3000 (psi) e 15 (STDB/d). A interface OpenLink foi utilizada para modificar os parâmetros e ler uma nova curva de fluxo de liquido por injeção de gás, a distância quadrática entre as duas curvas foi utilizada como o erro na otimização.
+Em todos os testes, os parâmetros $s_p$ (pressão estática) e $l_{pi}$ (Índice de produção de líquido) foram iniciados respectivamente em 3000 (psi) e 15 (STDB/d). A interface OpenLink foi utilizada para modificar os parâmetros e ler uma nova curva de fluxo de líquido por injeção de gás, a distância quadrática entre as duas curvas foi utilizada como o erro na otimização.
 
 O problema de otimização, então, é dado por 
 \begin{align}
@@ -48,19 +48,25 @@ O problema de otimização, então, é dado por
 \end{align}
 Aonde
 \begin{align}
-x = {s_p, l_{pi}}\\
-\Omega = \{s_p \in \mathbb{R} \mid 2000 < &s_p < 7000\}\\
-          \{l_pi \in \mathbb{R} \mid  15 < &l_{pi} < 35\}
+x = &s_p, l_{pi}\\
+\Omega = &\{s_p \in \mathbb{R} \mid s_{p,min} < s_p < s_{p,max}\}\\
+          &\{l_{pi} \in \mathbb{R} \mid  l_{pi,min} < l_{pi} < l_{pi,max}\}
 \end{align}
-Aonde $p_s$ é a pressão estática do reservatório e $p$ é o índice de produtividade de líquidos.
+Aonde $s_p$ é a pressão estática do reservatório e $l_{pi}$ é o índice de produtividade de líquidos.
 \begin{align}
-f(x) &= f(p_s, l_{pi}) \\
-     &= \sum_{i=0,n}^n (\theta(p_s,l_{pi}) - f(p_s,l_{pi}))^2
+f(x) &= f(s_p, l_{pi}) \\
+     &= \sum_{i=0,n}^n (\theta(s_p,l_{pi}) - f(s_p,l_{pi}))^2
 \end{align}
-Aonde $n$ é o número de pontos experimentais, e $\theta$ representa a curva real do sistema.
+Aonde $n$ é o número de pontos experimentais, e $\theta$ representa a curva real do sistema. Neste problemas foram impostos: 
+\begin{align*}
+l_{pi,min}&= 15\\
+l_{pi,max}&= 35\\
+s_{p,min} &= 2000\\
+s_{p,max} &= 7000\\
+\end{align*}
 \chapter{O Experimento de Sintonia Sem Ruído}
 
-Foram realizados três experimentos de sintonia de curva, e utilizadas três abordagens diferentes para a sintonia. Primeiramente foi utilizado o orthoMADS, com a implementação NOMAD, em seguida, foi utilizado novamente o NOMAD, mas com surrogate model calculado pela SGTELIB, e finalmente, uma implementação do Nelder-Mead Simplex. Os resultados então são comparados quanto a número de avaliações e acurácia do resultado.
+Foram realizados três experimentos de sintonia de curva, e utilizadas três abordagens diferentes para a sintonia. Primeiramente foi utilizado o orthoMADS, com a implementação NOMAD, em seguida, foi utilizado novamente o NOMAD, mas com um surrogate model calculado pela SGTELIB, e finalmente, uma implementação do Nelder-Mead Simplex. Os resultados então são comparados quanto a número de avaliações e acurácia do resultado.
 
 Os experimentos foram realizados em uma máquina virtual VirtualBox, rodando em um Xeon 2665, e utilizando dois núcleos.
 
@@ -148,7 +154,14 @@ NOMAD.solve(blackbox=model)
 
 \section{Resultados da Sintonia de Curva com o orthoMADS}
 
-Em 525 segundos (8:45 minutos) e com de 206 avaliações de caixa preta. O NOMAD convergiu para SP=4000.691, PI = 24.9544, com a função custo em 0.0757. A parada se deu pelo F\_TARGET. A performance do algoritmo pode ser vista na figura \ref{fig:setup1_2}.
+Em 525 segundos (8:45 minutos) e com de 206 avaliações de caixa preta. A performance do algoritmo pode ser vista na figura \ref{fig:setup1_2}. A parada se deu pelo valor da função custo estar abaixo de 0,1. A convergência se deu para os seguintes valores:
+
+\begin{align*}
+SP&= 4000,691 \\
+Liq PI &= 24,954 \\
+Custo &= 0,0757.
+\end{align*}
+
 
 
 \begin{figure}[H]
@@ -192,12 +205,12 @@ Para que ele passasse a utilizar o SGTELIB no local do seu SEARCH baseado em mod
 A execução demorou 1374 segundos (22:27 minutos) e necessitou de 417 avaliações de função de caixa preta. O Nomad novamente convergiu, desta vez para os 	valores:
 
 \begin{align*}
-SP&= 4001.389 \\
-Liq PI &= 24.905 \\
-Custo &= 0.09986.
+SP&= 4001,389 \\
+Liq PI &= 24,905 \\
+Custo &= 0,09986.
 \end{align*}
 
-é possível notar, no entanto, que com o SGTELIB, em muitos pontos o erro quadrático saturou em $10^{64}$. Nota-se também que pontos longe do ótimo foram avaliados perto da convergência (pontos claros no canto inferior esquerdo), o que pode significar que existe um problema com a SGTELIB, ou que o modelo utilizado não é o ideal.
+é possível notar, no entanto, que com o SGTELIB, em muitos pontos o erro quadrático saturou em $10^{64}$. Nota-se também que pontos longe do ótimo foram avaliados perto da convergência (pontos claros no canto inferior esquerdo), o que pode significar que existe um problema com a SGTELIB, ou que o modelo utilizado não é o ideal, talez pelo fato de que as superfícies polinomiais tendam a crescer muito para longe na origem, levando o algoritmo a testar pontos distantes.
 
 \begin{figure}
 \centering
@@ -229,8 +242,13 @@ os limites utilizados foram os mesmos dos casos anteriores:
 
 Como o simplex utiliza uma estrutura n-dimensional para a busca, são necessários n+1 pontos iniciais, por este motivo um triângulo foi expandido arbitrariamente a partir do ponto inicial, de modo que no começo do algoritmo, o simplex inicial seja grande. As restrições foram aplicadas somando-se um peso adicional a função custo.
 
-Os resultados podem ser vistos nas figuras \ref{fig:setup3_2} e \ref{fig:setup3_triang}. Nota-se que a solução foi mais rápida, com 212 iterações em 133 segundos (2:13 minutos). No entanto, o método de Nelder e Mead não tem as mesmas características de convergência que os os métodos MADS. É interessante comentar a o caso da figura 5, aonde é possível notar que o simplex primeiramente contraiu-se por um lado, gerando a parte roxa, depois contraiu-se do outro, até chegar ao ponto ótimo.
+Os resultados podem ser vistos nas figuras \ref{fig:setup3_2} e \ref{fig:setup3_triang}. Nota-se que a solução foi mais rápida, com 212 iterações em 133 segundos (2:13 minutos). No entanto, o método de Nelder e Mead não tem as mesmas características de convergência que os os métodos MADS. É interessante comentar a o caso da figura 5, aonde é possível notar que o simplex primeiramente moveu-se para um ponto em torno de $L_{pi}=18$, depois moveu-se lentamente para o ponto final:
 
+\begin{align*}
+SP&= 4001,389 \\
+Liq PI &= 24,905 \\
+Custo &= 0,09986.
+\end{align*}
 
 
 \begin{figure}
@@ -429,7 +447,10 @@ Com a utilização do algoritmo de Nelder-Mead, em 217 segundos (3:27 minutos) e
 \section{Discussão}
 Nestes experimentos com ruído, não se repete o comportamento anômalo aonde o Nomad com SGTELIB avalia pontos em que aparentemente não há informações relevantes, aumentando sem necessidade o numero de iterações e tempo tomado.
 %
-Pelo contrário, ele acaba sendo o mais eficiente dos três métodos.
+Pelo contrário, ele acaba sendo o mais eficiente dos três métodos.O Nelder-Mead, por sua vez, tornou-se relativamente mais lento.
+
+%
+
 %
 
 \begin{table}[H]
