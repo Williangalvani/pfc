@@ -46,15 +46,15 @@ O problema de otimização, então, é dado por
 \begin{align}
 \min\limits_{x \in \Omega} f(x)
 \end{align}
-Aonde
+Onde
 \begin{align}
 x = &(s_p, l_{pi})\\
 \Omega = &\{s_p \in \mathbb{R} \mid s_{p,min} < s_p < s_{p,max}\}\\
           &\{l_{pi} \in \mathbb{R} \mid  l_{pi,min} < l_{pi} < l_{pi,max}\}
 \end{align}
-Aonde $s_p$ é a pressão estática do reservatório e $l_{pi}$ é o índice de produtividade de líquidos, e seja $f(q_{inj};x)$ a produção de líquido estimada pelo simulador quando sintonizado com parâmetros $x$. 
+Onde $s_p$ é a pressão estática do reservatório e $l_{pi}$ é o índice de produtividade de líquidos. 
 
-Seja $\theta(q_{inj};x)$ a produção ``real'' de líquido com parâmetros $x$.
+Seja $f(q_{inj};x)$ a produção de líquido estimada pelo simulador quando sintonizado com parâmetros $x$ ao se injetar $q_{inj}$ gás no poço, e seja $\theta(q_{inj};x)$ a produção ``real'' de líquido com parâmetros $x$.
 \begin{align}
 f(x) &= f(s_p, l_{pi}) \\
      &= \sum_{i=1}^n \Big[ \theta(q_{inj}^n;x) - f(q_{inj}^n;x))\Big]^2
@@ -70,7 +70,7 @@ s_{p,max} &= 7000\\
 \end{align*}
 \chapter{O Experimento de Sintonia Sem Ruído}
 
-Foram realizados três experimentos de sintonia de curva, e utilizadas três abordagens diferentes para a sintonia. Primeiramente foi utilizado o orthoMADS, com a implementação NOMAD, em seguida, foi utilizado novamente o NOMAD, mas com um surrogate model calculado pela SGTELIB, e finalmente, uma implementação do Nelder-Mead Simplex. Os resultados então são comparados quanto a número de avaliações e acurácia do resultado.
+Foram realizados três experimentos de sintonia de curva, e utilizadas três abordagens diferentes para a sintonia. Primeiramente foi utilizado o OrthoMADS, com a implementação NOMAD, em seguida, foi utilizado novamente o NOMAD, mas com um surrogate model calculado pela SGTELIB, e finalmente, uma implementação do Nelder-Mead Simplex. Os resultados então são comparados quanto a número de avaliações e acurácia do resultado.
 
 Os experimentos foram realizados em uma máquina virtual VirtualBox, rodando em um Xeon 2665, e utilizando dois núcleos.
 
