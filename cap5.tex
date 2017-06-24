@@ -44,22 +44,22 @@ Em todos os testes, os parâmetros $s_p$ (pressão estática) e $l_{pi}$ (Índic
 
 O problema de otimização, então, é dado por 
 \begin{align}
-\min\limits_{x \in \Omega} f(x)
+\min\limits_{x \in \Omega} f(x)\text{.}
 \end{align}
-Onde
+Onde:
 \begin{align}
 x = &(s_p, l_{pi})\\
 \Omega = &\{s_p \in \mathbb{R} \mid s_{p,min} < s_p < s_{p,max}\}\\
-          &\{l_{pi} \in \mathbb{R} \mid  l_{pi,min} < l_{pi} < l_{pi,max}\}
+          &\{l_{pi} \in \mathbb{R} \mid  l_{pi,min} < l_{pi} < l_{pi,max}\}\text{.}
 \end{align}
-Onde $s_p$ é a pressão estática do reservatório e $l_{pi}$ é o índice de produtividade de líquidos. 
+Em que $s_p$ é a pressão estática do reservatório e $l_{pi}$ é o índice de produtividade de líquidos. 
 
-Seja $f(q_{inj};x)$ a produção de líquido estimada pelo simulador quando sintonizado com parâmetros $x$ ao se injetar $q_{inj}$ gás no poço, e seja $\theta(q_{inj};x)$ a produção ``real'' de líquido com parâmetros $x$.
+Seja $f(q_{inj};x)$ a produção de líquido estimada pelo simulador quando sintonizado com parâmetros $x$ ao se injetar $q_{inj}$ gás no poço, e seja $\theta(q_{inj};x)$ a produção ``real'' de líquido com parâmetros $x$. Então:
 \begin{align}
 f(x) &= f(s_p, l_{pi}) \\
      &= \sum_{i=1}^n \Big[ \theta(q_{inj}^n;x) - f(q_{inj}^n;x))\Big]^2
 \end{align}
-Onde $q_{inj}^1, q_{inj}^2, \dots, q_{inj}^n$ são os pontos amostrados da curva de produção. 
+Em que $q_{inj}^1, q_{inj}^2, \dots, q_{inj}^n$ são os pontos amostrados da curva de produção. 
 
 Neste problemas foram impostos: 
 \begin{align*}
