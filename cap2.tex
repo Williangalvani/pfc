@@ -14,9 +14,19 @@ On the last centuries, maps began being used to precisely map properties, natura
 
 
 \section{Aerial Mapping}
-Aerial mapping consists of using photographs taken from the air, usually with the camera facing straight downwards, and assembling these 
+Aerial mapping consists of using photographs taken from the air, usually with the camera facing straight downwards, correcting the perspective transformation, and assembling them into an orthomosaic, as seen on Figure \ref{fig:orthomosaic}.
 
-
+\begin{figure}
+\centering
+  \includegraphics[width=\linewidth]{figs/orthomosaic.png}
+  \caption{Orthomosaic. source: Indonesian Redcross/OpenAerialMap}
+  \label{fig:orthomosaic}
+\end{figure}
 
 
 \section{Aerophotogrammetry}
+
+Aerophotogrammetry takes the job on step further. By knowing the cameras lens intrinsics, software are capable of matching a number of pictures, detecting features on the environment, and locating the point used to take each of the pictures. With this information, it's possible to rebuild in 3D most of the environments, enabling the operator to interact with the area as a 3D mesh.
+By using precise GPS information(such as RTK/PPK data, or total stations) or known landmarks, it's possible to accurately measure distances, areas, volumes, angles and elevations, simplifying the surveyors' job.
+
+Aerophotogrametry can also rebuild in 3D buildings and other structures, 
