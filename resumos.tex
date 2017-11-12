@@ -6,10 +6,7 @@
 \setlength{\absparsep}{18pt} % ajusta o espaçamento dos parágrafos do resumo
 \begin{resumo}
 
-Este trabalho propõe o uso de métodos de otimização sem derivadas na indústria de petróleo e gás, para sintonia de simuladores de poços de petróleo a partir de dados de poços reais. São analisados dois algoritmos, Nelder-Mead (Simplex) e OrthoMADS.
-O simulador utilizado é o Pipesim, e para interface com ele são utilizados Python, Opal e pyWin32.
-Os métodos são testados de forma a minimizar a distância quadrática entre a curva de produção de um poço real e a do poço simulado. São testadas também variações dos algoritmos.
-O sistema proposto foi capaz de sintonizar os modelos desejados em tempo aceitável e com boa precisão.
+This work proposes the usage of a VTOL (Vertical Take-Off and Landing) fixed wing aircraft for aerial photograpy and mapping. It entails the gathering of requisites, design, protyping, and testing of the proposed UAV.
 
 
  \textbf{Palavras-chave}: otimização sem derivada, poços de petróleo, simulação, sintonia automática .
@@ -18,12 +15,13 @@ O sistema proposto foi capaz de sintonizar os modelos desejados em tempo aceitá
 % resumo em inglês
 \begin{resumo}[Abstract]
  \begin{otherlanguage*}{english}
-This work proposes the use of derivative-free optimization methods in the oil and gas industry, with the purpose of tuning an oil well simulators to match real oil wells. Two algorithms are analized, Nelder-Mead (simplex) and OrthoMADS.
-The simulator used is Pipesim. Python, pyWin32 and Opal were used to interface with it.
-The methods are tested by attempting to reduce the quadratic distance between the real well's production curve and the simulator's.
-Some variations of the algorithms are also tested.
-The proposed system was able to tune the simulator to a desired accuracy within an acceptable computing time.
+Aerial mapping is one task that got revolutionized by the arrival of drones on the latest years. The manual job of taking pictures, printing and assembling them together was changed into putting coordinates into a software, and the pictures into another after the flight.
 
+Depending of the task at hand, the operator can chose a multicopter for smaller areas, or a fixed-wing aircraft for larger ones. Both categories have their quirks: While multirotors are precise and can take-off/land virtually anywhere, their autonomy suffers as they generate all their lift by using propellers, Fixed-wing aircrafts, on the other hand, can cover large areas quickly with a smaller power consumption, but are harder to position, and require larger areas for take-off an landing.
+ 
+This work prososed an aircraft in between these two worlds. The prototype designed is a tail-sitting fixed-wing aircraft, able to take-off as a multicopter and transition into fixed-wing mode for more efficiency, enabling it to cover larger areas while needing a small area for take-off or landing and no additional apparatus for take-off.
+
+\todo{results!}
 
    \vspace{\onelineskip}
  

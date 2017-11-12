@@ -1,48 +1,15 @@
 
-\chapter{Ferramentas Computacionais} \label{chap:4}
+\chapter{Flight Mechanics and Design} \label{chap:4}
 
 
-\section{O Simulador Pipesim}
-Sistemas de produção de petróleo são sistemas nos quais se deseja sempre produzir o máximo possível e de forma segura.
-O PIPESIM, da Schlumberger, é um simulador de fluxo multifásico em regime permanente que pode ser utilizado tanto para o projeto como para planejamento de operações em campos de petróleo. Ele permite que sejam simuladas situações alternativas de forma mais rápida e segura que testes reais. É possível simular desde um único poço, como no projeto atual, até uma complexa rede de produção como as em uso pela Petrobras.
-
-\section{Python}
-
-O Python é uma linguagem de alto nível, interpretada, de desenvolvimento rápido muito utilizada para prototipação e na academia. Suas faciliades, como Jupyter Notebook \cite{jupyter}, um ambiente que facilita a criação de documentos com códigos e análise de dados, e o Matplotlib \cite{matplotlib}, uma biblioteca que a torna quase tão poderosa quando o MatLab para visualização de dados, a tornaram muito utilizada também na academia.
-
-Python tem como filosofia de design a legibilidade do código (foi escolhido o uso de espaços no lugar de chaves pra delimitação de blocos de código) e uma linguagem que facilita a expressão de conceitos complexos em poucas linhas de código se comparada, por exemplo, com Java ou C++. A linguagem expõe estruturas e conceitos complexos em outras linguagens de forma mais fácil e intuitiva de utilizar.
-
-A Linguagem surgiu em 1991 \cite{pythonHistory}, e segundo Tiobe \cite{tiobe} é a quarta linguagem de programação mais popular atualmente.
-
-Sua facilidade de uso, expêriencia prévia não necessária, disponibilidade de ferramentas, e facilidades de visualização de dados foram decisivos para a sua escolha para este trabalho. 
-
-\section{Interface Python e Open Link}
-Para interfaceamento do Pipesim com outros software, a Schlumberger disponibiliza uma API (Application Programming Interface) chamada Open Link, idealizada para programação em C++, VBA, ou Visual Basic. Esta pode ser utilizada para interação programática com o Pipesim, habilitando a configuração de novos poços, alteração de poços existentes, análises, simulações e automação de simulações. Com essa API, é possível variar os parâmetros do poço e avaliar as curvas características.
+\section{Brief Introduction to Flight Mechanics}
 
 
+\section{XFLR5}
+
+\section{Design}
 
 
- Utilizando-se a biblioteca de Python pyWin32, é possível comunicar-se com a API, mas apenas em versões do Windows de 32 bits. Apesar de algumas peculiaridades no tratamento de arrays e outros tipos de dados, esta biblioteca permite o uso da API em uma linguagem de desenvolvimento mais rápido\cite{pythonfast} e com grandes facilidades de análise de dados.
-
-\section{NOMAD}
-Para utilização do OrthoMADS, foi escolhida a ferramenta NOMAD \cite{Nomad}, uma implementação em C++ do OrthoMADS desenvolvida pelo GERAD \cite{gerad}, um centro de pesquisa multi-universidades canadenses.
-%
-Seu objetivo é a solução de problemas de otimização sem-derivadas com problemas caixa-preta, aonde não se conhece o modelo explícito do problema.
-%
-Bastando fornecer uma função objetivo e restrições, a ferramenta é capaz de encontrar um ponto ótimo para o problema.
- %
-Ela também disponibiliza variações do algoritmo (como $2n$ ou $n+1$ bases) e a possibilidade de paralelismo (consultar mais que um ponto de forma concorrente).  
-
-	
-
-\section{Opal}
-Para o uso do NOMAD com o Python, era sugerido, até o começo destes trabalhos, o uso da ferramenta Opal \cite{opal} (A Framework for Optimization of Algorithms). Uma interface open-source de alto nível para a interface de Python com o NOMAD. Este framework dá a liberdade para configurar todos os parâmetros de otimização do NOMAD e também é capaz de paralelismo.
-
-No entanto ele suporta apenas Python 2.7 que está para ser aposentado em 2020 \cite{python27sched}, de modo que foi necessário portá-lo para Python 3 \cite{opalPython3}, contribuição que deve ser enviada para os repositórios originais assim que finalizada.
-
-É interessante ressaltar também que a partir da versão 3.8.0 do NOMAD, foi implementada um interface própria em Python (novamente Python2.7) que deve ser analisada para uso em trabalhos futuros.
-
-O Opal é um framework complexo, que embora seja utilizado atualmente apenas para o uso do NOMAD, contém a base para implementação de outros solvers genéricos, suporte a paralelismo, e a outras plataformas, como Sun Grid Engine e Symmetric Multiproccessing (SMP).
 
 
 %%%%%%%%%%%%%%%
