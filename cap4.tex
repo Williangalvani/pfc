@@ -63,8 +63,60 @@ $\phi$, $\theta$, and $\psi$ can also be referred, respectively, as \textit{yaw}
 
 \section{XFLR5}
 
+XFLR5 is an analysis tool for airfoils, wings and planes operating at low Reynolds Numbers. It includes:
+\begin{itemize}
+
+\item XFoil's Direct and Inverse analysis capabilities;
+\item Wing design and analysis capabilities based on the Lifiting Line Theory, on the Vortex Lattice Method, and on a 3D Panel Method.
+
+This tools enables the iterative design and analysis of multiple aircraft configurations.
+
+\todo{elaborar aqui}
+
+\end{itemize}
+
+
 \section{Design}
 
+The chosen design is the one of a flying wing, a fuselage-less made of a wing, propulsion system, and control surfaces. The reasons are because of a simpler and sturdier mechanical strucutre, besides the possibility of the VTOL configuration
+
+\subsection{Preliminar Design}
+
+As a starting point, a wing with a central hub and 2 semi-wings ending in symmetrical winglets was designed. The ZAGI12 airfoil was chosen due to it's good soaring capabilities and low stall speed \todo{citation needed}.
+
+With the airfoil chosen, It's characteristics were calculated with the aid of XFOIL, an airfoil analysis tool built into XFLR5.
+
+\begin{figure}
+\centering
+  \includegraphics[width=\linewidth]{figs/zagi12.png}
+  \caption{Zagi 12 airfoil.}
+  \label{fig:zagi12}
+\end{figure}
+
+
+These characteristics plots can be seen on figure \ref{fig:zagi12polares}.
+%
+
+It can be noted that the point with the highest Cl/Cd ratio, the theoretical point with better lift to drag ratio, and therefore best gliding performance. It's also notable that the airfoils moment "pulls" it into this better Cl/Cd ratio, allowing the aircraft to fly into this ideal condition without deflection of the control surfaces
+
+
+\begin{figure}
+\centering
+  \includegraphics[width=\linewidth]{figs/polares.png}
+  \caption{Zagi 12 characteristics}
+  \label{fig:zagi12polares}
+\end{figure}
+
+With that data, the main body was conceived, as seen in the figure \ref{fig:preliminar}. With this CAD tool we can then analyze the performance of the aircraft as a whole. This gives us the same data as the airfoils', but for the whole craft, as seen in figure \ref{fig:craftpolar}
+
+\begin{figure}
+\centering
+  \includegraphics[width=\linewidth]{figs/preliminar.png}
+  \caption{First concept of the aircraft.}
+  \label{fig:preliminar}
+\end{figure}
+
+\subsection{D}
 
 
 
