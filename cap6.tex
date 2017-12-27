@@ -1,6 +1,6 @@
 \chapter{The Control Structure} \label{chap:control}
 
-The control Structure used is the one of ArduPlane, in hover, or tail-sitter mode, the ArduCopter stabilization system is used, while in airplace/fixed-wing mode, Arduplane's controllers are used. Both will be discussed and explained in the following sections.
+The control Structure used is the one of ArduPlane, in hover, or tail-sitter mode, the ArduCopter stabilization system is used, while in airplane/fixed-wing mode, Arduplane's controllers are used. Both will be discussed and explained in the following sections.
 
 \section{On Airplane Mode}
 
@@ -13,7 +13,7 @@ While at first they look like a classical P+I+D controller, there are some small
 
 \begin{itemize}
 \item There's a feedforwar controller trying to cancel the current angular rate $\dot{\phi}$
-\item The Derivative and Integral terms and scaled to the airspeed, and the controller's ouput aswell. This is because  as the aircraft moves faster, less deflections is necessary for the same movement of the body.
+\item The Derivative and Integral terms and scaled to the airspeed, and the controller's output as well. This is because  as the aircraft moves faster, less deflections is necessary for the same movement of the body.
 \end{itemize}
 \todo{pq escalar o I e D duas vezes?}
 
