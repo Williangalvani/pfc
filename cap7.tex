@@ -173,8 +173,8 @@ It was later found in the DiyDrones\ref{diydrones} forum that the ESCs are incom
 %
 Upon further inspection, the components were noticed to be a resistor and a capacitor. This is a strong indication of an RC filter. The presence of an RC filter on the inputs, coupled with the output resistance present in most flight controllers signal outputs, resulted in a resistive divider, as seem on figure \ref{fig:divider}.
 This effectively lowered the voltage read on the microcontroller to 2, as seen on figure \ref{fig:lowvoltage}.
-Further inspection showed that only one 512 (5100 \omega) resistor was present on the board, and it was, along with a capacitor, bridging a route to ground.
-The removal of these components was enough to raise the read signal value to 3.4 V, solving the issue, as seem on Figure \ref{fig:highvoltage} 
+Further inspection showed that only one 512 (5100 $\Omega$ ) resistor was present on the board, and it was, along with a capacitor, bridging a route to ground.
+The removal of these components was enough to raise the read signal value to 3.4 V, solving the issue, as seem on Figure \ref{fig:highvoltage}.
 
 \begin{figure}[H]
 \centering
@@ -197,27 +197,29 @@ The removal of these components was enough to raise the read signal value to 3.4
 \begin{subfigure}{.5\textwidth}
   \centering
   \includegraphics[width=\linewidth]{figs/escbefore.jpg}
-\caption{ESC antes da modificação.}
+\caption{ESC before modification.}
 \end{subfigure}%
 \begin{subfigure}{.5\textwidth}
   \centering
   \includegraphics[width=\linewidth]{figs/escafter.jpg}
-  \caption{ESC depois da modificação.}
+  \caption{ESC after modification.}
 \end{subfigure}
 
-\begin{subfigure}{.5\textwidth}
-  \centering
-  \includegraphics[width=\linewidth]{figs/sinalbom.jpg}
-  \caption{Sinal antes da modificação.}
-\end{subfigure}%
 \begin{subfigure}{.5\textwidth}
   \centering
   \includegraphics[width=\linewidth]{figs/sinalruim.jpg}
-  \caption{Sinal depois da modificação.}
+  \caption{Signal before modification.}
+  \label{fig:lowvoltage}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{figs/sinalbom.jpg}
+  \caption{Signal after modification.}
+    \label{fig:highvoltage}
 \end{subfigure}
 
-\caption{Modificações do ESC.}
+\caption{Modifications on the ESC.}
 \label{fig:neldermeadsteps}
 \end{figure}
 
-
+With the ESCs accepting their input signals, they needed calibration. The calibration of an RC ESC is a process where it learns the high and low bounds on it's input signals. The ESC is turned on with the maximum possible input, it beeps, and the signal can be lowered to the minimum, then it beeps again.
