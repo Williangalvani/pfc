@@ -53,3 +53,14 @@ By September 9, 2016, a letter was released stating that Ardupilot was leaving D
 
 The Ardupilot code was chosen for this project due to their larger openness and community.
 
+Ardupilot is split into four main sub-projects:
+\begin{itemize}
+\item ArduCopter is a Flight controller for helicopters and Multirotors.
+\item ArduPlane is Focused on fixed wing aircraft, but now includes some of the ArduCopter control loops for VTOL capabilities.
+\item ArduHover is focused on land vehicles and aquatic surface vehicles.
+\item ArduSub is a controller for submersible vehicles.
+\end{itemize}
+
+While each of them has different features, they share most of the core ArduPilot code.
+
+Arduplane provides all required controllers for features such as automatic vertical take off and landing, fixed-wing flight, waypoint navigation, inverted flight, stall prevention, geo-fencing, and terrain following, more than enough for performing the tasks proposed in this project.
