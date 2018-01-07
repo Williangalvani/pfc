@@ -1,0 +1,259 @@
+\chapter{Prototyping} \label{chap:prototyping}
+
+As in any product development, a few protoypes were developed.
+First a smaller , 50cm wingspan aircraft with no airfoil was assembled to test and tune the flight controllers. The reduced version also enabled testing in close spaces and proximity with people with reduced danger.
+
+With the reduced prototype proven, the larger one, photography-ready was developed. The larger one is closer to the final desired product, and is able to be used as such.
+
+Both prototypes are described, as well as their assemblies, in the next sections.
+ 
+
+
+\section{Reduced Scale Prototype}
+
+A reduced prototype was used for preliminary tests of the flight controller and control systems.
+
+Mechanically, this prototype consists of a foam board, two motors, and two control surfaces.
+
+Smaller electronics are used as well. The servos are Turnigy 9 gram servos, The motors are AXN Floater-Jet 2208 2150KV brushless motors, the Escs are HobbyKing's RedBrick 30A ESCs, and the battery a Zippy Compact 3s 1000mah 35C.
+
+The control surfaces were taped to the main body, and linked to the servos by a wire and plastic horn.
+
+The motors had a custom mount 3D-Printed and fitted into the foam.
+
+For the tests and tuning, the prototype had a hook on top, so it could be hang on the ceiling to avoid hitting the floor and walls during the tests.
+
+The first prototype and It's components can be seen on Figure \ref{fig:smallprototypeparts}
+
+\begin{figure}[H]
+\centering
+  \includegraphics[width=\linewidth]{figs/reducedprototype.jpg}
+  \caption{Reduced Prototype and parts:\\
+   1 - Motors and 3D-printed mounts\\
+   2 - HobbyKing RedBrick 30A ESCs\\
+   3 - Turnigy Pro 9 gram servos\\
+   4 - Diy OpenLRS 433 MHz receiver\\
+   5 - Zippy Compact 3s 1000mAh 35C lithium-polymer battery\\
+   6 - Pixhawk controller\\
+   7 - ESP-8266 board for telemetry}
+  \label{fig:smallprototypeparts}
+\end{figure}
+
+\section{Large Prototype}
+
+For the larger prototype, standard RC building and fast prototyping technologies were used.
+The Zag12 airfoil at root was 3D printed in 3 parts (Figure \ref{fig:printedairfoil}) then joined and insulated from the hot-wire heat with aluminum foil. For the trapezoidal wings, one side of the wire was tied to a fixed point, in such way that, if the airfoil was a circle, the wire would cut a cone on the foam. This enabled the cut of the trapezoidal wings out of foam. For the center section, two profiles were 3D-printed. their perimeters were then marked with numbers, in such way that two people, one on each side, could coordinate the hot-wire cutting process.
+
+\begin{figure}[H]
+\centering
+  \includegraphics[width=\linewidth]{figs/printedairfoil.png}
+  \caption{3D Printed Airfoil}
+  \label{ffig:printedairfoil}
+\end{figure}
+
+
+
+This process isn't perfect for the trailing edge, so some of it needs to be removed, which later gets replaced by the elevons.
+
+The cut foam then needs to be sanded down to remove imperfections.
+The half-wings are then joined with hot glue, and fiber glass spars are used to reinforce the structure.
+
+
+From this point, The sections can be joined permanently or spars can be used to quickly assemble them.
+
+
+With the three sections properly cut, they are glued together and sanded, and glass fiber rods were embedded and glued into the structure, two on the top and two on the bottom.
+
+With the main structure assembled, the servos were embedded into the structure. A pocket was carved with hot wire, and two nut-holding 3D-printed parts were embedded deep into the foam and used to screw the top cover, as seem on the figure \ref{fig:servomount}.
+
+
+\begin{figure}[H]
+\centering
+  \includegraphics[width=\linewidth]{figs/nutholder1.png}
+  \caption{3D-printed servo mount structure.}
+  \label{fig:servomount}
+\end{figure}
+
+
+\begin{figure}[H]
+\centering
+  \includegraphics[width=\linewidth]{figs/nutholder2.png}
+  \caption{3D-printed servo mount structure.}
+  \label{fig:servomount2}
+\end{figure}
+
+
+The main structure was then covered in vinyl, for aesthetical and structural purposes (the tension on the vinyl helps making the structure stiffer). The vinyl is a material that shrinks when heated, which makes it tension itself over it's surface.
+
+The motor mounts were designed so they fit perfectly on the wing profile, and 3D-printed, glued and screwed into the main wing.
+The mounts can be seen on figure \ref{fig:motormount}
+
+
+\begin{figure}[H]
+\centering
+  \includegraphics[width=\linewidth]{figs/3dprintedmount.png}
+  \caption{3D-printed motor mount structure.}
+  \label{fig:motormount}
+\end{figure}
+	
+	
+	
+
+ \begin{figure}
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{figs/pods1.png}
+  %\caption{Todos os passos do Nelder-Mead}
+  
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{figs/pods2.png}
+  %\caption{Pontos avaliados pelo Nelder-Mead aplicado em um parabolóide.}
+
+\end{subfigure}
+\caption{Motor pod design.}
+\label{fig:pod}
+\end{figure}
+
+
+
+The electronics bay was cut using hotwire and carved with a knife. A hot air blower was used to finish the inner surface. The components were placed keeping in mind flexibility to change the camera and batteries without affecting the center of gravity too much, maintaining the approximately the same flight characteristics.
+
+The flight controller was glued with vibration-dampening material. The battery was attached with velcro, and the remaining components are either glued or screwed in place. Special care was taken into keeping the magnetometers away from the motor and battery wires, as the induced magnetic field can adversely affect the magnetic readings.
+
+The hinges were made using a type of fibrous tape. The tape was cut into peaces and glued onto itself, in such way that the piece of tape first sticks on the top section, then on the overlapping sections does not stick at all, and finally, sticks on the bottom.
+then these compound tapes are glued in pairs, with one piece sticking on the bottom of the wing and top of the elevon, and the other on the top of the wing and bottom of the elevon. This can be seen on Figure \ref{fig:hinges}.
+
+
+\begin{figure}[H]
+\centering
+  \includegraphics[width=\linewidth]{figs/hinges.png}
+  \caption{hinges setup.}
+  \label{fig:hinges}
+\end{figure}
+	
+	
+	
+The winglets, which usually have only an aerodynamic function, as they increase the yaw ($Z$) stability and help avoid wing tip vortexes, here also need to work as a landing gear in VTOL mode.
+
+As they need to let go after certain amount of force is exerted, and need to be removable to aid in transportation, a magnetic system was idealized. On the wingtip there's a 3D-printed profile with slots for the magnets, and the mirrored profile is also present on the winglet. This profile can be seen on Figure \ref{fig:magnetcoupler}. This profile made sure that four pairs of magnets touch on each winglet. However this design allows slipping between then airfoils,so Velcro was used again to help stiffen the structure, without making it too hard, allowing the winglet to absorb impacts and come loose before damaging the rest of the aircraft.
+
+	
+\begin{figure}[H]
+\centering
+  \includegraphics[width=\linewidth]{figs/magnetcoupler.png}
+  \caption{3D-printed magnetic coupler.}
+  \label{fig:magnetcoupler}
+\end{figure}
+	
+
+\begin{figure}[H]
+\centering
+  \includegraphics[width=\linewidth]{figs/magnetassembly.png}
+  \caption{3D-printed magnetic coupler and winglet assembly.}
+  \label{fig:magnetcoupler}
+\end{figure}
+	
+
+\section{Software Setup}
+
+In order to use the ArduPilot software stack to control a tailsitter, some setup is necessary.
+
+\section{Control Tuning}
+
+batata
+	
+
+\section{Troubleshooting}
+
+This section details some of the problems faced during this work and how each of them was handled.
+
+\subsection{The Electronic Speed Controllers Do Not Work}
+With The hardware setup, it was noted that the ESCs did not respond to the flight controllers. This could be due to two main reasons:
+\begin{itemize}
+\item The ESCs are unable to cope with the 400Hz PWM \footnote{Pulse Width Modulation} signal generated by the flight controller;
+\item The signal voltage was not high enough;
+\end{itemize}
+
+The ESCs did answer properly to a 50Hz signal, so they were working.
+%
+It was later found in the DiyDrones\cite{diydronesesc} forum that the ESCs are incompatible with the Pixhawk controller, and two components had to be removed for them to work.
+%
+Upon further inspection, the components were noticed to be a resistor and a capacitor. This is a strong indication of an RC filter. The presence of an RC filter on the inputs, coupled with the output resistance present in most flight controllers signal outputs, resulted in a resistive divider, as seem on figure \ref{fig:divider}.
+This effectively lowered the voltage read on the microcontroller to 2, as seen on figure \ref{fig:lowvoltage}.
+Further inspection showed that only one 512 (5100 $\Omega$ ) resistor was present on the board, and it was, along with a capacitor, bridging a route to ground.
+The removal of these components was enough to raise the read signal value to 3.4 V, solving the issue, as seem on Figure \ref{fig:highvoltage}.
+
+With the ESCs accepting their input signals, they needed calibration. The calibration of an RC ESC is a process where it learns the high and low bounds on it's input signals. The ESC is turned on with the maximum possible input, it beeps, and the signal can be lowered to the minimum, then it beeps again.
+
+
+\begin{figure}[H]
+\centering
+  \includegraphics[width=\linewidth]{figs/divider.png}
+  \caption{Schematic of signal path between Pixhawk and ESC.}
+  \label{fig:divider}
+\end{figure}
+	
+\begin{figure}[H]
+\centering
+  \includegraphics[width=0.7\linewidth]{figs/escbeforeschematic.jpg}
+  \caption{Schematic overlaid on ESC board.}
+  \label{fig:divider}
+\end{figure}
+	
+
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{figs/escbefore.jpg}
+\caption{ESC before modification.}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{figs/escafter.jpg}
+  \caption{ESC after modification.}
+\end{subfigure}
+
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{figs/sinalruim.jpg}
+  \caption{Signal before modification.}
+  \label{fig:lowvoltage}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{figs/sinalbom.jpg}
+  \caption{Signal after modification.}
+    \label{fig:highvoltage}
+\end{subfigure}
+
+\caption{Modifications on the ESC.}
+\label{fig:neldermeadsteps}
+\end{figure}
+
+\subsection{The Elevons Have a High Frequency Pitch oscillation}
+Even on the ground, activating the stabilization control resulted in increased high-frequency oscillations of the control surfaces on the pitch direction.
+%
+Any minor servo correction caused a small movement on the aircraft body, due to moment conservation. This movement is detected and, when trying to compensate this behavior repeated until the oscillation peaked with the maximum amplitude reachable by the servos.
+%
+This behavior was linked to the the derivative terms on the pitch controllers.
+%
+Since, as seem on picture 
+\todo{tailsitter controller diagrams are missing}
+\ref{}, the roll and pitch controls are attenuated with the throttle, this effect is not present during flight. This effect should be handled in software in the futures, but was not prejudicial to the tests in this project.
+
+\subsection{Bad GPS Health}
+The GPS used, even though recognized by the flight controller, made it show "Bad GPS Health messages". Further research showed that the board was a badly manufactured clone\cite{badgps}, where the wrong version of the EEPROM chip was used, with a different pinout, meaning that while the flight controller was able to communicate and setup the GPS, it was unable to perform a warm start, which is looking for the right satellites using it's last known position saved on the EEPROM.
+
+This issue has three possible solutions:
+\begin{itemize}
+\item Unsolder the chip and resolder to the right connections with wires.
+\item Replace the chip with the correct one.
+\item Replace the whole GPS for a working one.
+\end{itemize}
+
+The latter was chosen as there was a spare one available, requiring only re-wiring.
