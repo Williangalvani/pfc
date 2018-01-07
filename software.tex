@@ -1,1 +1,36 @@
-\chapter{Software}
+\chapter{The Software}
+
+Two main types of software are required for the operation of this kind of aircraft. The flight controller runs on the on-board computer and is responsible for controlling the flight itself, and a ground station software, responsible for higher level commands and telemetry.
+This chapters details these software used in the project.
+
+\section{Flight Controller}
+The flight controller software runs on the on-board computer, and is responsible for controlling the attitude, altitude, and position of the aircraft.
+%
+In order to achieve this, most flight controller boards come with internal sensors (accelerometer, gyroscope, magnetometer, barometer) and external ones (airspeed, magnetometer, GPS). 
+%
+The acquired data is used to estimate attitude and position, which is then corrected by the control loops.
+
+The possible choices of flight controller software were ArduPilot and PX4.
+%
+Ardupilot is a community-drive software started by DYIDrones in 2009\cite{dyidrones}.
+%
+It's GPL licensed, which means all changes made and commercialized must be open-sourced\cite{gplv3}.
+%
+ArduPilot is a mature software, with a large community of users and testers.
+%
+%https://github.com/PX4/Firmware/commits/master?after=3e0b8b7016556224aedb54f51d769d3288f0920e+24770
+
+PX4 was also developed since 2008[\cite{waybackmachine}, mostly by the Computer Vision and Geometry Lab of ETH Zurich (Swiss Federal Institute of Technology)\cite{computervision} and the Autonomous Systems Lab\cite{autonomouslab} under a more permissive BSD 3-clause license\cite{bsd}.
+%
+For a while both projects worked closely, the Pixhawk Flight Controller board is a result of this interaction.
+%
+Both also joined Dronecode\cite{dronecode}, a Linux Foundation\cite{linuxfoundation} initiative started in 2004 as an attempt to grow the UAV ecosystem and reach larger companies.
+%
+%
+Dronecode however, evolved into, according to the Ardupilot Dev Team, a flawed model.
+%
+It was required for all projects to hand over all domains, accounts, and trademarks to their control.
+%
+The project are also directed by the so-called "Platinum Members", which means the development would not be in control of the community anymore.
+%
+By September 9, 2016, a letter was released stating that Ardupilot was leaving Dronecode, and explaining why\cite{letter}.
