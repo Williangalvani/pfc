@@ -3,6 +3,22 @@
 Two main types of software are required for the operation of this kind of aircraft. The flight controller runs on the on-board computer and is responsible for controlling the flight itself, and a ground station software, responsible for higher level commands and telemetry.
 This chapters details these software used in the project.
 
+\begin{figure}[h]
+  \centering
+  \begin{subfigure}{.5\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{figs/px4.png}
+  \end{subfigure}%
+  \begin{subfigure}{.5\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{figs/ardupilot.png}
+
+  \end{subfigure}
+  \caption{PX4 and Ardupilot.}
+  \label{fig:motorcurves}
+\end{figure}
+
+
 \section{Flight Controller}
 The flight controller software runs on the on-board computer, and is responsible for controlling the attitude, altitude, and position of the aircraft.
 %
@@ -34,3 +50,6 @@ It was required for all projects to hand over all domains, accounts, and tradema
 The project are also directed by the so-called "Platinum Members", which means the development would not be in control of the community anymore.
 %
 By September 9, 2016, a letter was released stating that Ardupilot was leaving Dronecode, and explaining why\cite{letter}.
+
+The Ardupilot code was chosen for this project due to their larger openness and community.
+
