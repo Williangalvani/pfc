@@ -44,13 +44,23 @@ The Batteries chosen are also the ones already in use by the company, Multistars
 Each weigh approximately 750 g and measures XXxYYxZZ mm.
 \todo{medir}
 
-\section{The Control Surfaces}
+\begin{figure}[H]
+\centering
+  \includegraphics[width=0.8\linewidth]{figs/battery.jpg}
+  \caption{Multistar 4s 10000 mAh Lithium Polymer battery.}
+  \label{fig:yaw_loop}
+\end{figure}
 
-The control surfaces must be slightly larger than usual for a flying wing, as on a tail-sitter a reasonable amount of air must be deflected on hover situation, while on most wings a steady airflow is assumed. It's suggested to have control surfaces taking up to 30\% of the chord of the wings. Since they are easily swappable, it was decided to start with smaller ones, and replace it if necessary
+
+\section{The Servos and Control Surfaces}
+
+The control surfaces must be slightly larger than usual for a flying wing, as on a tail-sitter a reasonable amount of air must be deflected on hover situation, while on most wings a steady airflow is assumed. It's suggested to have control surfaces taking up to 30\% of the chord of the wings. Since they are easily swappable, it was decided to start with smaller ones, with a 10 cm chord, and replace them if necessary.
+
+The servos chosen were standard servos, \todo{ver modelo na ufsc}.
 
 \section{The Flight Controller}
 
-The multirotor had a huge boom last 10 years. In 2009 the first hobby-grade flight controller for multicopters was born, Rolf “KaptainKuk” Bakke's "KK board". Using a simple AVR controller and three gyroscopes, the board could control angular speed on three axis, enabling pilots to control the multirotors. It was programmed in AVR assembly and had individual PID controllers for each axis.
+The multirotor had a huge boom last 10 years. In 2009 the first hobby-grade flight controller for multicopters was born, Rolf "KaptainKuk" Bakke's "KK board". Using a simple AVR controller and three gyroscopes, the board could control angular speed on three axis, enabling pilots to control the multirotors. It was programmed in AVR assembly and had individual PID controllers for each axis.
 %
 Shortly after, Alexinparis noticed the gyros on the Wii Motion + controller, and MultiWii was born. This project grew to support a variety of sensors and boards, and had an active development community, but has now saturated the AVR controller's capability.
 %
