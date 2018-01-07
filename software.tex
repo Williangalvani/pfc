@@ -64,3 +64,35 @@ Ardupilot is split into four main sub-projects:
 While each of them has different features, they share most of the core ArduPilot code.
 
 Arduplane provides all required controllers for features such as automatic vertical take off and landing, fixed-wing flight, waypoint navigation, inverted flight, stall prevention, geo-fencing, and terrain following, more than enough for performing the tasks proposed in this project.
+
+
+\section{Ground Station Software}
+
+For ground station software, there are two major players, ardupilot's own MissionPlanner, and KDE's QGroundControl.
+
+MissionPlanner is developed in C# and is generally more up-to-date with Arduplane.
+%
+It does however have performance issues and is not compatible with Linux.
+%
+
+QGroundControl is a C++ and Qt based software, boasting a high performance and well-finished interface, as well as compatibility with windows, Linux, OS-X and Android. But as it attempts to support both ArduPilot and PX4, eventually the Ardupilot support is not up to date.
+%
+
+Both are able to do the basic aircraft setup, change modes, and setup parameters via wired or wireless connections. As both have upsides and downsides, both were used in the project. QGroundControl was used whenever possible, and, when it couldn't perform something, MissionPlanner was used.
+
+
+\begin{figure}[h]
+  \centering
+  \begin{subfigure}{.8\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{figs/qgc.png}
+  \end{subfigure}%
+
+  \begin{subfigure}{.8\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{figs/missionplanner.png}
+
+  \end{subfigure}
+  \caption{QGroundControl and MissionPlanner.}
+  \label{fig:motorcurves}
+\end{figure}
