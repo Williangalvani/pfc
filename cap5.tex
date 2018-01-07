@@ -75,10 +75,50 @@ Nowadays, three major controllers coexist: MultiWii was ported to 32bits archite
 
 The Flight Controller board chosen is a PixHawk. Both PX4 and ArduPilot stacks support this board. But Ardupilot is a more mature, tested, open, and community-based platform, and thus it was chosen here, running latest release of ArduPlane, where there's experimental support for tail-sitters.
 
+\begin{figure}[H]
+\centering
+  \includegraphics[width=0.8\linewidth]{figs/pixhawk.jpg}
+  \caption{Pixhawk flight controller and most peripherals. Source: Mrobotics}
+  \label{fig:pixhawk}
+\end{figure}
+
 \section{The GPS}
+The used GPS is a U-Blox M8N GPS receiver, coupled with an external compass sensor. The external compass is important because the high currents flowing close the Pixhawk affect the readings of the internal compasses.
+%
+It supports concurrent reception of up to 3 GNSS (Global Navigation Satellite Systems), GPS, Galileo, GLONASS and BeiDou.
+
+It's precision is around 3 m, occasionally getting lower than 1 m\cite{m8ntest}.
+
+\begin{figure}[H]
+\centering
+  \includegraphics[width=0.8\linewidth]{figs/m8n.jpg}
+  \caption{M8N GPS receiver and external compass. Source: cooltoyz.co.uk}
+  \label{fig:m8n}
+\end{figure}
+
 
 \section{The Telemetry}
 
+The telemetry system provides a serial (UART) connection to the aircraft, via a radio system.
+%
+The one used can be seen on the top right corner of Figure \ref{fig:pixhawk} and is a 900Mhz radio modem.
+%
+The telemetry allows real-time reading of parameters and attitude, as well as writing them for setup and tuning.
+
 \section{The Radio Control System}
+
+The used Radio System is a 2.4Ghz radio by Turnigy, the Turnigy 9x.
+%
+This radio uses fast frequency hopping to avoid interference, and has a reported range of up to 3 km \cite{range9x}.
+%
+The radio was modded\cite{t9xmod} and the firmware was replaced by the open-source OpenTX \cite{opentx}, which provides much more flexibility to the system, as custom mixes, switches, automatic functions, periodic functions, and telemetry capabilities.
+
+\begin{figure}[H]
+\centering
+  \includegraphics[width=0.8\linewidth]{figs/t9x.jpg}
+  \caption{The Turnigy 9X Radio System. Source: radioc.co.uk}
+  \label{fig:t9x}
+\end{figure}
+
 
 %%%%%%%%%%%%%%%%%%%
