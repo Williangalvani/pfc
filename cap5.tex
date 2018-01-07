@@ -8,14 +8,26 @@ In order for the aircraft to fly and navigate autonomously, onboard electronics 
 Due to the familiarity and availability, the Mikrokopter Mk3538 Motor was chosen, paired with E-Max Simon 60A escs.
 
 Experimental curves for the motor are available at Mikrokopter's website, and the relevant ones are reproduced on Figure \ref{fig:motorcurves}. Each motor should give, on 16 V, around 1.9 kg of static thrust when paired to 12 inches propellers, up to 2.5 kg on 15 inches, while drawing 35 A, or about 560 W.
+
 \begin{figure}[h]
-\centering
-  \includegraphics[width=\linewidth]{figs/motorcurves.png}
-  \caption{First concept of the aircraft.}
+  \centering
+  \begin{subfigure}{.8\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{figs/curve12.png}
+  
+  \end{subfigure}%
+  
+  \begin{subfigure}{.8\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{figs/curve15.png}
+
+  \end{subfigure}
+  \caption{Motor curves with 12 and 15 inches propellers.}
   \label{fig:motorcurves}
 \end{figure}
 
-As the airplane is aimed to weigh around 3 kg, each motor needs to pull at least 1500g for hovering, leaving a maneuvering margin of around 1.5 kg for each motor.
+
+As the airplane is aimed to weigh around 3 kg, each motor needs to pull at least 1500g for hovering, leaving a maneuvering margin of around 1 kg for each motor.
 
 \section{Batteries}
 
