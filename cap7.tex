@@ -240,9 +240,10 @@ Even on the ground, activating the stabilization control resulted in increased h
 Any minor servo correction caused a small movement on the aircraft body, due to moment conservation. This movement is detected and, when trying to compensate this behavior repeated until the oscillation peaked with the maximum amplitude reachable by the servos.
 %
 This behavior was linked to the the derivative terms on the pitch controllers.
-
-\subsection{Roll Response and Stabilization is VTOL Mode Is Sluggish}
-\label{sec:sluggish}
+%
+Since, as seem on picture 
+\todo{tailsitter controller diagrams are missing}
+\ref{}, the roll and pitch controls are attenuated with the throttle, this effect is not present during flight. This effect should be handled in software in the futures, but was not prejudicial to the tests in this project.
 
 \subsection{Bad GPS Health}
 The GPS used, even though recognized by the flight controller, made it show "Bad GPS Health messages". Further research showed that the board was a badly manufactured clone\cite{badgps}, where the wrong version of the EEPROM chip was used, with a different pinout, meaning that while the flight controller was able to communicate and setup the GPS, it was unable to perform a warm start, which is looking for the right satellites using it's last known position saved on the EEPROM.
