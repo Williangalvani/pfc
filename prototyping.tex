@@ -159,12 +159,32 @@ As they need to let go after certain amount of force is exerted, and need to be 
 
 \section{Software Setup}
 
-In order to use the ArduPilot software stack to control a tailsitter, some setup is necessary.
+In order to use the ArduPilot software stack to control a tailsitter, some setup is necessary. First the regular ArduPilot setup:
+\begin{itemize}
+\item Frame Type Configuration: The kind of aircraft frame needs to be chosen, in this case, it is a tail sitter. This setups the initial parameters and controllers, as well as output mixers.
 
-\section{Control Tuning}
+\item Compass Calibration: This step performs a calibration on the (in this case) three magnetometers present in the board. Calibrated magnetometers are important for precise heading readings.
 
-batata
-	
+\item Radio Control Calibration: This recognizes the PWM ranges sent by the radio, so the flight controller knows when to arm/disarm, or apply full throttle.
+\item Accelerometer Calibration: This step calibrates the accelerometer. As the Pixhawk might not be leveled on the frame, calibrating the acelerometers is important to know the aircraft real orientation.
+\item ESC Calibration: Just like the flight controller, the ESCs also need to know the full range on the PWM received from the Pixhawk, and thus need calibration;
+\end{itemize}
+
+After the basic setup, additional changes need to be done on the parameter level:
+\begin{itemize}
+\item AHRS\_EKF\_TYPE = 3 This makes the flight controller use an extended Kalman Filter that takes into consideration the accelerometer for translations, not only orientations.
+
+\item ARMING\_CHECK,230 A custom pre-flight check is done, disabling the GPS checks due to the problems reported in \ref{badgps}.
+
+\item SCHED\_LOOP\_RATE = 300 This makes the Kalman filter update at 300 Hz, important for faster responses on multirotor-like aircraft, like this one in VTOL mode.
+
+\item SERVO3\_FUNCTION = 73, SERVO4\_FUNCTION = 74 : This sets outputs 3 and 4 to output the mixers of left motor and right motor on a dual-motor tail sitter aicraft.
+
+\end{itemize}
+
+%\section{Control Tuning}
+
+
 
 \section{Troubleshooting}
 
@@ -242,11 +262,10 @@ Any minor servo correction caused a small movement on the aircraft body, due to 
 %
 This behavior was linked to the the derivative terms on the pitch controllers.
 %
-Since, as seem on picture 
-\todo{tailsitter controller diagrams are missing}
-\ref{}, the roll and pitch controls are attenuated with the throttle, this effect is not present during flight. This effect should be handled in software in the futures, but was not prejudicial to the tests in this project.
+Since, as seem on picture \ref{fig:roll_loop}, the roll and pitch controls are attenuated with the throttle, this effect is not present during flight. This effect should be handled in software in the futures, but was not prejudicial to the tests in this project.
 
 \subsection{Bad GPS Health}
+\label{badgps}
 The GPS used, even though recognized by the flight controller, made it show "Bad GPS Health messages". Further research showed that the board was a badly manufactured clone\cite{badgps}, where the wrong version of the EEPROM chip was used, with a different pinout, meaning that while the flight controller was able to communicate and setup the GPS, it was unable to perform a warm start, which is looking for the right satellites using it's last known position saved on the EEPROM.
 
 This issue has three possible solutions:

@@ -12,10 +12,9 @@ The roll and pitch control loops (seen on Figure \ref{fig:roll_loop}) are respon
 While at first they look like a classical P+I+D controller, there are some small changes:
 
 \begin{itemize}
-\item There's a feedforwar controller trying to cancel the current angular rate $\dot{\phi}$
-\item The Derivative and Integral terms and scaled to the airspeed, and the controller's output as well. This is because  as the aircraft moves faster, less deflections is necessary for the same movement of the body.
+\item There's a feedforward controller trying to cancel the current angular rate $\dot{\phi}$
+\item The Derivative and Integral terms and scaled to the airspeed, and the controller's output as well. This is because  as the aircraft moves faster, less deflection is necessary to displace the same amount of air, resulting in the same movement of the body.
 \end{itemize}
-\todo{pq escalar o I e D duas vezes?}
 
 
 \begin{figure}[H]

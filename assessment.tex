@@ -1,6 +1,6 @@
 \chapter{Assessment} \label{chap:assessment}
 
-The assessment was incremental. First, the aerodynamic properties were tested on a manual flight, qualitativaly, regarding properties such as stall angle, stall speed, and equilibrium point in flight. Following this, the hover capabilities were tested, such as altitude and atitude control. With the basic flight capabilities proven, a few autonomous, test flights were performed, without VTOL. Finally, it's VTOL capabilities were benchmarked. These tests are better described, as well as their results, in the following sections.
+The assessment was incremental. First, the aerodynamic properties were tested on a manual flight, qualitatively, regarding properties such as stall angle, stall speed, and equilibrium point in flight. Following this, the hover capabilities were tested, such as altitude and attitude control. With the basic flight capabilities proven, a few autonomous, test flights were performed, without VTOL. Finally, it's VTOL capabilities were benchmarked. These tests are better described, as well as their results, in the following sections.
 
 
 \section{Tethered Attitude Control Test}
@@ -29,9 +29,13 @@ While this problem limits the yaw controllability in VTOL mode, the position con
 
 This could possibly be fixed by increasing the winglets area, however this also increases the area the wind hits, and needs more testing to verify.
 %
+Another possibility is tweaking the pitch angle limits, which by default are $\pm 30\degree$, in this case was not enough to fight the wind.
 
-The flight path can be seen on Figure \ref{fig:flight1-3d}, and an in-fligt photo on Figure \ref{fig:flight1-photo}.
+The flight path can be seen on Figure \ref{fig:flight1-3d}, and an in-flight photo on Figure \ref{fig:flight1-photo}. The video is available on youtube\cite{flight1}.
+%
+No attempt at transitioning to fixed-wing mode was made at this flight due to the reduced space available, which made the pilot feel unsafe.
 	
+
 \begin{figure}[H]
 \centering
   \includegraphics[width=0.7\linewidth]{figs/flight1-3d.png}
