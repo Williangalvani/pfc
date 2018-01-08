@@ -13,7 +13,7 @@ Experimental curves for the motor are available at Mikrokopter's website, and th
 \centering
   \includegraphics[width=0.8\linewidth]{figs/mk3638.jpg}
   \caption{Mikrokopter MK3638 Brushless Motor.}
-  \label{fig:yaw_loop}
+  \label{fig:mk3638}
 \end{figure}
 
 \begin{figure}[h]
@@ -29,10 +29,30 @@ Experimental curves for the motor are available at Mikrokopter's website, and th
     \includegraphics[width=\linewidth]{figs/curve15.png}
 
   \end{subfigure}
-  \caption{Motor curves with 12 and 15 inches propellers.}
+  \caption{Motor curves with 12 and 15 inches p
+  ropellers.}
   \label{fig:motorcurves}
 \end{figure}
 
+\begin{table}[H]
+\centering
+\caption{Mk3638 Brushless Motor Technical Specifications}
+\label{tab:mk3638}
+\begin{tabular}{|l|l|}
+\hline
+Lithium cell count 					& 3-6 \\ \hline
+Load current      					& max. 20A \\ \hline
+Maximum load current. (60 sec)		& 25 A \\ \hline
+No-load speed 						& 770 rpm / V \\ \hline
+Recommended Propeller Size 			& 10" .. 14 \\ \hline
+Mechanical power					& 350 W \\ \hline
+Thrust max.							& 2200 g \\ \hline
+Wire length							& about 52 cm \\ \hline
+Total weight (without cable)		& approx 100g \\ \hline
+Dimensions							& h=35mm, d=38mm \\ \hline
+Shaft diameter						& 4 mm \\ \hline
+\end{tabular}
+\end{table}
 
 As the airplane is aimed to weigh around 3 kg, each motor needs to pull at least 1500g for hovering, leaving a maneuvering margin of around 1 kg for each motor.
 
@@ -41,14 +61,32 @@ As the airplane is aimed to weigh around 3 kg, each motor needs to pull at least
 As each motor can draw up to 35 A, the battery should be able to provide up to 70 A without issues.
 The Batteries chosen are also the ones already in use by the company, Multistars 10000 mAh 10C, which, at 10 C rating, are able to sustain a constant draw of up to 100 A. 
 
-Each weigh approximately 750 g and measures XXxYYxZZ mm.
-\todo{medir}
+Each weigh approximately 800 g and measures 160 x 65 x 36 mm.
+
+
+
+\begin{table}[h]
+\centering
+\caption{Multistar 4s 10000mAh Battery Technical Specifications}
+\label{tab:multistar}
+\begin{tabular}{|l|l|}
+\hline
+Minimum Capacity		& 10000mAh \\ \hline
+Configuration			& 4S1P / 14.8V / 4Cell \\ \hline
+Constant Discharge		& 10C \\ \hline
+Peak Discharge (10sec)	& 20C \\ \hline
+Pack Weight				& 804g \\ \hline
+Pack Size				& 160 x 65 x 36mm \\ \hline
+Charge Plug				& JST-XH \\ \hline
+Discharge Plug			& XT90 \\ \hline
+\end{tabular}
+\end{table}
 
 \begin{figure}[H]
 \centering
   \includegraphics[width=0.8\linewidth]{figs/battery.jpg}
   \caption{Multistar 4s 10000 mAh Lithium Polymer battery.}
-  \label{fig:yaw_loop}
+  \label{fig:multistar}
 \end{figure}
 
 
@@ -57,27 +95,28 @@ Each weigh approximately 750 g and measures XXxYYxZZ mm.
 The control surfaces must be slightly larger than usual for a flying wing, as on a tail-sitter a reasonable amount of air must be deflected on hover situation, while on most wings a steady airflow is assumed. It's suggested to have control surfaces taking up to 30\% of the chord of the wings. Since they are easily swappable, it was decided to start with smaller ones, with a 10 cm chord, and replace them if necessary.
 
 
-The servos chosen were standard servos Savox SV-0220, linked to the elevon horns with a stiff wire. \todo{add picture of horns}
+The servos chosen were standard servos Savox SV-0220, linked to the elevon horns with a stiff wire. %\todo{add picture of horns}
 
 \begin{figure}[H]
 \centering
   \includegraphics[width=0.8\linewidth]{figs/servo.jpg}
   \caption{Savox SV-0220 servo.}
-  \label{fig:yaw_loop}
+  \label{fig:sv-0220}
 \end{figure}
 
 
-\begin{table}[]
+\begin{table}[h]
 \centering
 \caption{SV-0220 Technical Specifications}
 \label{my-label}
-\begin{tabular}{lll}
- Torque @ 6v &   6.5kg & \\
- Torque @ 7.4v & 8.0kg & \\
- Speed @ 6v    &  0.16 sec/60 deg & \\
- Speed @ 7.4v  &  0.13 sec/60 deg & \\
- Dimensions L x W x H (mm) &  40.7 x 20.0 x 37.0 & \\
- Weight & 59.0g &
+\begin{tabular}{|l|l|}
+\hline
+ Torque @ 6v &   6.5kg  \\ \hline
+ Torque @ 7.4v & 8.0kg  \\ \hline
+ Speed @ 6v    &  0.16 sec/60 deg  \\ \hline
+ Speed @ 7.4v  &  0.13 sec/60 deg  \\ \hline
+ Dimensions L x W x H (mm) &  40.7 x 20.0 x 37.0   \\ \hline
+ Weight & 59.0g   \\ \hline
 \end{tabular}
 \end{table}
 
