@@ -35,7 +35,7 @@ Other properties that depend on the airfoil shape are the drag (air force pushin
 
 \subsection{The Coordinate System and Nomenclature}
 
-The coordinate system, when dealing with the fixed-wing and VTOL modes, is as shown in figure \ref{fig:coords1}
+The coordinate system, when dealing with the fixed-wing and VTOL modes, is as shown in figures \ref{fig:coords1} and \ref{fig:coords2}.
 
 \begin{figure}[h]
 \centering
@@ -49,7 +49,7 @@ The coordinate system, when dealing with the fixed-wing and VTOL modes, is as sh
 \centering
   \includegraphics[width=0.8\linewidth]{figs/axisvtol.png}
   \caption{Coordinates system and relevant variables in VTOL mode.}
-  \label{fig:coords1}
+  \label{fig:coords2}
 \end{figure}
 
 Where:
@@ -98,7 +98,7 @@ This tools enables the iterative design and analysis of multiple aircraft config
 
 \section{Design}
 
-The chosen design is the one of a flying wing, a fuselage-less made of a wing, propulsion system, and control surfaces. The reasons are because of a simpler and sturdier mechanical structure, besides the possibility of the VTOL configuration
+The chosen design is the one of a flying wing, a fuselage-less aircraft made of a wing, propulsion system, and control surfaces. The reasons are because of a simpler and sturdier mechanical structure, besides the possibility of the VTOL configuration.
 
 \subsection{Preliminar Design}
 
@@ -107,7 +107,7 @@ As a starting point, a wing with a central hub and 2 semi-wings ending in symmet
 
 With the airfoil chosen, It's characteristics were calculated with the aid of XFOIL, an airfoil analysis tool built into XFLR5.
 
-\begin{figure}
+\begin{figure}[h]
 \centering
   \includegraphics[width=\linewidth]{figs/zagi12.png}
   \caption{Zagi 12 airfoil.}
@@ -118,7 +118,7 @@ With the airfoil chosen, It's characteristics were calculated with the aid of XF
 These characteristics plots can be seen on figure \ref{fig:zagi12polares}.
 %
 
-It can be noted that the point with the highest Cl/Cd ratio, the theoretical point with better lift to drag ratio, and therefore best gliding performance. It's also notable that the airfoils moment "pulls" it into this better Cl/Cd ratio, allowing the aircraft to fly into this ideal condition without deflection of the control surfaces
+From this figure, the point with the highest Cl/Cd ratio, the theoretical point with better lift to drag ratio, and therefore best gliding performance can be found. It's also notable that the airfoils moment "pulls" it into this better Cl/Cd ratio, allowing the aircraft to fly into this ideal condition without deflection of the control surfaces, which would cause aerodynamical losses.
 
 
 \begin{figure}
@@ -130,7 +130,7 @@ It can be noted that the point with the highest Cl/Cd ratio, the theoretical poi
 
 With that data, the main body was conceived, as seen in the figure \ref{fig:preliminar}. With this CAD tool we can then analyze the performance of the aircraft as a whole. This gives us the same data as the airfoils', but for the whole craft, as seen in figure \ref{fig:craftpolar}.
 
-Some data can be inferred from these graphs. From \ref{fig:zagi12polares} it can be seen that the highest $C_l$, or Lift Coefficient, is obtained around $\alpha = 8\deg$, which, possibly by design of the airfoil, is also the zone with a higher $C_l/C_d$, or \textit{lift-to-drag ratio} maximizing the gliding distance. It's also notable tat the $C_m  \times \alpha$ plot crosses 0 around the the same $8\deg$, meaning the profile is generally trying to point at that angle.
+More data can be inferred from these graphs. From \ref{fig:zagi12polares} it can be seen that the highest $C_l$, or Lift Coefficient, is obtained around $\alpha = 8\deg$, which, possibly by design of the airfoil, is also the zone with a higher $C_l/C_d$, or \textit{lift-to-drag ratio} maximizing the gliding distance. It's also notable tat the $C_m  \times \alpha$ plot crosses 0 around the the same $8\deg$, meaning the profile is generally trying to point at that angle.
 
 \begin{figure}
 \centering
@@ -140,7 +140,7 @@ Some data can be inferred from these graphs. From \ref{fig:zagi12polares} it can
 \end{figure}
 
 
-From \ref{fig:craftpolar}, it is noticeable that, without command inputs, the aircraft tends to point the nose down $ 2 \degree $ , reaching it's maximum lift-to-drag ratio, and slowly coming back to the ground.
+From \ref{fig:craftpolar}, it is noticeable that without command inputs, the aircraft tends to point the nose down $ 2 \degree $ , reaching it's maximum lift-to-drag ratio and slowly coming back to the ground. It is good to notice that the comprehensive simulation of the aircraft takes into account the center of mass, making it possible to make the aircraft to fly straight with no input, instead of pointing slightly downwards, by changing the center of gravity slightly to the trailing edge. This change would, however, decrease the stability of the aircraft and increase the chances of a stall.
 
 \begin{figure}
 \centering
