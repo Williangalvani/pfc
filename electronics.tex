@@ -5,7 +5,7 @@ In order for the aircraft to fly and navigate autonomously, onboard electronics 
 	
 \section{Propulsion}
 
-Due to the familiarity and availability, the Mikrokopter Mk36%38 Motor was chosen, paired with E-Max Simon 60A escs.
+Due to the familiarity and availability, the Mikrokopter Mk3638 Motor was chosen, paired with E-Max Simon 60A escs.
 
 Experimental curves for the motor are available at Mikrokopter's website, and the relevant ones are reproduced on Figure \ref{fig:motorcurves}. Each motor should give, on 16 V, around 1.9 kg of static thrust when paired to 12 inches propellers, up to 2.5 kg on 15 inches, while drawing 35 A, or about 560 W.
 
@@ -18,13 +18,13 @@ Experimental curves for the motor are available at Mikrokopter's website, and th
 
 \begin{figure}[h]
   \centering
-  \begin{subfigure}{.8\textwidth}
+  \begin{subfigure}{0.95\textwidth}
     \centering
-    \includegraphics[width=\linewidth]{figs/curve12.png}
+    \includegraphics[\linewidth]{figs/curve12.png}
   
   \end{subfigure}%
   
-  \begin{subfigure}{.8\textwidth}
+  \begin{subfigure}{0.95\textwidth}
     \centering
     \includegraphics[width=\linewidth]{figs/curve15.png}
 
@@ -92,7 +92,7 @@ Discharge Plug			& XT90 \\ \hline
 
 \section{The Servos and Control Surfaces}
 
-The control surfaces must be slightly larger than usual for a flying wing, as on a tail-sitter a reasonable amount of air must be deflected on hover situation, while on most wings a steady airflow is assumed. It's suggested to have control surfaces taking up to 30\% of the chord of the wings. Since they are easily swappable, it was decided to start with smaller ones, with a 10 cm chord, and replace them if necessary.
+The control surfaces must be slightly larger than usual for a flying wing, as on a tail-sitter a reasonable amount of air must be deflected on hover situation, while on most wings a steady airflow is assumed. It is suggested to have control surfaces taking up to 30\% of the chord of the wings. Since they are easily swappable, it was decided to start with smaller ones, with a 10 cm chord, and replace them if necessary.
 
 
 The servos chosen were standard servos Savox SV-0220, linked to the elevon horns with a stiff wire. %\todo{add picture of horns}
@@ -187,7 +187,7 @@ The radio was modded\cite{t9xmod} and the firmware was replaced by the open-sour
 
 In order to take pictures for the aerophotogrammetry, a camera is needed. As the company is also working on a RTK\footnote{Real Time Kinematics, a system that improves GPS localization giving millimetric precision.} system, a compatible camera is required.
 
-Sony's DSC HX60V was chosen due to it's sensor size, which at 55 mm is able to provide a broad field of view, for it's weight, relatively low at 272 g, presence of Multi protocol for communication with flight controllers, and external flash support, which can be used to read the precise time when a picture is taken.
+Sony's DSC HX60V was chosen due to it's sensor size, which at 55 mm is able to provide a broad field of view, for it's weight, relatively low at 272 g, presence of Multi protocol for communication with flight controllers, and external flash support, which can be used to read the precise time when a picture is taken, so it can be synced to the current GPS position and attitude.
 
 \begin{figure}[H]
 \centering

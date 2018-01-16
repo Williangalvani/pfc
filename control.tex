@@ -12,11 +12,11 @@ On Airplane mode, the aircraft is always moving forward, towards the $X$ axis, p
 
 \subsection{Roll and Pitch Control}
 
-The roll and pitch control loops (seen on Figure \ref{fig:roll_loop}) are responsible for keeping the aircraft on the desired orientations on the $X$ and $Y$ axis. Usually, roll is controlled by turning the elevator up and down, while roll is controlled by the deflecting the ailerons. On this aircraft, however, there are only two control surfaces, such that the output of both controllers are summed (mixed, and is usually used in the RC world) in order to control both axis at the same time.
+The roll and pitch control loops (seen on Figure \ref{fig:roll_loop}) are responsible for keeping the aircraft on the desired orientations on the $X$ and $Y$ axis. Usually, roll is controlled by turning the elevator up and down, while roll is controlled by the deflecting the ailerons. On this aircraft, however, there are only two control surfaces, such that the output of both controllers are summed ("mixed", as is usually said in the RC world) in order to control both axis at the same time.
 While at first they look like a classical P+I+D controller, there are some small changes:
 
 \begin{itemize}
-\item There's a feedforward controller trying to cancel the current angular rate $\dot{\phi}$
+\item There's a feedforward controller trying to cancel the current angular rates.
 \item The Derivative and Integral terms and scaled to the airspeed, and the controller's output as well. This is because  as the aircraft moves faster, less deflection is necessary to displace the same amount of air, resulting in the same movement of the body.
 \end{itemize}
 
@@ -65,7 +65,7 @@ The inner loops control the angular speed, and the outer loops control the attit
 \begin{figure}[H]
 \centering
   \includegraphics[width=0.65\linewidth]{figs/copterpids.png}
-  \caption{L1 navigation controller. Source: ArduPilot}
+  \caption{Attitude controller. Source: ArduPilot}
   \label{fig:copter_attitude_loops}
 \end{figure}
 

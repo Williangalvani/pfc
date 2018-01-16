@@ -1,7 +1,7 @@
 \chapter{Prototyping} \label{chap:prototyping}
 
 As in any product development, a few protoypes were developed.
-First a smaller , 50cm wingspan aircraft with no airfoil was assembled to test and tune the flight controllers. The reduced version also enabled testing in close spaces and proximity with people with reduced danger.
+First a smaller , 50 cm wingspan aircraft with no airfoil was assembled to test and tune the flight controllers. The reduced version also enabled testing in close spaces and proximity with people with reduced danger.
 
 With the reduced prototype proven, the larger one, photography-ready was developed. The larger one is closer to the final desired product, and is able to be used as such.
 
@@ -23,7 +23,7 @@ The motors had a custom mount 3D-Printed and fitted into the foam.
 
 For the tests and tuning, the prototype had a hook on top, so it could be hang on the ceiling to avoid hitting the floor and walls during the tests.
 
-The first prototype and It's components can be seen on Figure \ref{fig:smallprototypeparts}
+The first prototype and its components can be seen on Figure \ref{fig:smallprototypeparts}
 
 \begin{figure}[H]
 \centering
@@ -83,7 +83,7 @@ With the main structure assembled, the servos were embedded into the structure. 
 \end{figure}
 
 
-The main structure was then covered in vinyl, for aesthetical and structural purposes (the tension on the vinyl helps making the structure stiffer). The vinyl is a material that shrinks when heated, which makes it tension itself over it's surface.
+The main structure was then covered in vinyl, for aesthetical and structural purposes (the tension on the vinyl helps making the structure stiffer). The vinyl is a material that shrinks when heated, which makes it tension itself over its surface.
 
 The motor mounts were designed so they fit perfectly on the wing profile, and 3D-printed, glued and screwed into the main wing.
 The mounts can be seen on figure \ref{fig:motormount}
@@ -206,7 +206,7 @@ This effectively lowered the voltage read on the microcontroller to 2, as seen o
 Further inspection showed that only one 512 (5100 $\Omega$ ) resistor was present on the board, and it was, along with a capacitor, bridging a route to ground.
 The removal of these components was enough to raise the read signal value to 3.4 V, solving the issue, as seem on Figure \ref{fig:highvoltage}.
 
-With the ESCs accepting their input signals, they needed calibration. The calibration of an RC ESC is a process where it learns the high and low bounds on it's input signals. The ESC is turned on with the maximum possible input, it beeps, and the signal can be lowered to the minimum, then it beeps again.
+With the ESCs accepting their input signals, they needed calibration. The calibration of an RC ESC is a process where it learns the high and low bounds on its input signals. The ESC is turned on with the maximum possible input, it beeps, and the signal can be lowered to the minimum, then it beeps again.
 
 
 \begin{figure}[H]
@@ -266,7 +266,7 @@ Since, as seem on picture \ref{fig:roll_loop}, the roll and pitch controls are a
 
 \subsection{Bad GPS Health}
 \label{badgps}
-The GPS used, even though recognized by the flight controller, made it show "Bad GPS Health messages". Further research showed that the board was a badly manufactured clone\cite{badgps}, where the wrong version of the EEPROM chip was used, with a different pinout, meaning that while the flight controller was able to communicate and setup the GPS, it was unable to perform a warm start, which is looking for the right satellites using it's last known position saved on the EEPROM.
+The GPS used, even though recognized by the flight controller, made it show "Bad GPS Health messages". Further research showed that the board was a badly manufactured clone\cite{badgps}, where the wrong version of the EEPROM chip was used, with a different pinout, meaning that while the flight controller was able to communicate and setup the GPS, it was unable to perform a warm start, which is looking for the right satellites using its last known position saved on the EEPROM.
 
 This issue has three possible solutions:
 \begin{itemize}

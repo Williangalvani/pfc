@@ -102,10 +102,10 @@ The chosen design is the one of a flying wing, a fuselage-less aircraft made of 
 
 \subsection{Preliminar Design}
 
-As a starting point, a wing with a central hub and 2 semi-wings ending in symmetrical winglets was designed. The ZAGI12 airfoil was chosen due to it's good soaring capabilities and low stall speed.
+As a starting point, a wing with a central hub and 2 semi-wings ending in symmetrical winglets was designed. The ZAGI12 airfoil was chosen due to its good soaring capabilities and low stall speed.
 %\todo{citation needed}.
 
-With the airfoil chosen, It's characteristics were calculated with the aid of XFOIL, an airfoil analysis tool built into XFLR5.
+With the airfoil chosen, its characteristics were calculated with the aid of XFOIL, an airfoil analysis tool built into XFLR5.
 
 \begin{figure}[h]
 \centering
@@ -123,14 +123,15 @@ From this figure, the point with the highest Cl/Cd ratio, the theoretical point 
 
 \begin{figure}
 \centering
-  \includegraphics[width=\linewidth]{figs/polares.png}
+	  \includegraphics[width=\linewidth]{figs/polares.png}
   \caption{Zagi 12 characteristics}
   \label{fig:zagi12polares}
 \end{figure}
 
 With that data, the main body was conceived, as seen in the figure \ref{fig:preliminar}. With this CAD tool we can then analyze the performance of the aircraft as a whole. This gives us the same data as the airfoils', but for the whole craft, as seen in figure \ref{fig:craftpolar}.
 
-More data can be inferred from these graphs. From \ref{fig:zagi12polares} it can be seen that the highest $C_l$, or Lift Coefficient, is obtained around $\alpha = 8\deg$, which, possibly by design of the airfoil, is also the zone with a higher $C_l/C_d$, or \textit{lift-to-drag ratio} maximizing the gliding distance. It's also notable tat the $C_m  \times \alpha$ plot crosses 0 around the the same $8\deg$, meaning the profile is generally trying to point at that angle.
+More data can be inferred from these graphs. From \ref{fig:zagi12polares} it can be seen that the highest $C_l$, or Lift Coefficient, is obtained around $\alpha = 8\deg$, which, possibly by design of the airfoil, is also the zone with a higher $C_l/C_d$, or \textit{lift-to-drag ratio} maximizing the gliding distance. 
+%It's also notable tat the $C_m  \times \alpha$ plot crosses 0 around the the same $8\deg$, meaning the profile is generally trying to point at that angle.
 
 \begin{figure}
 \centering
@@ -140,12 +141,39 @@ More data can be inferred from these graphs. From \ref{fig:zagi12polares} it can
 \end{figure}
 
 
-From \ref{fig:craftpolar}, it is noticeable that without command inputs, the aircraft tends to point the nose down $ 2 \degree $ , reaching it's maximum lift-to-drag ratio and slowly coming back to the ground. It is good to notice that the comprehensive simulation of the aircraft takes into account the center of mass, making it possible to make the aircraft to fly straight with no input, instead of pointing slightly downwards, by changing the center of gravity slightly to the trailing edge. This change would, however, decrease the stability of the aircraft and increase the chances of a stall\footnote{A stall is a condition in aerodynamics and aviation wherein the angle of attack increases beyond a certain point such that lift begins to decrease, this can lead an aircraft to crash.}.
+From \ref{fig:craftpolar}, it is noticeable that without command inputs, the aircraft tends to point the nose down $ 2 \degree $ , as its maximum lift-to-drag coefficient is at $8 \deg$, the center of gravity can be adjusted to make the cm/alpha angular coeficient close to 0, meaning the aircraft is marginally stable, in a way that only a small elevon input is required to turn it towards the best alpha, reaching it's maximum lift-to-drag. This change can, however, decrease the stability of the aircraft and increase the chances of a stall\footnote{A stall is a condition in aerodynamics and aviation wherein the angle of attack increases beyond a certain point such that lift begins to decrease, this can lead an aircraft to crash.}. As the system is running on a closed loop, this is not a problem.
+
+The flight time can be estimated by analyzing the motor power consumption during cruise flight.
+
+first, as we assume $ 3 kg $ of weight, we need to find the angle $\alpha$ that, at $15 m/s$, produces $3kg$ of lift.
+
+The Lift formula is the following:
+\begin{equation}
+L=\tfrac{1}{2}\rho v^{2}SC_{L}
+\end{equation}
+Where $L$ is the produced lift, $\rho$ is the air density, $S$ is the wing's surface area, and $C_L$ is the lift coefficient.
+
+Plugging the data into the equation and solving for $C_L$, we find that $\alpha = 0.83$, which, looking at the $C_D \times \alpha$ plot, results in a $C_D$ of 0.08.
+
+With the drag coefficient $C_D$, we can calculate the estimated drag force $F_D$:
+
+\begin{equation}
+F_{D}=\tfrac{1}{2}\rho u^{2} C_{D} S
+\end{equation}
+
+This results in a drag of approximately $884 g$.
+
+Assuming there are manufacturing issues and other imperfections, we assume a drag of $1.5 kg$. Such drag would mean that each motor needs to produce around $ 750 g$ of thrust. According to Figure \ref{fig:motorcurves}, the motor needs 
+approximately $6 A$ to produce this thrust, resulting in $\frac{10}{12}$ hours of flight, or 50 minutes. This assuming 70\% extra drag than simulated.
+
+A slower flying speed should also help with power consumption, as the required alpha will be higher, resulting in a better lift-to-drag coefficient.
+
+
 
 \begin{figure}
 \centering
-  \includegraphics[width=\linewidth]{figs/craftpolar.png}
-  \caption{Flight characteristics of the preliminary aircraft design.}
+  \includegraphics[width=\linewidth]{figs/craftpolar2.png}
+  \caption{Flight characteristics of the final aircraft design.}
   \label{fig:craftpolar}
 \end{figure}
 
@@ -154,7 +182,13 @@ From \ref{fig:craftpolar}, it is noticeable that without command inputs, the air
 
 Due to building issues and the desire to maximize both effective payload and flight autonomy, the design was simplified, extending the chord back on the center of the wings, as seem on figures \ref{fig:final} - \ref{fig:finalrendertop}.
 The electronics bay was embedded into the main section, reducing the aerodynamical cross-section, thus reducing drag. The whole design was then assembled on Autodesk Inventor Professional prior the manufacturing of the prototype.
-	
+
+\begin{figure}
+\centering
+  \includegraphics[width=\linewidth]{figs/finalrender.png}
+  \caption{Final design of the aircraft.}
+  \label{fig:finalrender}
+\end{figure}
 
 \begin{figure}
 \centering
@@ -163,12 +197,7 @@ The electronics bay was embedded into the main section, reducing the aerodynamic
   \label{fig:final}
 \end{figure}
 	
-\begin{figure}
-\centering
-  \includegraphics[width=\linewidth]{figs/finalrender.png}
-  \caption{Final design of the aircraft.}
-  \label{fig:finalrender}
-\end{figure}
+
 
 \begin{figure}
 \centering
