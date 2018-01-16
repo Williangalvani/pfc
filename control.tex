@@ -2,6 +2,10 @@
 
 The control Structure used is the one of ArduPlane, in hover, or tail-sitter mode, the ArduCopter stabilization system is used, while in airplane/fixed-wing mode, Arduplane's controllers are used. Both will be discussed and explained in the following sections.
 
+\section{The Data Acquisition}
+
+In order to control all the required variables, they must be available for the controller. The Pixhawk controller provides two redundant IMUs for this reason. Each of them runs an Extended Kalman Filter tracking 22 states\cite{kalman}\cite{kalmanArducopter}. Of the two running Kalman Filters, the one with smaller error estimation is used, and the estimated states are made available for the controllers.
+
 \section{On Airplane Mode}
 
 On Airplane mode, the aircraft is always moving forward, towards the $X$ axis, position control depends on defining a route and pointing the aircraft in order to remain on it.
@@ -46,6 +50,22 @@ Like the D and I terms on the roll axis, the controller's output is again scaled
 Since a fixed-wing aircraft usually can't fly in-place, waypoints can be used in two general ways, the aircraft can fly around it in circles, or hit it and then follow to the next one.
 
 In order to circle it, a PD controller is used with a feed-forward centripetal force.
-
-
+%
+%
+\begin{figure}[H]
+\centering
+  \includegraphics[width=0.8\linewidth]{figs/L1_loiter.png}
+  \caption{L1 navigation controller. Source: ArduPilot}
+  \label{fig:l1_loop}
+\end{figure}
+\section{On VTOL Mode}
+%
+On the VTOL or multirotor mode, cascaded P/PID loops are used.
+The inner loops control the angular speed, and the outer loops control the attitude, with the outermost loops controlling the altitude and position (again with the L1 controller). These controllers can be seen on Figure \ref{fig:copter_attitude_loops}.
+\begin{figure}[H]
+\centering
+  \includegraphics[width=0.65\linewidth]{figs/copterpids.png}
+  \caption{L1 navigation controller. Source: ArduPilot}
+  \label{fig:copter_attitude_loops}
+\end{figure}
 
