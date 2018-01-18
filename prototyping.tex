@@ -1,7 +1,7 @@
 \chapter{Prototyping} \label{chap:prototyping}
 
 As in any product development, a few protoypes were developed.
-First a smaller , 50 cm wingspan aircraft with no airfoil was assembled to test and tune the flight controllers. The reduced version also enabled testing in close spaces and proximity with people with reduced danger.
+First a smaller, 50 cm wingspan aircraft with no airfoil was assembled to test and tune the flight controllers. The reduced version also enabled testing in close spaces and proximity with people with reduced danger.
 
 With the reduced prototype proven, the larger one, photography-ready was developed. The larger one is closer to the final desired product, and is able to be used as such.
 
@@ -178,7 +178,7 @@ After the basic setup, additional changes need to be done on the parameter level
 
 \item SCHED\_LOOP\_RATE = 300 This makes the Kalman filter update at 300 Hz, important for faster responses on multirotor-like aircraft, like this one in VTOL mode.
 
-\item SERVO3\_FUNCTION = 73, SERVO4\_FUNCTION = 74 : This sets outputs 3 and 4 to output the mixers of left motor and right motor on a dual-motor tail sitter aircraft.
+\item SERVO3\_FUNCTION = 73, SERVO4\_FUNCTION = 74 This sets outputs 3 and 4 to output the mixers of left motor and right motor on a dual-motor tail sitter aircraft.
 
 \end{itemize}
 
@@ -260,7 +260,7 @@ Even on the ground, activating the stabilization control resulted in increased h
 %
 Any minor servo correction caused a small movement on the aircraft body, due to moment conservation. This movement is detected and, when trying to compensate this behavior repeated until the oscillation peaked with the maximum amplitude reachable by the servos.
 %
-This behavior was linked to the the derivative terms on the pitch controllers.
+This behavior was linked to the derivative terms on the pitch controllers.
 %
 Since, as seem on picture \ref{fig:roll_loop}, the roll and pitch controls are attenuated with the throttle, this effect is not present during flight. This effect should be handled in software in the future, but was not prejudicial to the tests in this project.
 
