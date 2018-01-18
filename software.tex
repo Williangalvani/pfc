@@ -65,6 +65,28 @@ While each of them has different features, they share most of the core ArduPilot
 
 Arduplane provides all required controllers for features such as automatic vertical take off and landing, fixed-wing flight, waypoint navigation, inverted flight, stall prevention, geo-fencing, and terrain following, more than enough for performing the tasks proposed in this project.
 
+\section{Software Architecture}
+
+The ArduPilot codebase is split into four main projects, they all do however have the common base, an thus, a similar architecture. On Figure \ref{fig:highlevel} the high level architecture is shown, presenting an overview of the main interactions between hardware and software components, from the ground station, to the communication protocol, to the low-level sensors.
+
+\begin{figure}[h]
+\centering
+  \includegraphics[width=0.95\linewidth]{figs/highlevelarch.png}
+  \caption{ArduPilot high-level software architecture. Source: ArduPilot.org}
+  \label{fig:highlevel}
+\end{figure}
+
+A more detailed diagram, on Figure \ref{fig:lowlevel} details the interactions on a source-code file level. Additional information is available at the project's website, as well as the source code\cite{ardupilotcode}.
+
+
+\begin{figure}[h]
+\centering
+  \includegraphics[width=0.8\linewidth]{figs/copter-architecture.png}
+  \caption{ArduPilot high-level software architecture. Source: ArduPilot.org}
+  \label{fig:lowlevel}
+\end{figure}
+
+
 \section{Ground Station Software}
 
 For ground station software, there are two major players, ardupilot's own MissionPlanner, and KDE's QGroundControl.
