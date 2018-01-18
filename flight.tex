@@ -151,19 +151,19 @@ The Lift formula is the following:
 \begin{equation}
 L=\tfrac{1}{2}\rho v^{2}SC_{L}
 \end{equation}
-Where $L$ is the produced lift, $\rho$ is the air density, $S$ is the wing's surface area, and $C_L$ is the lift coefficient.
+Where $L$ is the produced lift in Newtons, $\rho$ is the air density in $kg/m^3$, $S$ is the wing's surface area in $m^2$, and $C_L$ is the dimensionless lift coefficient.
 
-Plugging the data into the equation and solving for $C_L$, we find that $\alpha = 0.83$, which, looking at the $C_D \times \alpha$ plot, results in a $C_D$ of 0.08.
+Plugging the data into the equation and solving for $C_L$, we find that the incidence angle $\alpha = 0.83$, which, looking at the $C_D \times \alpha$ plot, results in a drag coefficient $C_D$ of 0.08.
 
 With the drag coefficient $C_D$, we can calculate the estimated drag force $F_D$:
 
 \begin{equation}
-F_{D}=\tfrac{1}{2}\rho u^{2} C_{D} S
+F_{D}=\tfrac{1}{2}\rho v^{2} S C_{D}
 \end{equation}
 
-This results in a drag of approximately $884 g$.
+This results in a drag of approximately $8.84N$ ( $900 gf$).
 
-Assuming there are manufacturing issues and other imperfections, we assume a drag of $1.5 kg$. Such drag would mean that each motor needs to produce around $ 750 g$ of thrust. According to Figure \ref{fig:motorcurves}, the motor needs 
+Assuming there are manufacturing issues and other imperfections, we assume a drag of $1.5 kgf$. Such drag would mean that each motor needs to produce around $ 750 gf$ of thrust. According to Figure \ref{fig:motorcurves}, the motor needs 
 approximately $6 A$ to produce this thrust, resulting in $\frac{10}{12}$ hours of flight, or 50 minutes. This assuming 70\% extra drag than simulated.
 
 A slower flying speed should also help with power consumption, as the required alpha will be higher, resulting in a better lift-to-drag coefficient.
