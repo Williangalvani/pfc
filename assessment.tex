@@ -1,8 +1,8 @@
 \chapter{Assessment} \label{chap:assessment}
 
-The assessment was planned with incremental tests. First, the VTOL capabilities would be tested, with stabilized flights, then the position hold (loiter), followed by autonomous taking-off, then landing. With the VTOL modes working, it would be time to testing the transition to forward flight, the flight itself, and the transition back into VTOL mode.
+The assessment was planned with incremental tests. First, the VTOL capabilities would be tested, with stabilized flights, then the position hold (loiter), followed by autonomous taking-off, then landing. With the VTOL modes working, it would be time to test the transition to forward flight, the flight itself, and the transition back into VTOL mode.
 
-The tests actually performed are better described, as well as their results, in the following sections.
+The tests performed are better described in the following sections, along with their results.
 
 
 \section{Tethered Attitude Control Test}
@@ -22,22 +22,22 @@ Each axis was tested at least twice on each direction, and the aircraft reacted 
 
 \section{Un-tethered Attitude Control Test} 
 
-For this test, the wing was taken to an open field on the university.
+For this test, the wing was taken to an open field in the university.
 %
 For the take-off, it had to be oriented so the wind blew parallel to it's surface, so that the wind didn't flip it over.
 %
 Take-off can't be too slow, as the winglets adhere to the ground and can cause the aircraft to tip over.
 %
-once in the air, the controls and stabilization were good, but once the wind it the aircraft, it turned it perpendicular to the direction of the wind, and the control authority was not enough for both stabilizing flight and turning the yaw axis.
+Once in the air, the controls and stabilization worked well, but once the wind hit the aircraft, it turned perpendicular to the direction of said wind, and the control authority was not enough for both stabilizing flight and turning the yaw axis.
 %
 While this problem limits the yaw controllability in VTOL mode, the position control is not necessarily affected, as the aircraft can still move in a mixed attitude between VTOL and fixed wing, inclined against the wind and maintaining position.
 %
 
 This could possibly be fixed by increasing the winglets area, however this also increases the area the wind hits, and needs more testing to verify.
 %
-Another possibility is tweaking the pitch angle limits, which by default are $\pm 30\degree$, in this case was not enough to fight the wind.
+Another possibility is tweaking the pitch angle limits, which by default are $\pm 30\degree$, not enough to fight the wind in this case.
 
-The flight path can be seen on Figure \ref{fig:flight1-3d}, and an in-flight photo on Figure \ref{fig:flight1-photo}. The video is available on youtube\cite{flight1}.
+The flight path can be seen in figure \ref{fig:flight1-3d}, and an in-flight photo in figure \ref{fig:flight1-photo}. The video is available on youtube\cite{flight1}.
 %
 No attempt at transitioning to fixed-wing mode was made at this flight due to the reduced space available, which made the pilot feel unsafe.
 	
@@ -65,7 +65,7 @@ The next test was taking-off and landing autonomously. Due to the winds and unde
 The autonomous take-off however, tried to take-off too slowly, and the winglet/landing gear grip to the grass limited pitch control prior to taking-off, causing the wing to tip over. The solution was to take-off manually, in QStabilize (Quadplane Stabilize) mode, then switching to QLoiter. Five of such flights were attempted. The results are on Table \ref{table:loiter}.
 
 While most of the results were good, a roll oscillation was present on some of the flights, causing instability and forced landings.
-The problem appears to be being caused by the navigation controller, as the roll("ATT.Roll") actually follows the roll setpoint("ATT.DesRoll"), who is oscillating, as seem on picture \ref{fig:rollOscillation}. This could mean that the navigation controller is oscillating fast around the given point, with increasingly high amplitude, requiring further tuning of it's parameters. 
+The problem appears to be caused by the navigation controller, as the roll("ATT.Roll") actually follows the roll setpoint("ATT.DesRoll"), which is oscillating, as seem on picture \ref{fig:rollOscillation}. This could mean that the navigation controller is oscillating fast around the given point, with increasingly high amplitude, requiring further tuning of its parameters. 
 
 	\begin{figure}
 \centering
@@ -96,6 +96,6 @@ Test \# & Flight Time (s) & \begin{tabular}[c]{@{}r@{}}Position \\ Hold Radius (
 
 \section{Test Conclusions}
 
-Although not all tests could be done on time, the VTOL capabilities could be tested and were very satisfactory, with only two minor issues. The first issue is that, on an autonomous take-off, the motors speed up too slowly, taking the aircraft off balance before it gets off the ground, were its control surfaces are not very effective, as the friction holds the winglets in place, impairing the pitch control. The second one is that the winglets/landing gear need to be a little larger and better attached to the aircraft, otherwise it tips over during landing.
+Although not all tests could be done on time, the VTOL capabilities were tested and the results were very satisfactory, with only two minor issues. The first issue is that, on an autonomous take-off, the motors speed up too slowly, taking the aircraft off balance before it gets off the ground, where its control surfaces are not very effective, as the friction holds the winglets in place, impairing the pitch control. The second one is that the winglets/landing gear needs to be a little larger and better attached to the aircraft, otherwise it tips over during landing.
 
-Further tests need to be made on the transition into forward flight an the forward flight itself.
+Further tests need to be made on the transition into forward flight and on the forward flight itself.

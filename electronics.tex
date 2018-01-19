@@ -1,5 +1,5 @@
 
-\chapter{The Eletronics} \label{chap:electronics}
+\chapter{The Electronics} \label{chap:electronics}
 
 In order for the aircraft to fly and navigate autonomously, onboard electronics are required, for both actuation, power source, and navigation. Some of the used electronics were already available, and were chosen for this reason. Others were chosen taking into account technical specifications, price, and availability.
 	
@@ -7,7 +7,7 @@ In order for the aircraft to fly and navigate autonomously, onboard electronics 
 
 Due to the familiarity and availability, the Mikrokopter Mk3638 Motor was chosen, paired with E-Max Simon 60A escs.
 
-Experimental curves for the motor are available at Mikrokopter's website, and the relevant ones are reproduced on Figure \ref{fig:motorcurves}. Each motor should give, on 16 V, around 1.9 kg of static thrust when paired to 12 inches propellers, up to 2.5 kg on 15 inches, while drawing 35 A, or about 560 W.
+Experimental curves for the motor are available at Mikrokopter's website, and the relevant ones are reproduced in figure \ref{fig:motorcurves}. Each motor should give, on 16 V, around 1.9 kg of static thrust when paired to 12 inches propellers, up to 2.5 kg on 15 inches, while drawing 35 A, or about 560 W.
 
 \begin{figure}[H]
 \centering
@@ -59,7 +59,7 @@ As the airplane is aimed to weigh around 3 kg, each motor needs to pull at least
 As each motor can draw up to 25 A, the battery should be able to provide up to 50 A without issues.
 The Batteries chosen are also the ones already in use by the company, Multistars 10000 mAh 10C, which, at 10 C rating, are able to sustain a constant draw of up to 100 A. 
 
-Each weighs approximately 800 g and measures 160 x 65 x 36 mm.
+Each battery weighs approximately 800 g and measures 160 x 65 x 36 mm.
 
 
 
@@ -120,7 +120,7 @@ The servos chosen were standard servos Savox SV-0220, linked to the elevon horns
 
 \section{The Flight Controller}
 
-The multirotor had a huge boom last 10 years. In 2009 the first hobby-grade flight controller for multicopters was born, Rolf "KaptainKuk" Bakke's "KK board". Using a simple AVR controller and three gyroscopes, the board could control angular speed on three axis, enabling pilots to control the multirotors. It was programmed in AVR assembly and had individual PID controllers for each axis.
+The multirotor had a huge boom in the last 10 years. In 2009 the first hobby-grade flight controller for multicopters was born, Rolf "KaptainKuk" Bakke's "KK board". Using a simple AVR controller and three gyroscopes, the board could control angular speed on three axis, enabling pilots to control the multirotors. It was programmed in AVR assembly and had individual PID controllers for each axis.
 %
 Shortly after, Alexinparis noticed the gyros on the Wii Motion + controller, and MultiWii was born. This project grew to support a variety of sensors and boards, and had an active development community, but has now saturated the AVR controller's capability.
 %
@@ -128,9 +128,9 @@ Shortly after, still in 2010, DIY Drones released the open-source Arducopter, fe
 %
 In 2011, DJI started to get visibility with the NAZA controller, which showed remarkable stability, and later got upgraded with a GPS allowing the drone to return to home and hold position in the air. The controller was often sold with a standard frame and motors, which improved stability as the board was pre-tuned to the sold equipment.
 
-Shortly after DJI began to manufacture the DJI Phantom drones, which is now the main player in the market.
+Shortly after, DJI began to manufacture the DJI Phantom drones, which is now the main player in the market.
 %
-Nowadays, three major controllers coexist: MultiWii was ported to 32bits architecture processors and lives on as Baseflight and Cleanflight, mostly on quadcopter racing boards; DJI leads the aerial photography market with their phantom quadcopters; And on the autonomous fields, Ardupilot, PX4, Mikrokopter, and DJI are still competing for the better solutions.
+Nowadays, three major controllers coexist: MultiWii was ported to 32bits architecture processors and lives on as Baseflight and Cleanflight, mostly on quadcopter racing boards; DJI leads the aerial photography market with their phantom quadcopters; and on the autonomous fields, Ardupilot, PX4, Mikrokopter, and DJI are still competing for the better solutions.
 
 
 The Flight Controller board chosen is a PixHawk. Both PX4 and ArduPilot stacks support this board. But Ardupilot is a more mature, tested, open, and community-based platform, and thus it was chosen here, running latest release of ArduPlane, where there's experimental support for tail-sitters.
@@ -161,7 +161,7 @@ It's precision is around 3 m, occasionally getting lower than 1 m\cite{m8ntest}.
 
 The telemetry system provides a serial (UART) connection to the aircraft, via a radio system.
 %
-The one used can be seen on the top right corner of Figure \ref{fig:pixhawk} and is a 900Mhz radio modem.
+The one used can be seen on the top right corner of figure \ref{fig:pixhawk} and is a 900Mhz radio modem.
 %
 The telemetry allows real-time reading of parameters and attitude, as well as writing them for setup and tuning.
 
@@ -171,7 +171,7 @@ The used Radio System is a 2.4Ghz radio by Turnigy, the Turnigy 9x.
 %
 This radio uses fast frequency hopping to avoid interference, and has a reported range of up to 3 km \cite{range9x}.
 %
-The radio was modded\cite{t9xmod} and the firmware was replaced by the open-source OpenTX \cite{opentx}, which provides much more flexibility to the system, as custom mixes, switches, automatic functions, periodic functions, and telemetry capabilities.
+The radio was modded\cite{t9xmod} and the firmware was replaced by the open-source OpenTX \cite{opentx}, which provides much more flexibility to the system, such as custom mixes, switches, automatic functions, periodic functions, and telemetry capabilities.
 
 \begin{figure}[H]
 \centering
@@ -185,7 +185,7 @@ The radio was modded\cite{t9xmod} and the firmware was replaced by the open-sour
 
 In order to take pictures for the aerophotogrammetry, a camera is needed. As the company is also working on a RTK\footnote{Real Time Kinematics, a system that improves GPS localization giving millimetric precision.} system, a compatible camera is required.
 
-Sony's DSC HX60V was chosen due to it's sensor size, which at 55 mm is able to provide a broad field of view, for it's weight, relatively low at 272 g, presence of Multi protocol for communication with flight controllers, and external flash support, which can be used to read the precise time when a picture is taken, so it can be synced to the current GPS position and attitude.
+Sony's DSC HX60V was chosen due to its sensor size, which at 55 mm is able to provide a broad field of view; for it's weight, relatively low at 272 g; presence of Multi protocol for communication with flight controllers; and external flash support, which can be used to read the precise time when a picture was taken. The time can then be synced to the current GPS position and the aircraft's attitude.
 
 \begin{figure}[H]
 \centering
