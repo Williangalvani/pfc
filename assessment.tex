@@ -63,6 +63,7 @@ No attempt at transitioning to fixed-wing mode was made at this flight due to th
 The next test was taking-off and landing autonomously. Due to the winds and undersized landing gear, the aircraft was positioned with the surface again parallel to the wind flow.
 
 The autonomous take-off however, tried to take-off too slowly, and the winglet/landing gear grip to the grass limited pitch control prior to taking-off, causing the wing to tip over. The solution was to take-off manually, in QStabilize (Quadplane Stabilize) mode, then switching to QLoiter. Five of such flights were attempted. The results are on Table \ref{table:loiter}.
+Some of these tests are available online\cite{test2}.
 
 While most of the results were good, a roll oscillation was present on some of the flights, causing instability and forced landings.
 The problem appears to be caused by the navigation controller, as the roll("ATT.Roll") actually follows the roll setpoint("ATT.DesRoll"), which is oscillating, as seem on picture \ref{fig:rollOscillation}. This could mean that the navigation controller is oscillating fast around the given point, with increasingly high amplitude, requiring further tuning of its parameters. 
