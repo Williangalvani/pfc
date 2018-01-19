@@ -1,6 +1,8 @@
 \chapter{Assessment} \label{chap:assessment}
 
-The assessment was incremental. First, the aerodynamic properties were tested on a manual flight, qualitatively, regarding properties such as stall angle, stall speed, and equilibrium point in flight. Following this, the hover capabilities were tested, such as altitude and attitude control. With the basic flight capabilities proven, a few autonomous, test flights were performed, without VTOL. Finally, its VTOL capabilities were benchmarked. These tests are better described, as well as their results, in the following sections.
+The assessment was planned with incremental tests. First, the VTOL capabilities would be tested, with stabilized flights, then the position hold (loiter), followed by autonomous taking-off, then landing. With the VTOL modes working, it would be time to testing the transition to forward flight, the flight itself, and the transition back into VTOL mode.
+
+The tests actually performed are better described, as well as their results, in the following sections.
 
 
 \section{Tethered Attitude Control Test}
@@ -45,7 +47,7 @@ No attempt at transitioning to fixed-wing mode was made at this flight due to th
   \includegraphics[width=0.7\linewidth]{figs/flight1-3d.png}
   \caption{Visualization of first test flight.}
   \label{fig:flight1-3d}
-\end{figure}
+\end{figure}018/01/16/novarum-sky-on-the-up/
 	
 	\begin{figure}[H]
 \centering
@@ -91,3 +93,9 @@ Test \# & Flight Time (s) & \begin{tabular}[c]{@{}r@{}}Position \\ Hold Radius (
 \caption{Loiter tests summary.}\label{table:loiter}
 \end{table}
 
+
+\section{Test Conclusions}
+
+Although not all tests could be done on time, the VTOL capabilities could be tested and were very satisfactory, with only two minor issues. The first issue is that, on an autonomous take-off, the motors speed up too slowly, taking the aircraft off balance before it gets off the ground, were its control surfaces are not very effective, as the friction holds the winglets in place, impairing the pitch control. The second one is that the winglets/landing gear need to be a little larger and better attached to the aircraft, otherwise it tips over during landing.
+
+Further tests need to be made on the transition into forward flight an the forward flight itself.
